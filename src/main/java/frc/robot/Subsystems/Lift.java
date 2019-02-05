@@ -16,16 +16,18 @@ public class Lift implements Subsystem{
 
     public void init()
     {
-        liftMotorA = new TalonSRX(Ports.LIFT_LEFT_A_CANID);
-        liftMotorB = new TalonSRX(Ports.LIFT_LEFT_A_CANID);
+        liftMotorA = new TalonSRX(Ports.LIFT_LEFT_CANID);
+        liftMotorB = new TalonSRX(Ports.LIFT_RIGHT_CANID);
         liftMotorA.setNeutralMode(NeutralMode.Brake);
         liftMotorB.setNeutralMode(NeutralMode.Brake);
+        liftMotorA.configContinuousCurrentLimit(5, 100);
+        liftMotorB.configContinuousCurrentLimit(5, 100);
     }
 
     private void setMotorSpeed(double speed)
     {
         liftMotorA.set(ControlMode.PercentOutput, -speed);
-        liftMotorB.set(ControlMode.PercentOutput, -speed);
+        liftMotorB.set(ControlMode.PercentOutput, speed);
     }
 
     public void raise()
@@ -47,7 +49,11 @@ public class Lift implements Subsystem{
 
     public void updateDashboard()
     {
-        SmartDashboard.putNumber("Lift Motor Speed", liftMotorA.getOutputCurrent());
+        SmartDashboard.putNumber("Lift Motor A Current", liftMotorA.getOutputCurrent());
+        SmartDashboard.putNumber("Lift Motor B Current", liftMotorB.getOutputCurrent());
+        SmartDashboard.putNumber("Lift A Speed", liftMotorA.getMotorOutputVoltage());
+        SmartDashboard.putNumber("Lift B Speed", liftMotorB.getMotorOutputVoltage());
+
     }
 
 

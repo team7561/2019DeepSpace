@@ -1,8 +1,10 @@
 package frc.robot.Subsystems;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Ports;
 
 public class Drivetrain implements Subsystem {
@@ -11,15 +13,15 @@ public class Drivetrain implements Subsystem {
     final double encoderRatio = 2;
 
     public ADXRS450_Gyro gyro;
-    VictorSP leftA, leftB, rightA, rightB;
+    VictorSPX leftA, leftB, rightA, rightB;
     Encoder leftEncoder, rightEncoder;
 
     public void init()
     {
-        leftA = new VictorSP(Ports.DRIVE_LEFT_A_CHANNEL);
-        leftB = new VictorSP(Ports.DRIVE_LEFT_B_CHANNEL);
-        rightA = new VictorSP(Ports.DRIVE_RIGHT_A_CHANNEL);
-        rightB = new VictorSP(Ports.DRIVE_RIGHT_B_CHANNEL);
+        leftA = new VictorSPX(Ports.DRIVE_LEFT_A_CHANNEL);
+        leftB = new VictorSPX(Ports.DRIVE_LEFT_B_CHANNEL);
+        rightA = new VictorSPX(Ports.DRIVE_RIGHT_A_CHANNEL);
+        rightB = new VictorSPX(Ports.DRIVE_RIGHT_B_CHANNEL);
         rightEncoder = new Encoder(2, 3);
         rightEncoder.setDistancePerPulse(1);
         leftEncoder = new Encoder(0, 1);
@@ -30,19 +32,19 @@ public class Drivetrain implements Subsystem {
 
     //sets the speeds of all driving motors
     public void drive(double leftSpeed, double rightSpeed) {
-        leftA.set(-leftSpeed);
-        leftB.set(-leftSpeed);
-        rightA.set(rightSpeed);
-        rightB.set(rightSpeed);
+        leftA.set(ControlMode.PercentOutput, -leftSpeed);
+        leftB.set(ControlMode.PercentOutput, -leftSpeed);
+        rightA.set(ControlMode.PercentOutput, rightSpeed);
+        rightB.set(ControlMode.PercentOutput, rightSpeed);
     }
 
     //teleop driving
     public void arcadeDrive(double x, double y, double speed, boolean inverted) {
-        x = -x * Math.abs(x) * speed;
+        x = x * Math.abs(x) * speed;
         y = y * Math.abs(y) * speed;
 
-        double left = y - x;
         double right = y + x;
+        double left = - y + x;
         if (left > 1) {
             left = 1;
         }
@@ -167,8 +169,8 @@ public class Drivetrain implements Subsystem {
     public void updateDashboard()
     {
         //SmartDashboard.putNumber("Gyro Angle", readGyro());
-        SmartDashboard.putNumber("Left Power", leftA.get());
-        SmartDashboard.putNumber("Right Power", rightA.get());
+        SmartDashboard.putNumber("Left Power", leftA.getMotorOutputPercent());
+        SmartDashboard.putNumber("Right Power", rightA.getMotorOutputPercent());
         SmartDashboard.putNumber("Left Encoder", -leftEncoder.get() * encoderRatio);
         SmartDashboard.putNumber("Right Encoder", -rightEncoder.get() * encoderRatio);
         SmartDashboard.putNumber("Encoder Average", getEncoderAvg());

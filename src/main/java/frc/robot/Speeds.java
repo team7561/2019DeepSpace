@@ -2,7 +2,7 @@ package frc.robot;
 
 public class Speeds {
     //Lift
-    public static double LIFT_UP_SPEED = -0.7;
+    public static double LIFT_UP_SPEED = -1;
     public static double LIFT_DOWN_SPEED = 0.4;
     public static double LIFT_STOP_SPEED = -0.05;
     //Ball Intake

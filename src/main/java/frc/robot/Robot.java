@@ -113,7 +113,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void teleopPeriodic() {
     JamesDrive.drive(this, joystick);
-    //BenDrive.drive( this, xboxController);
+    BenDrive.drive( this, xboxController);
     double[] defaultValue = new double[2];
 
     double[] distances = table.getNumberArray("centreX", defaultValue);

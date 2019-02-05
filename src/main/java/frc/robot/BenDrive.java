@@ -5,11 +5,12 @@ import edu.wpi.first.wpilibj.XboxController;
 public class BenDrive {
     public static void drive(Robot robot, XboxController xboxController)
     {
-        if(xboxController.getRawAxis(1) > 0.5)
+        if(xboxController.getAButton())
         {
             robot.lift.raise();
+            System.out.println("Raising lift");
         }
-        else if (xboxController.getRawAxis(1) < -0.5)
+        else if (xboxController.getBButton())
         {
             robot.lift.lower();
         }
@@ -18,18 +19,6 @@ public class BenDrive {
             robot.lift.stop();
         }
 
-    if (xboxController.getAButton())
-    {
-        robot.lift.raise();
-    }
-    else if (xboxController.getBButton())
-    {
-        robot.lift.lower();
-    }
-    else
-    {
-        robot.lift.stop();
-    }
 
     if (xboxController.getXButton())
     {
