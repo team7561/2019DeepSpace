@@ -20,18 +20,17 @@ public class BenDrive {
         }
 
 
-    if (xboxController.getXButton())
-    {
-        robot.arm.raise();
-    }
-    else if (xboxController.getYButton())
-    {
-        robot.arm.lower();
-    }
-    else
-    {
-        robot.arm.stop();
-    }
-
+        if (xboxController.getXButton())
+        {
+            robot.arm.raise();
+        }
+        else if (xboxController.getYButton())
+        {
+            robot.arm.lower();
+        }
+        else
+        {
+            robot.arm.stop();
+        }
     }
 }

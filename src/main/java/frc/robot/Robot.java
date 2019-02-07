@@ -11,13 +11,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Subsystems.Arm;
-import frc.robot.Subsystems.BallIntake;
-import frc.robot.Subsystems.Drivetrain;
-import frc.robot.Subsystems.Lift;
+import frc.robot.Subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.networktables.NetworkTable;
 
 /**
@@ -37,6 +35,8 @@ public class Robot extends IterativeRobot {
   BallIntake ballintake = new BallIntake();
   Drivetrain drivetrain = new Drivetrain();
   Lift lift = new Lift();
+  LEDController ledController = new LEDController();
+  Timer matchTimer = new Timer();
   NetworkTable table;
   boolean invertedDrive;
   double speedControl;
@@ -89,13 +89,15 @@ public class Robot extends IterativeRobot {
     // autoSelected = SmartDashboard.getString("Auto Selector",
     // defaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+    matchTimer.start();
   }
 
   @Override
   public void autonomousPeriodic() {
 
     JamesDrive.drive(this, joystick);
-    //BenDrive.drive( this, xboxController);
+    BenDrive.drive( this, xboxController);
+    ledController.setRainbow();
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -114,57 +116,19 @@ public class Robot extends IterativeRobot {
   public void teleopPeriodic() {
     JamesDrive.drive(this, joystick);
     BenDrive.drive( this, xboxController);
+    ledController.setWaves();
     double[] defaultValue = new double[2];
 
     double[] distances = table.getNumberArray("centreX", defaultValue);
     //System.out.println(distances[0]);
     //System.out.println(distances[1]);
     SmartDashboard.putNumber("Distance 0", distances[0]);
-
-
-
-    /*if(xboxController.getRawAxis(1) > 0.5)
+    if (matchTimer.get() > 120)
     {
-      lift.raise();
+      ledController.turnOff();
     }
-    else if (xboxController.getRawAxis(1) < -0.5)
-    {
-      lift.lower();
-    }
-    else
-    {
-      lift.stop();
-    }*/
-/*
-    if (xboxController.getAButton()) {
-      lift.raise();
-    }
-    else if (xboxController.getBButton())
-    {
-      lift.lower();
-    }
-    else
-    {
-      lift.stop();
-    }
-
-    if (xboxController.getXButton())
-    {
-      arm.raise();
-    }
-    else if (xboxController.getYButton())
-    {
-      arm.lower();
-    }
-    else
-    {
-      arm.stop();
-    }
-    */
-  updateDashboards();
+    updateDashboards();
   }
-
-
 
   /**
    * This function is called periodically during test mode.
