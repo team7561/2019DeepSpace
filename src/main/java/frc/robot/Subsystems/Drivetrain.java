@@ -26,8 +26,6 @@ public class Drivetrain implements Subsystem {
         rightEncoder.setDistancePerPulse(1);
         leftEncoder = new Encoder(0, 1);
         leftEncoder.setDistancePerPulse(1);
-        //gyro = new ADXRS450_Gyro();
-        //gyro.calibrate();
     }
 
     //sets the speeds of all driving motors

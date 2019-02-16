@@ -1,16 +1,17 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 public class BenDrive {
     public static void drive(Robot robot, XboxController xboxController)
     {
-        if(xboxController.getAButton())
+        if(xboxController.getBumper(GenericHID.Hand.kLeft))
         {
             robot.lift.raise();
             System.out.println("Raising lift");
         }
-        else if (xboxController.getBButton())
+        else if (xboxController.getAButton())
         {
             robot.lift.lower();
         }
@@ -22,6 +23,7 @@ public class BenDrive {
 
         if (xboxController.getXButton())
         {
+            System.out.println("Raising arm");
             robot.arm.raise();
         }
         else if (xboxController.getYButton())

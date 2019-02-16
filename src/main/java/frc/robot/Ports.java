@@ -1,7 +1,6 @@
 package frc.robot;
 
 public class Ports {
-    public static int ARM_CHANNEL = 9;
 
     // CAN Bus Node IDs
     public static int DRIVE_LEFT_A_CHANNEL = 1;
@@ -10,6 +9,7 @@ public class Ports {
     public static int DRIVE_RIGHT_B_CHANNEL = 4;
     public static int  LIFT_LEFT_CANID = 8;
     public static int LIFT_RIGHT_CANID = 9;
+    public static int ARM_CHANNEL_CANID = 10;
 
     // PWM control channels
     public static int LED_CONTROLLER_CHANNEL = 5;

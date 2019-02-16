@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.cameraserver.CameraServer;
 //import edu.wpi.first.networktables.NetworkTable;
 
 /**
@@ -34,6 +35,7 @@ public class Robot extends IterativeRobot {
   Arm arm = new Arm();
   BallIntake ballintake = new BallIntake();
   Drivetrain drivetrain = new Drivetrain();
+  VisionController visionController = new VisionController();
   Lift lift = new Lift();
   LEDController ledController = new LEDController();
   Timer matchTimer = new Timer();
@@ -57,7 +59,7 @@ public class Robot extends IterativeRobot {
     speedControl = 1;
 
     table = NetworkTable.getTable("GRIP/myContoursReport");
-    //CameraServer.setRes
+    CameraServer.getInstance().startAutomaticCapture();
     }
 
   /**
@@ -140,5 +142,7 @@ public class Robot extends IterativeRobot {
   {
     drivetrain.updateDashboard();
     lift.updateDashboard();
+    arm.updateDashboard();
+    
   }
 }
