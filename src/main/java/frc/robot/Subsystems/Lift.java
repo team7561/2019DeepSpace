@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
 import frc.robot.Speeds;
 
-import javax.sound.sampled.Port;
-
 public class Lift implements Subsystem{
 
     private TalonSRX liftMotorA, liftMotorB;
@@ -60,7 +58,6 @@ public class Lift implements Subsystem{
         SmartDashboard.putNumber("Lift A Speed", liftMotorA.getMotorOutputVoltage());
         SmartDashboard.putNumber("Lift B Speed", liftMotorB.getMotorOutputVoltage());
         SmartDashboard.putNumber("Lift Encoder", liftEncoder.get());
-
     }
 
 }

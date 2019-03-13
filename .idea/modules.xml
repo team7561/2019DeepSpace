@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projectchickenhawk.iml" filepath="$PROJECT_DIR$/.idea/modules/projectchickenhawk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projectchickenhawk.main.iml" filepath="$PROJECT_DIR$/.idea/modules/projectchickenhawk.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projectchickenhawk.test.iml" filepath="$PROJECT_DIR$/.idea/modules/projectchickenhawk.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2019DeepSpace.iml" filepath="$PROJECT_DIR$/.idea/modules/2019DeepSpace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2019DeepSpace.main.iml" filepath="$PROJECT_DIR$/.idea/modules/2019DeepSpace.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2019DeepSpace.test.iml" filepath="$PROJECT_DIR$/.idea/modules/2019DeepSpace.test.iml" />
     </modules>
   </component>
 </project>

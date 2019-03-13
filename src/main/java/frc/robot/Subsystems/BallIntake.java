@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import frc.robot.Ports;
 import frc.robot.Speeds;
 
 public class BallIntake implements Subsystem {
@@ -16,7 +17,7 @@ public class BallIntake implements Subsystem {
 
     public void init()
     {
-        ballIntakeMotor = new VictorSP(7);
+        ballIntakeMotor = new VictorSP(Ports.INTAKE_CHANNEL);
     }
 
     //set speed of both intake motors

@@ -129,6 +129,7 @@ public class Robot extends IterativeRobot {
     {
       ledController.turnOff();
     }
+    visionController.update();
     updateDashboards();
   }
 
@@ -143,6 +144,7 @@ public class Robot extends IterativeRobot {
     drivetrain.updateDashboard();
     lift.updateDashboard();
     arm.updateDashboard();
+    visionController.updateDashboard();
     
   }
 }

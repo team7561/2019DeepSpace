@@ -11,30 +11,32 @@ public class JamesDrive {
         if (joystick.getRawButton(7))
         {
             robot.invertedDrive = false;
+            robot.ledController.setRainbow();
         }
         if (joystick.getRawButton(8))
         {
             robot.invertedDrive = true;
+            robot.ledController.setWaves();
         }
-        if (joystick.getRawButton(1))
+        if (joystick.getRawButton(4))
         {
             robot.drivetrain.drive(-robot.speedControl, robot.speedControl);
+        }
+        else if(joystick.getRawButton(11))
+        {
+            robot.drivetrain.turnToAngle(robot.visionController.targetYaw(), Speeds.VISION_DRIVE_SPEED);
         }
         else
         {
             robot.drivetrain.arcadeDrive(joystick.getX(GenericHID.Hand.kLeft),joystick.getY(GenericHID.Hand.kLeft), robot.speedControl, robot.invertedDrive);
         }
-        //drivetrain.arcadeDrive(joystick.getX(GenericHID.Hand.kLeft), joystick.getY(GenericHID.Hand.kLeft));
-        if (joystick.getRawButton(11))
+        if (joystick.getRawButton(9))
         {
-            robot.lift.raise();
+            robot.visionController.setCargo();
         }
-        else if (joystick.getRawButton(12))
+        else if (joystick.getRawButton(10))
         {
-            robot.lift.lower();
-        }
-        else {
-            robot.lift.stop();
+            robot.visionController.setTape();
         }
         if (joystick.getTrigger())
         {
@@ -45,7 +47,8 @@ public class JamesDrive {
             robot.ballintake.ejectBall();
         }
         else {
-            robot.ballintake.stop();
+            robot.ballintake.keepBall();
         }
+
     }
 }

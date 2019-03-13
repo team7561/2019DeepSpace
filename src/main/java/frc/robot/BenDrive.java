@@ -6,10 +6,18 @@ import edu.wpi.first.wpilibj.XboxController;
 public class BenDrive {
     public static void drive(Robot robot, XboxController xboxController)
     {
-        if(xboxController.getBumper(GenericHID.Hand.kLeft))
+        // Controls for lift
+        if(xboxController.getY(GenericHID.Hand.kLeft)>0.2)
+        {
+            robot.lift.lower();
+        }
+        else if(xboxController.getY(GenericHID.Hand.kLeft)<-0.2)
         {
             robot.lift.raise();
-            System.out.println("Raising lift");
+        }
+        else if(xboxController.getBButton())
+        {
+            robot.lift.raise();
         }
         else if (xboxController.getAButton())
         {
@@ -20,10 +28,17 @@ public class BenDrive {
             robot.lift.stop();
         }
 
-
-        if (xboxController.getXButton())
+        // Controls for Arm
+        if(xboxController.getY(GenericHID.Hand.kRight)>0.2)
         {
-            System.out.println("Raising arm");
+            robot.arm.lower();
+        }
+        else if(xboxController.getY(GenericHID.Hand.kRight)<-0.2)
+        {
+            robot.arm.raise();
+        }
+        else if(xboxController.getXButton())
+        {
             robot.arm.raise();
         }
         else if (xboxController.getYButton())

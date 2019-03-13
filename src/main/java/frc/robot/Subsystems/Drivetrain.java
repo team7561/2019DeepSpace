@@ -22,9 +22,9 @@ public class Drivetrain implements Subsystem {
         leftB = new VictorSPX(Ports.DRIVE_LEFT_B_CHANNEL);
         rightA = new VictorSPX(Ports.DRIVE_RIGHT_A_CHANNEL);
         rightB = new VictorSPX(Ports.DRIVE_RIGHT_B_CHANNEL);
-        rightEncoder = new Encoder(2, 3);
+        rightEncoder = new Encoder(Ports.ENCODER_RIGHT_A_CHANNEL, Ports.ENCODER_RIGHT_B_CHANNEL);
         rightEncoder.setDistancePerPulse(1);
-        leftEncoder = new Encoder(0, 1);
+        leftEncoder = new Encoder(Ports.ENCODER_LEFT_A_CHANNEL, Ports.ENCODER_LEFT_B_CHANNEL);
         leftEncoder.setDistancePerPulse(1);
     }
 
@@ -137,7 +137,7 @@ public class Drivetrain implements Subsystem {
     public double calculateError(double targetAngle)
     {
         //double error = readGyro() - targetAngle;
-        double error = 0;
+        double error = targetAngle;
         while (error > 180) {
             error = error - 360;
         }
@@ -152,13 +152,16 @@ public class Drivetrain implements Subsystem {
     public void turnToAngle(double targetAngle, double speed)
     {
         double error = calculateError(targetAngle);
+        SmartDashboard.putNumber("Error", error);
         if(error < 0)
         {
-            drive(speed, -speed);
+            System.out.println("Turning one way");
+            drive(speed, speed);
         }
         else
         {
-            drive(-speed, speed);
+            System.out.println("Turning another way");
+            drive(-speed, -speed);
         }
         this.lastError = error;
     }
