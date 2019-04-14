@@ -7,8 +7,8 @@ public class Ports {
     public static int DRIVE_LEFT_B_CHANNEL = 2;
     public static int DRIVE_RIGHT_A_CHANNEL = 3;
     public static int DRIVE_RIGHT_B_CHANNEL = 4;
-    public static int  LIFT_LEFT_CANID = 8;
-    public static int LIFT_RIGHT_CANID = 9;
+    public static int LIFT_A_CANID = 5;
+    public static int LIFT_B_CANID = 6;
     public static int ARM_CHANNEL_CANID = 10;
 
     // PWM control channels
@@ -29,4 +29,9 @@ public class Ports {
     // Analog Channels
     public static int POSITION_CHANNEL = 1;
     public static int ULTRASONIC_CHANNEL = 2;
+
+    // PCM ports
+    public static int INTAKE_SOLENOID_CHANNEL_A = 0;
+    public static int INTAKE_SOLENOID_CHANNEL_B = 1;
+
 }

@@ -23,22 +23,18 @@ public class BallIntake implements Subsystem {
     //set speed of both intake motors
     private void intakeSpeed (double speed)
     {
-        SmartDashboard.putNumber("Intake speed:", speed);
-
         ballIntakeMotor.set(speed);
     }
 
     //Get the Ball
     public void getBall()
     {
-
         intakeSpeed(Speeds.GET_BALL_SPEED);
     }
 
     //For keep in the Ball while driving
     public void keepBall()
     {
-
         intakeSpeed(Speeds.KEEP_BALL_SPEED);
     }
 

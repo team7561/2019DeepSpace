@@ -1,7 +1,9 @@
 package frc.robot.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -10,18 +12,16 @@ import frc.robot.Speeds;
 
 public class Lift implements Subsystem{
 
-    private TalonSRX liftMotorA, liftMotorB;
+    private CANSparkMax liftMotorA, liftMotorB;
     private DigitalInput limitSwitch;
     private Encoder liftEncoder;
 
     public void init()
     {
-        liftMotorA = new TalonSRX(Ports.LIFT_LEFT_CANID);
-        liftMotorB = new TalonSRX(Ports.LIFT_RIGHT_CANID);
-        liftMotorA.setNeutralMode(NeutralMode.Brake);
-        liftMotorB.setNeutralMode(NeutralMode.Brake);
-        liftMotorA.configContinuousCurrentLimit(5, 100);
-        liftMotorB.configContinuousCurrentLimit(5, 100);
+        liftMotorA = new CANSparkMax(Ports.LIFT_A_CANID, CANSparkMaxLowLevel.MotorType.kBrushless);
+        liftMotorB = new CANSparkMax(Ports.LIFT_B_CANID, CANSparkMaxLowLevel.MotorType.kBrushless);
+        liftMotorA.setIdleMode(CANSparkMax.IdleMode.kBrake);
+        liftMotorB.setIdleMode(CANSparkMax.IdleMode.kBrake);
         liftEncoder = new Encoder(Ports.ENCODER_LIFT_A_CHANNEL, Ports.ENCODER_LIFT_B_CHANNEL);
     }
 
@@ -31,8 +31,8 @@ public class Lift implements Subsystem{
     }
     private void setMotorSpeed(double speed)
     {
-        liftMotorA.set(ControlMode.PercentOutput, -speed);
-        liftMotorB.set(ControlMode.PercentOutput, speed);
+        liftMotorA.set(speed);
+        liftMotorB.set(speed);
     }
 
     public void raise()
@@ -55,8 +55,8 @@ public class Lift implements Subsystem{
     {
         SmartDashboard.putNumber("Lift Motor A Current", liftMotorA.getOutputCurrent());
         SmartDashboard.putNumber("Lift Motor B Current", liftMotorB.getOutputCurrent());
-        SmartDashboard.putNumber("Lift A Speed", liftMotorA.getMotorOutputVoltage());
-        SmartDashboard.putNumber("Lift B Speed", liftMotorB.getMotorOutputVoltage());
+        SmartDashboard.putNumber("Lift A Speed", liftMotorA.get());
+        SmartDashboard.putNumber("Lift B Speed", liftMotorB.get());
         SmartDashboard.putNumber("Lift Encoder", liftEncoder.get());
     }
 

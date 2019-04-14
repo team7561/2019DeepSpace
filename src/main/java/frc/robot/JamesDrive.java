@@ -49,6 +49,16 @@ public class JamesDrive {
         else {
             robot.ballintake.keepBall();
         }
+        if (joystick.getTrigger())
+        {
+            robot.panelintake.getPannel();
+        }
+        else if (joystick.getRawButton(2))
+        {
+            robot.panelintake.ejectPannel();
+        }
+        else {
+        }
 
     }
 }

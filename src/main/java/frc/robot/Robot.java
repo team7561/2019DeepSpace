@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
   XboxController xboxController = new XboxController(2);
   Arm arm = new Arm();
   BallIntake ballintake = new BallIntake();
+  PanelIntake panelintake = new PanelIntake();
   Drivetrain drivetrain = new Drivetrain();
   VisionController visionController = new VisionController();
   Lift lift = new Lift();
@@ -54,13 +55,14 @@ public class Robot extends IterativeRobot {
     drivetrain.init();
     lift.init();
     ballintake.init();
+    panelintake.init();
 
     invertedDrive = false;
     speedControl = 1;
 
     table = NetworkTable.getTable("GRIP/myContoursReport");
     CameraServer.getInstance().startAutomaticCapture();
-    }
+  }
 
   /**
    * This function is called every robot packet, no matter the mode. Use
