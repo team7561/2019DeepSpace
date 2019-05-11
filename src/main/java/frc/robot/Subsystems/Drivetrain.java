@@ -33,10 +33,10 @@ public class Drivetrain implements Subsystem {
 
     //sets the speeds of all driving motors
     public void drive(double leftSpeed, double rightSpeed) {
-        leftA.set(ControlMode.PercentOutput, -leftSpeed);
-        leftB.set(ControlMode.PercentOutput, -leftSpeed);
-        rightA.set(ControlMode.PercentOutput, rightSpeed);
-        rightB.set(ControlMode.PercentOutput, rightSpeed);
+        leftA.set(ControlMode.PercentOutput, leftSpeed);
+        leftB.set(ControlMode.PercentOutput, leftSpeed);
+        rightA.set(ControlMode.PercentOutput, -rightSpeed);
+        rightB.set(ControlMode.PercentOutput, -rightSpeed);
     }
 
     //teleop driving
@@ -53,11 +53,32 @@ public class Drivetrain implements Subsystem {
             right = 1;
         }
         if (inverted == true) {
-            drive(left, right);
+            drive(-left, -right);
         }
         else
         {
+            drive(left, right);
+        }
+    }
+    //teleop driving
+    public void arcadeDriveLiam(double x, double y, double twist, double speed, boolean inverted) {
+        x = x * Math.abs(x) * speed;
+        y = y * Math.abs(y) * speed;
+        x = twist;
+        double right = y + x;
+        double left = - (y - x);
+        if (left > 1) {
+            left = 1;
+        }
+        if (right > 1) {
+            right = 1;
+        }
+        if (inverted == true) {
             drive(-left, -right);
+        }
+        else
+        {
+            drive(left, right);
         }
     }
 
