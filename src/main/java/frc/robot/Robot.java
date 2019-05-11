@@ -7,15 +7,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.*;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.cameraserver.CameraServer;
 //import edu.wpi.first.networktables.NetworkTable;
 
@@ -26,7 +22,7 @@ import edu.wpi.first.cameraserver.CameraServer;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -74,6 +70,7 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putBoolean("test", false);
   }
 
   /**
@@ -96,11 +93,15 @@ public class Robot extends IterativeRobot {
     matchTimer.start();
   }
 
+  public void drive() {
+
+    //JamesDrive.drive(this, joystick);
+    //BenDrive.drive( this, xboxController);
+    TomDrive.drive( this, xboxController);
+  }
   @Override
   public void autonomousPeriodic() {
-
-    JamesDrive.drive(this, joystick);
-    BenDrive.drive( this, xboxController);
+    drive();
     ledController.setRainbow();
     switch (m_autoSelected) {
       case kCustomAuto:
@@ -118,8 +119,7 @@ public class Robot extends IterativeRobot {
   }
   @Override
   public void teleopPeriodic() {
-    JamesDrive.drive(this, joystick);
-    BenDrive.drive( this, xboxController);
+    drive();
     ledController.setWaves();
     double[] defaultValue = new double[2];
 
@@ -147,6 +147,7 @@ public class Robot extends IterativeRobot {
     lift.updateDashboard();
     arm.updateDashboard();
     visionController.updateDashboard();
+    ballintake.updateDashboard();
     
   }
 }

@@ -22,6 +22,7 @@ public class Arm implements Subsystem{
         limitUpper = new DigitalInput(Ports.LIMIT_ARM_UPPER);
         limitLower = new DigitalInput(Ports.LIMIT_ARM_LOWER);
         height = 0;
+        armMotor.setOpenLoopRampRate(1);
     }
 
     private void setSpeed(double speed)
@@ -34,14 +35,13 @@ public class Arm implements Subsystem{
     }
     public void raise()
     {
-        setSpeed(Speeds.ARM_RAISE_SPEED);
-        /*if (!limitUpper.get())
+        if (!limitUpper.get())
         {
             setSpeed(Speeds.ARM_STOP_SPEED);
         }
         else {
             setSpeed(Speeds.ARM_RAISE_SPEED);
-        }*/
+        }
     }
 
     public void raiseToHeight(double targPos)
@@ -62,14 +62,13 @@ public class Arm implements Subsystem{
     }
     public void lower()
     {
-        setSpeed(Speeds.ARM_LOWER_SPEED);
-        /*if (limitLower.get())
+        if (!limitLower.get())
         {
             setSpeed(Speeds.ARM_STOP_SPEED);
         }
         else {
             setSpeed(Speeds.ARM_LOWER_SPEED);
-        }*/
+        }
     }
 
     public void stop()
@@ -84,5 +83,6 @@ public class Arm implements Subsystem{
         SmartDashboard.putNumber("Arm Applied Output", armMotor.getAppliedOutput());
         SmartDashboard.putBoolean("Arm Upper Limit Switch", limitUpper.get());
         SmartDashboard.putBoolean("Arm Lower Limit Switch", limitLower.get());
+        SmartDashboard.putNumber("Arm Lower Ramp Rate", armMotor.getOpenLoopRampRate());
     }
 }

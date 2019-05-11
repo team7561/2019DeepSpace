@@ -21,7 +21,7 @@ public class Lift implements Subsystem{
         liftMotorA = new CANSparkMax(Ports.LIFT_A_CANID, CANSparkMaxLowLevel.MotorType.kBrushless);
         liftMotorB = new CANSparkMax(Ports.LIFT_B_CANID, CANSparkMaxLowLevel.MotorType.kBrushless);
         liftMotorA.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        liftMotorB.setIdleMode(CANSparkMax.IdleMode.kBrake);
+        liftMotorB.follow(liftMotorA);
         liftEncoder = new Encoder(Ports.ENCODER_LIFT_A_CHANNEL, Ports.ENCODER_LIFT_B_CHANNEL);
     }
 
@@ -32,22 +32,24 @@ public class Lift implements Subsystem{
     private void setMotorSpeed(double speed)
     {
         liftMotorA.set(speed);
-        liftMotorB.set(speed);
     }
 
     public void raise()
     {
+        liftMotorA.setOpenLoopRampRate(3);
         setMotorSpeed(Speeds.LIFT_UP_SPEED);
     }
 
     public void lower()
     {
+        liftMotorA.setOpenLoopRampRate(3);
         setMotorSpeed(Speeds.LIFT_DOWN_SPEED);
     }
 
     //Stop lift at current position
     public void stop()
     {
+        liftMotorA.setOpenLoopRampRate(0.5);
         setMotorSpeed(Speeds.LIFT_STOP_SPEED);
     }
 

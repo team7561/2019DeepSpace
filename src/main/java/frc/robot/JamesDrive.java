@@ -11,12 +11,10 @@ public class JamesDrive {
         if (joystick.getRawButton(7))
         {
             robot.invertedDrive = false;
-            robot.ledController.setRainbow();
         }
         if (joystick.getRawButton(8))
         {
             robot.invertedDrive = true;
-            robot.ledController.setWaves();
         }
         if (joystick.getRawButton(4))
         {
@@ -40,11 +38,11 @@ public class JamesDrive {
         }
         if (joystick.getTrigger())
         {
-            robot.ballintake.getBall();
+            robot.ballintake.ejectBall();
         }
         else if (joystick.getRawButton(2))
         {
-            robot.ballintake.ejectBall();
+            robot.ballintake.getBall();
         }
         else {
             robot.ballintake.keepBall();

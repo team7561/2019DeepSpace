@@ -1,8 +1,8 @@
 package frc.robot.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Ports;
@@ -12,7 +12,6 @@ public class Drivetrain implements Subsystem {
     double lastError;
     final double encoderRatio = 2;
 
-    public ADXRS450_Gyro gyro;
     VictorSPX leftA, leftB, rightA, rightB;
     Encoder leftEncoder, rightEncoder;
 
@@ -26,6 +25,10 @@ public class Drivetrain implements Subsystem {
         rightEncoder.setDistancePerPulse(1);
         leftEncoder = new Encoder(Ports.ENCODER_LEFT_A_CHANNEL, Ports.ENCODER_LEFT_B_CHANNEL);
         leftEncoder.setDistancePerPulse(1);
+        leftA.setNeutralMode(NeutralMode.Coast);
+        leftB.setNeutralMode(NeutralMode.Coast);
+        rightA.setNeutralMode(NeutralMode.Coast);
+        rightB.setNeutralMode(NeutralMode.Coast);
     }
 
     //sets the speeds of all driving motors
@@ -42,7 +45,7 @@ public class Drivetrain implements Subsystem {
         y = y * Math.abs(y) * speed;
 
         double right = y + x;
-        double left = - y + x;
+        double left = - (y - x);
         if (left > 1) {
             left = 1;
         }
@@ -57,18 +60,7 @@ public class Drivetrain implements Subsystem {
             drive(-left, -right);
         }
     }
-    //Resets gyro
-    public void resetGyro()
-    {
-        gyro.reset();
-    }
 
-    //reads gyro (between 0-360)
-    /*public double readGyro()
-    {
-        return (gyro.getAngle() % 360 + 360) % 360;
-    }
-*/
     //resets both encoders
     public void resetEncoders() {
         leftEncoder.reset();
@@ -176,9 +168,5 @@ public class Drivetrain implements Subsystem {
         SmartDashboard.putNumber("Right Encoder", -rightEncoder.get() * encoderRatio);
         SmartDashboard.putNumber("Encoder Average", getEncoderAvg());
         SmartDashboard.putNumber("Error", lastError);
-
-
-
     }
-
 }

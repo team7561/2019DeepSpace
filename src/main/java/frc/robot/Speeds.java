@@ -6,9 +6,9 @@ public class Speeds {
     public static double LIFT_DOWN_SPEED = 0.42;
     public static double LIFT_STOP_SPEED = -0.03;
     //Ball Intake
-    public static double GET_BALL_SPEED = 0.6;
+    public static double GET_BALL_SPEED = -0.6;
     public static double KEEP_BALL_SPEED = -0.15;
-    public static double EJECT_BALL_SPEED = -1.0;
+    public static double EJECT_BALL_SPEED = 1.0;
     public static double STOP_BALL_SPEED = 0;
     //Arm
     public static double ARM_RAISE_SPEED = 0.3;
