@@ -8,7 +8,7 @@ public class BenDrive {
     {
         // Controls for lift
         if(xboxController.getY(GenericHID.Hand.kLeft)>0.2)
-        {
+            {
             robot.lift.lower();
         }
         else if(xboxController.getY(GenericHID.Hand.kLeft)<-0.2)
