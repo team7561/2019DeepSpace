@@ -1,10 +1,9 @@
 package frc.robot.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import edu.wpi.first.wpilibj.VictorSP;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Ports;
 
 public class Drivetrain implements Subsystem {
@@ -162,7 +161,7 @@ public class Drivetrain implements Subsystem {
     }
 
     //turns to specified angle
-    public void turnToAngle(double targetAngle, double speed)
+    public void turnToAngle(double currentAngle, double targetAngle, double speed, double deadband)
     {
         double error = calculateError(targetAngle);
         SmartDashboard.putNumber("Error", error);
