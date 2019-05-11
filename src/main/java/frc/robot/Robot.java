@@ -26,6 +26,7 @@ public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
+  double curr_angle, target_angle;
   Joystick joystick = new Joystick(1);
   XboxController xboxController = new XboxController(2);
   Arm arm = new Arm();
@@ -131,6 +132,11 @@ public class Robot extends TimedRobot {
     {
       ledController.turnOff();
     }
+
+
+    curr_angle = SmartDashboard.getNumber("Right Pitch", 0);
+    target_angle = SmartDashboard.getNumber("Left Pitch", 0);
+
     visionController.update();
     updateDashboards();
   }
