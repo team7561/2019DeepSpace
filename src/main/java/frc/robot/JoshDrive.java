@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class JoshDrive {
@@ -12,6 +13,31 @@ public class JoshDrive {
     }
     public static void drive(Robot robot, XboxController xboxController)
     {
+        // Controls for lift
+        if(xboxController.getY(GenericHID.Hand.kLeft)>0.2)
+        {
+        robot.lift.lower();
+        }
+        else if(xboxController.getY(GenericHID.Hand.kLeft)<-0.2)
+        {
+            robot.lift.raise();
+        }
+
+        // Controls for Arm
+        if(xboxController.getY(GenericHID.Hand.kRight)>0.2)
+        {
+            robot.arm.lower();
+        }
+        else if(xboxController.getY(GenericHID.Hand.kRight)<-0.2)
+        {
+            robot.arm.raise();
+        }
+        if (xboxController.getXButton())
+        {
+            robot.lift.stop();
+            robot.arm.stop();
+        }
+
         double curr_angle = SmartDashboard.getNumber("Right Pitch", 0);
         double target_angle = SmartDashboard.getNumber("Left Pitch", 0);
         double error = (360 + curr_angle - target_angle) % 360;
@@ -51,7 +77,7 @@ public class JoshDrive {
 
         double currentHeight = SmartDashboard.getNumber("Right Y", -1);
         double targetHeight = SmartDashboard.getNumber("Target Height", -1);
-        double heightDeadband = 0.02;
+        double heightDeadband = 0.01;
         double error_height = currentHeight - targetHeight;
         double armErrorMagnitude = error_height / 2;
         
@@ -64,11 +90,11 @@ public class JoshDrive {
                 {
                     if (error_height > heightDeadband)
                     {
-                        robot.lift.setMotorSpeed(armErrorMagnitude + 0.2);
+                        robot.lift.setMotorSpeed(armErrorMagnitude + 0.1);
                     }
                     else if (error_height < -heightDeadband)
                     {
-                        robot.lift.setMotorSpeed(armErrorMagnitude - 0.2);
+                        robot.lift.setMotorSpeed(armErrorMagnitude - 0.1);
                     }
                     else
                     {
@@ -79,33 +105,10 @@ public class JoshDrive {
                 {
                     robot.lift.stop();
                 }
-            if (false)
-                {
-                if (targetHeight != -1)
-                {
-                    if (currentHeight < targetHeight-heightDeadband)
-                    {
-                        robot.lift.raise();
-                    }
-                    else if (currentHeight > targetHeight+heightDeadband)
-                    {
-                        robot.lift.lower();
-                    }
-                    else
-                    {
-                        robot.lift.stop();
-                    }
-                }
-                else
-                {
-                    robot.lift.stop();
-                }
-            }
-
-        }
+        } 
         else
         {
-            robot.lift.stop();
+            //robot.lift.stop();
         }
     }
 }

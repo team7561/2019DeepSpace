@@ -1,0 +1,1 @@
+gradlew deploy  -PteamNumber=7561 --offline  -Dorg.gradle.java.home="C:\Program Files\AdoptOpenJDK\jdk-11.0.3.7-hotspot"
