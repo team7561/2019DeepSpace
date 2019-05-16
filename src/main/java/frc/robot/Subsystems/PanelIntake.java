@@ -10,21 +10,21 @@ public class PanelIntake implements Subsystem {
 
     public void init()
     {
-        intakeSolenoid = new DoubleSolenoid(Ports.INTAKE_SOLENOID_CHANNEL_A, Ports.INTAKE_SOLENOID_CHANNEL_B);
+        //intakeSolenoid = new DoubleSolenoid(Ports.INTAKE_SOLENOID_CHANNEL_A, Ports.INTAKE_SOLENOID_CHANNEL_B);
     }
 
     public void getPannel()
     {
-        intakeSolenoid.set(DoubleSolenoid.Value.kForward);
+        //intakeSolenoid.set(DoubleSolenoid.Value.kForward);
     }
 
     public void ejectPannel()
     {
-        intakeSolenoid.set(DoubleSolenoid.Value.kReverse);
+        //intakeSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
 
     @Override
     public void updateDashboard() {
-        SmartDashboard.putString("Panel Intake Status", intakeSolenoid.get().toString());
+        //SmartDashboard.putString("Panel Intake Status", intakeSolenoid.get().toString());
     }
 }

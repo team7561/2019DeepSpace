@@ -54,6 +54,7 @@ public class Robot extends TimedRobot {
     lift.init();
     ballintake.init();
     panelintake.init();
+    JoshDrive.init();
 
     invertedDrive = false;
     speedControl = 1;
@@ -93,6 +94,7 @@ public class Robot extends TimedRobot {
     // defaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
     matchTimer.start();
+    lift.resetEncoder();
   }
 
   public void drive() {
@@ -107,7 +109,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     drive();
-    ledController.setRainbow();
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -125,21 +126,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     drive();
-    ledController.setWaves();
     double[] defaultValue = new double[2];
 
     double[] distances = table.getNumberArray("centreX", defaultValue);
     //System.out.println(distances[0]);
     //System.out.println(distances[1]);
     SmartDashboard.putNumber("Distance 0", distances[0]);
-    if (matchTimer.get() > 120)
-    {
-      ledController.turnOff();
-    }
-
-
-    curr_angle = SmartDashboard.getNumber("Right Pitch", 0);
-    target_angle = SmartDashboard.getNumber("Left Pitch", 0);
 
     visionController.update();
     updateDashboards();

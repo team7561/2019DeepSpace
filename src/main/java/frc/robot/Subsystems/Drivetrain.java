@@ -163,17 +163,26 @@ public class Drivetrain implements Subsystem {
     //turns to specified angle
     public void turnToAngle(double currentAngle, double targetAngle, double speed, double deadband)
     {
-        double error = calculateError(targetAngle);
+        double error = (360 + currentAngle - targetAngle) % 360;
+        double error_magnitude = (180-Math.abs(180-error))/180*0.3+0.1;
+        //error_magnitude = 0.2;
         SmartDashboard.putNumber("Error", error);
-        if(error < 0)
+        SmartDashboard.putNumber("Error Magnitude", error_magnitude);
+        SmartDashboard.putNumber("Current Angle", currentAngle);
+        SmartDashboard.putNumber("Target Angle", targetAngle);
+        double inverted = 1;
+        if ((error > 180) && (error < 360-deadband))
         {
-            System.out.println("Turning one way");
-            drive(speed, speed);
+            System.out.println("Turning right");
+            drive(inverted*error_magnitude, inverted*error_magnitude);
         }
-        else
+        else if ((error < 180) && (error > deadband))
         {
-            System.out.println("Turning another way");
-            drive(-speed, -speed);
+            System.out.println("Turning left");
+            drive(inverted*-error_magnitude, inverted*-error_magnitude);
+        }
+        else {
+            drive(0,0);
         }
         this.lastError = error;
     }

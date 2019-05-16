@@ -18,6 +18,7 @@ public class Ports {
     // DIO ports
     public static int LIMIT_ARM_LOWER = 0;
     public static int LIMIT_ARM_UPPER = 1;
+    public static int LIMIT_LIFT_UPPER = 2;
 
     public static int ENCODER_LIFT_A_CHANNEL = 4;
     public static int ENCODER_LIFT_B_CHANNEL = 5;

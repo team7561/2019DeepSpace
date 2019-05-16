@@ -22,7 +22,7 @@ public class JamesDrive {
         }
         else if(joystick.getRawButton(11))
         {
-            robot.drivetrain.turnToAngle(robot.visionController.targetYaw(), Speeds.VISION_DRIVE_SPEED);
+            //robot.drivetrain.turnToAngle(robot.visionController.targetYaw(), Speeds.VISION_DRIVE_SPEED);
         }
         else
         {
@@ -49,11 +49,11 @@ public class JamesDrive {
         }
         if (joystick.getTrigger())
         {
-            robot.panelintake.getPannel();
+            //robot.panelintake.getPannel();
         }
         else if (joystick.getRawButton(2))
         {
-            robot.panelintake.ejectPannel();
+            //robot.panelintake.ejectPannel();
         }
         else {
         }

@@ -23,26 +23,27 @@ public class Lift implements Subsystem{
         liftMotorA.setIdleMode(CANSparkMax.IdleMode.kBrake);
         liftMotorB.follow(liftMotorA);
         liftEncoder = new Encoder(Ports.ENCODER_LIFT_A_CHANNEL, Ports.ENCODER_LIFT_B_CHANNEL);
+        limitSwitch = new DigitalInput(Ports.LIMIT_LIFT_UPPER);
     }
 
-    private void resetEncoder()
+    public void resetEncoder()
     {
         liftEncoder.reset();
     }
-    private void setMotorSpeed(double speed)
+    public void setMotorSpeed(double speed)
     {
         liftMotorA.set(speed);
     }
 
     public void raise()
     {
-        liftMotorA.setOpenLoopRampRate(3);
+        liftMotorA.setOpenLoopRampRate(1);
         setMotorSpeed(Speeds.LIFT_UP_SPEED);
     }
 
     public void lower()
     {
-        liftMotorA.setOpenLoopRampRate(3);
+        liftMotorA.setOpenLoopRampRate(1);
         setMotorSpeed(Speeds.LIFT_DOWN_SPEED);
     }
 
