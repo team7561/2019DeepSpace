@@ -1,6 +1,7 @@
 package frc.robot.Subsystems;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
@@ -8,7 +9,7 @@ import frc.robot.Speeds;
 
 public class BallIntake implements Subsystem {
 
-    VictorSP ballIntakeMotor;
+    VictorSPX ballIntakeMotor;
     DigitalInput intakeLimitSwitch;
 
     boolean currentlyFixing = false;
@@ -16,13 +17,13 @@ public class BallIntake implements Subsystem {
 
     public void init()
     {
-        ballIntakeMotor = new VictorSP(Ports.INTAKE_CHANNEL);
+        ballIntakeMotor = new VictorSPX(Ports.CARGO_INTAKE_CANID);
     }
 
     //set speed of both intake motors
     private void intakeSpeed (double speed)
     {
-        ballIntakeMotor.set(speed);
+        ballIntakeMotor.set(ControlMode.PercentOutput, speed);
     }
 
     //Get the Ball
@@ -58,7 +59,7 @@ public class BallIntake implements Subsystem {
 
     public void updateDashboard()
     {
-        SmartDashboard.putNumber("Intake Power", ballIntakeMotor.get());
+        SmartDashboard.putNumber("Intake Power", ballIntakeMotor.getMotorOutputVoltage());
     }
 
 

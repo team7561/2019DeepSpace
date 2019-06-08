@@ -2,40 +2,51 @@ package frc.robot.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
+import com.revrobotics.CANSparkMax;
 
 public class Drivetrain implements Subsystem {
 
     double lastError;
     final double encoderRatio = 2;
 
-    VictorSPX leftA, leftB, rightA, rightB;
+    //VictorSPX leftA, leftB, rightA, rightB;
+    CANSparkMax leftA, leftB, rightA, rightB;
     Encoder leftEncoder, rightEncoder;
 
     public void init()
     {
-        leftA = new VictorSPX(Ports.DRIVE_LEFT_A_CHANNEL);
+        leftA = new CANSparkMax(Ports.DRIVE_LEFT_A_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
+        leftB = new CANSparkMax(Ports.DRIVE_LEFT_B_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
+        rightA = new CANSparkMax(Ports.DRIVE_RIGHT_A_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
+        rightB = new CANSparkMax(Ports.DRIVE_RIGHT_B_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
+        /*leftA = new VictorSPX(Ports.DRIVE_LEFT_A_CHANNEL);
         leftB = new VictorSPX(Ports.DRIVE_LEFT_B_CHANNEL);
         rightA = new VictorSPX(Ports.DRIVE_RIGHT_A_CHANNEL);
-        rightB = new VictorSPX(Ports.DRIVE_RIGHT_B_CHANNEL);
+        rightB = new VictorSPX(Ports.DRIVE_RIGHT_B_CHANNEL);*/
         rightEncoder = new Encoder(Ports.ENCODER_RIGHT_A_CHANNEL, Ports.ENCODER_RIGHT_B_CHANNEL);
         rightEncoder.setDistancePerPulse(1);
         leftEncoder = new Encoder(Ports.ENCODER_LEFT_A_CHANNEL, Ports.ENCODER_LEFT_B_CHANNEL);
         leftEncoder.setDistancePerPulse(1);
-        leftA.setNeutralMode(NeutralMode.Coast);
+        leftA.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        leftB.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        rightA.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        rightB.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        /*leftA.setNeutralMode(NeutralMode.Coast);
         leftB.setNeutralMode(NeutralMode.Coast);
         rightA.setNeutralMode(NeutralMode.Coast);
-        rightB.setNeutralMode(NeutralMode.Coast);
+        rightB.setNeutralMode(NeutralMode.Coast);*/
     }
 
     //sets the speeds of all driving motors
     public void drive(double leftSpeed, double rightSpeed) {
-        leftA.set(ControlMode.PercentOutput, leftSpeed);
-        leftB.set(ControlMode.PercentOutput, leftSpeed);
-        rightA.set(ControlMode.PercentOutput, -rightSpeed);
-        rightB.set(ControlMode.PercentOutput, -rightSpeed);
+        leftA.set(leftSpeed);
+        leftB.set(leftSpeed);
+        rightA.set(-rightSpeed);
+        rightB.set(-rightSpeed);
     }
 
     //teleop driving
@@ -191,8 +202,8 @@ public class Drivetrain implements Subsystem {
     public void updateDashboard()
     {
         //SmartDashboard.putNumber("Gyro Angle", readGyro());
-        SmartDashboard.putNumber("Left Power", leftA.getMotorOutputPercent());
-        SmartDashboard.putNumber("Right Power", rightA.getMotorOutputPercent());
+        SmartDashboard.putNumber("Left Power", leftA.get());
+        SmartDashboard.putNumber("Right Power", rightA.get());
         SmartDashboard.putNumber("Left Encoder", -leftEncoder.get() * encoderRatio);
         SmartDashboard.putNumber("Right Encoder", -rightEncoder.get() * encoderRatio);
         SmartDashboard.putNumber("Encoder Average", getEncoderAvg());

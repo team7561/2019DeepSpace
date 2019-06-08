@@ -7,9 +7,14 @@ public class Ports {
     public static int DRIVE_LEFT_B_CHANNEL = 2;
     public static int DRIVE_RIGHT_A_CHANNEL = 3;
     public static int DRIVE_RIGHT_B_CHANNEL = 4;
-    public static int LIFT_A_CANID = 5;
-    public static int LIFT_B_CANID = 6;
-    public static int ARM_CHANNEL_CANID = 10;
+    public static int LIFT_A_CANID = 11;
+    public static int LIFT_B_CANID = 12;
+    public static int CARGO_INTAKE_CANID = 21;
+    public static int HATCH_INTAKE_CANID = 22;
+    public static int CLIMB_ELEVATOR_A_CANID = 31;
+    public static int CLIMB_ELEVATOR_B_CANID = 32;
+    public static int CLIMB_VACUUM_CANID = 41;
+    public static int ARM_CHANNEL_CANID = 51;
 
     // PWM control channels
     public static int LED_CONTROLLER_CHANNEL = 5;
