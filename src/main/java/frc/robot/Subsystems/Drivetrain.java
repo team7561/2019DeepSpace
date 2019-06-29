@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
-import com.revrobotics.CANSparkMax;
+import edu.wpi.first.wpilibj.Spark;
 
 public class Drivetrain implements Subsystem {
 
@@ -14,15 +14,15 @@ public class Drivetrain implements Subsystem {
     final double encoderRatio = 2;
 
     //VictorSPX leftA, leftB, rightA, rightB;
-    CANSparkMax leftA, leftB, rightA, rightB;
+    Spark leftA, leftB, rightA, rightB;
     Encoder leftEncoder, rightEncoder;
 
     public void init()
     {
-        leftA = new CANSparkMax(Ports.DRIVE_LEFT_A_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
-        leftB = new CANSparkMax(Ports.DRIVE_LEFT_B_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
-        rightA = new CANSparkMax(Ports.DRIVE_RIGHT_A_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
-        rightB = new CANSparkMax(Ports.DRIVE_RIGHT_B_CHANNEL, CANSparkMaxLowLevel.MotorType.kBrushless);
+        leftA = new Spark(Ports.DRIVE_LEFT_A_CHANNEL);
+        leftB = new Spark(Ports.DRIVE_LEFT_B_CHANNEL);
+        rightA = new Spark(Ports.DRIVE_RIGHT_A_CHANNEL);
+        rightB = new Spark(Ports.DRIVE_RIGHT_B_CHANNEL);
         /*leftA = new VictorSPX(Ports.DRIVE_LEFT_A_CHANNEL);
         leftB = new VictorSPX(Ports.DRIVE_LEFT_B_CHANNEL);
         rightA = new VictorSPX(Ports.DRIVE_RIGHT_A_CHANNEL);
@@ -31,10 +31,10 @@ public class Drivetrain implements Subsystem {
         rightEncoder.setDistancePerPulse(1);
         leftEncoder = new Encoder(Ports.ENCODER_LEFT_A_CHANNEL, Ports.ENCODER_LEFT_B_CHANNEL);
         leftEncoder.setDistancePerPulse(1);
-        leftA.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        /*leftA.setIdleMode(CANSparkMax.IdleMode.kCoast);
         leftB.setIdleMode(CANSparkMax.IdleMode.kCoast);
         rightA.setIdleMode(CANSparkMax.IdleMode.kCoast);
-        rightB.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        rightB.setIdleMode(CANSparkMax.IdleMode.kCoast);*/
         /*leftA.setNeutralMode(NeutralMode.Coast);
         leftB.setNeutralMode(NeutralMode.Coast);
         rightA.setNeutralMode(NeutralMode.Coast);

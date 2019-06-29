@@ -1,28 +1,22 @@
 package frc.robot.Subsystems;
-import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
 import frc.robot.Speeds;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 import static java.lang.Math.abs;
 
 public class Arm implements Subsystem{
-    CANSparkMax armMotor;
-    CANEncoder armEncoder;
+    Spark armMotor;
     DigitalInput limitUpper;
     DigitalInput limitLower;
     double height;
     public Arm() {
-        armMotor = new CANSparkMax(Ports.ARM_CHANNEL_CANID, CANSparkMaxLowLevel.MotorType.kBrushless);
-        armMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        armEncoder = new CANEncoder(armMotor);
+        armMotor = new Spark(Ports.ARM_CHANNEL);
         limitUpper = new DigitalInput(Ports.LIMIT_ARM_UPPER);
         limitLower = new DigitalInput(Ports.LIMIT_ARM_LOWER);
         height = 0;
-        armMotor.setOpenLoopRampRate(1);
     }
 
     public void setSpeed(double speed)
@@ -44,22 +38,6 @@ public class Arm implements Subsystem{
         }
     }
 
-    public void raiseToHeight(double targPos)
-    {
-        double currPos = armEncoder.getPosition();
-        if (abs(currPos - targPos) > 1)
-        {
-            raise();
-        }
-        else if (abs(currPos - targPos) < -1)
-        {
-            lower();
-        }
-        else
-        {
-            stop();
-        }
-    }
     public void lower()
     {
         if (!limitLower.get())
@@ -77,12 +55,8 @@ public class Arm implements Subsystem{
     }
     public void updateDashboard()
     {
-        SmartDashboard.putNumber("Arm Current", armMotor.getOutputCurrent());
-        SmartDashboard.putNumber("Arm Encoder Position", armEncoder.getPosition());
-        SmartDashboard.putNumber("Arm Encoder Speed", armEncoder.getVelocity());
-        SmartDashboard.putNumber("Arm Applied Output", armMotor.getAppliedOutput());
         SmartDashboard.putBoolean("Arm Upper Limit Switch", limitUpper.get());
         SmartDashboard.putBoolean("Arm Lower Limit Switch", limitLower.get());
-        SmartDashboard.putNumber("Arm Lower Ramp Rate", armMotor.getOpenLoopRampRate());
+        SmartDashboard.putNumber("Arm Speed", armMotor.get());
     }
 }

@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
   Joystick joystick = new Joystick(1);
   XboxController xboxController = new XboxController(2);
   Arm arm = new Arm();
+  Climber climber = new Climber();
   BallIntake ballintake = new BallIntake();
   PanelIntake panelintake = new PanelIntake();
   Drivetrain drivetrain = new Drivetrain();
@@ -53,6 +54,7 @@ public class Robot extends TimedRobot {
     drivetrain.init();
     lift.init();
     ballintake.init();
+    climber.init();
     panelintake.init();
     JoshDrive.init();
 
@@ -99,12 +101,12 @@ public class Robot extends TimedRobot {
 
   public void drive() {
 
-    //JamesDrive.drive(this, joystick);
-    //BenDrive.drive( this, xboxController);
+    JamesDrive.drive(this, joystick);
+    BenDrive.drive( this, xboxController);
     //TomDrive.drive( this, xboxController);
     //LiamDrive.drive(this, joystick);
     //AlexDrive.drive(this, xboxController);
-    JoshDrive.drive(this, xboxController);
+    //JoshDrive.drive(this, xboxController);
   }
   @Override
   public void autonomousPeriodic() {

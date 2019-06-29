@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
@@ -48,6 +50,30 @@ public class BenDrive {
         else
         {
             robot.arm.stop();
+        }
+
+        // Controls for Climber
+        if(xboxController.getBumper(GenericHID.Hand.kLeft))
+        {
+            robot.climber.liftDeploy();
+            
+        }
+        else if(xboxController.getBumper(GenericHID.Hand.kRight))
+        {
+            robot.climber.releaseSolenoid();
+            robot.climber.vacuumStart();
+        }
+        else if(xboxController.getStartButton())
+        {
+            robot.climber.extendSolenoid();
+        }
+        else if(xboxController.getTriggerAxis(GenericHID.Hand.kRight)>0.3)
+        {
+            robot.climber.pullUp();
+        }
+        else 
+        {
+            robot.climber.climbStop();
         }
     }
 }
