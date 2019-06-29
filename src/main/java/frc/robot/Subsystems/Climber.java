@@ -13,15 +13,17 @@ public class Climber {
     TalonSRX climberB;
     VictorSPX climberVacuum;
     DoubleSolenoid climberRelease;
+    DoubleSolenoid climberDeploy;
     public void init()
     {
         climberA = new TalonSRX(Ports.CLIMB_ELEVATOR_A_CANID);
         climberB = new TalonSRX(Ports.CLIMB_ELEVATOR_B_CANID);
         climberVacuum = new VictorSPX(Ports.CLIMB_VACUUM_CANID);
-        climberRelease = new DoubleSolenoid(Ports.CLIMBER_SOLENOID_CHANNEL_A, Ports.CLIMBER_SOLENOID_CHANNEL_B);
+        climberRelease = new DoubleSolenoid(Ports.CLIMBER_RELEASE_SOLENOID_CHANNEL_A, Ports.CLIMBER_RELEASE_SOLENOID_CHANNEL_B);
+        climberDeploy = new DoubleSolenoid(Ports.CLIMBER_DEPLOY_SOLENOID_CHANNEL_A, Ports.CLIMBER_DEPLOY_SOLENOID_CHANNEL_B);
 
     }
-    private void setSpeed(double speed)
+    private void setWinchSpeed(double speed)
     {
         climberA.set(ControlMode.PercentOutput, speed);
         climberB.set(ControlMode.PercentOutput, -speed);
@@ -30,29 +32,37 @@ public class Climber {
     {
         climberVacuum.set(ControlMode.PercentOutput, speed);
     }
-    public void liftDeploy()
+    public void deployLift()
     {
-        setSpeed(Speeds.CLIMBER_DEPLOY_SPEED);
+        climberDeploy.set(DoubleSolenoid.Value.kReverse);
     }
-    public void releaseSolenoid()
+    public void retractLift()
+    {
+        climberDeploy.set(DoubleSolenoid.Value.kForward);
+    }
+    public void releaseCarridge()
     {
         climberRelease.set(DoubleSolenoid.Value.kReverse);
     }
-    public void extendSolenoid()
+    public void recoverCarrige()
     {
         climberRelease.set(DoubleSolenoid.Value.kForward);
     }
     public void pullUp()
     {
-        setSpeed(Speeds.CLIMBER_LIFT_SPEED);
+        setWinchSpeed(Speeds.CLIMBER_LIFT_SPEED);
     }
-    public void vacuumStart()
+    public void startVacuum()
     {
-        setSpeed(Speeds.CLIMBER_VACUUM_SPEED);
+        setVacuumSpeed(Speeds.CLIMBER_VACUUM_SPEED);
+    }
+    public void stopVacuum()
+    {
+        setVacuumSpeed(0);
     }
     public void climbStop()
     {
-        setSpeed(Speeds.CLIMBER_STOP_SPEED);
+        setWinchSpeed(Speeds.CLIMBER_STOP_SPEED);
     }
 
 }

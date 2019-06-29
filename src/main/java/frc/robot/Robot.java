@@ -102,7 +102,7 @@ public class Robot extends TimedRobot {
   public void drive() {
 
     JamesDrive.drive(this, joystick);
-    BenDrive.drive( this, xboxController);
+    BenDrive.drive(this, xboxController);
     //TomDrive.drive( this, xboxController);
     //LiamDrive.drive(this, joystick);
     //AlexDrive.drive(this, xboxController);

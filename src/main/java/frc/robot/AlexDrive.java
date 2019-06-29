@@ -49,7 +49,7 @@ public class AlexDrive {
         // Controls for climb
         // 1
         if (xboxController.getStartButtonPressed()) {
-            robot.climber.liftDeploy();
+            robot.climber.releaseCarridge();
         } else {
             robot.climber.climbStop();
         }
