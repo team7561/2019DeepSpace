@@ -9,7 +9,7 @@ public class JoshDrive {
     {
         SmartDashboard.putNumber("Target Angle", 0);
         SmartDashboard.putNumber("Target Height", -1);
-        SmartDashboard.putNumber("Target Arm Angle", 45);
+        SmartDashboard.putNumber("Target Arm Angle", -1);
     }
     public static void drive(Robot robot, XboxController xboxController)
     {
@@ -79,36 +79,72 @@ public class JoshDrive {
         double targetHeight = SmartDashboard.getNumber("Target Height", -1);
         double heightDeadband = 0.01;
         double error_height = currentHeight - targetHeight;
-        double armErrorMagnitude = error_height / 2;
+        double liftErrorMagnitude = -error_height / 2;
         
         SmartDashboard.putNumber("error_height", error_height);
-        SmartDashboard.putNumber("armErrorMagnitude", armErrorMagnitude);
+        SmartDashboard.putNumber("liftErrorMagnitude", liftErrorMagnitude);
 
         if (xboxController.getBButton())
         {
             if (targetHeight != -1)
+            {
+                if (error_height > heightDeadband)
                 {
-                    if (error_height > heightDeadband)
-                    {
-                        robot.lift.setMotorSpeed(armErrorMagnitude + 0.1);
-                    }
-                    else if (error_height < -heightDeadband)
-                    {
-                        robot.lift.setMotorSpeed(armErrorMagnitude - 0.1);
-                    }
-                    else
-                    {
-                        robot.lift.stop();
-                    }
+                    robot.lift.setMotorSpeed(liftErrorMagnitude + 0.1);
+                }
+                else if (error_height < -heightDeadband)
+                {
+                    robot.lift.setMotorSpeed(liftErrorMagnitude - 0.1);
                 }
                 else
                 {
                     robot.lift.stop();
                 }
-        } 
+            }
+            else
+            {
+                robot.lift.stop();
+            }
+        }
         else
         {
-            //robot.lift.stop();
+            robot.lift.stop();
+        }
+        if (xboxController.getYButton())
+        {
+            double currentAngle = SmartDashboard.getNumber("Right Roll", -1)-270;
+            double targetAngle = SmartDashboard.getNumber("Target Arm Angle", -1);
+            double angleDeadband = 4;
+            double error_angle = currentAngle - targetAngle;
+            double armErrorMagnitude = -error_angle / 2;
+
+            SmartDashboard.putNumber("armErrorMagnitude", armErrorMagnitude);
+            SmartDashboard.putNumber("error_angle", error_angle);
+            SmartDashboard.putNumber("currentAngle", currentAngle);
+
+            if (targetAngle != -1)
+            {
+                if (error_height > heightDeadband)
+                {
+                    robot.arm.setSpeed(armErrorMagnitude + 0.01);
+                }
+                else if (error_height < -heightDeadband)
+                {
+                    robot.arm.setSpeed(armErrorMagnitude - 0.01);
+                }
+                else
+                {
+                    robot.arm.stop();
+                }
+            }
+            else
+            {
+                robot.arm.stop();
+            }
+        }
+        else
+        {
+            robot.arm.stop();
         }
     }
 }

@@ -25,7 +25,7 @@ public class Arm implements Subsystem{
         armMotor.setOpenLoopRampRate(1);
     }
 
-    private void setSpeed(double speed)
+    public void setSpeed(double speed)
     {
         armMotor.set(speed);
     }
