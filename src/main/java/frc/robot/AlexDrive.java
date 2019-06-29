@@ -34,17 +34,37 @@ public class AlexDrive {
         }
 
         // Controls for driving
-        double x = xboxController.getX(GenericHID.Hand.kLeft);
-        double y = xboxController.getY(GenericHID.Hand.kLeft);
+        double x = xboxController.getY(GenericHID.Hand.kLeft);
+        double y = xboxController.getX(GenericHID.Hand.kLeft);
         //double twist = xboxController.getPOV();
         //if (Math.abs(twist) < 0.4)
         {
             //  twist = 0;
         }
         //
-        double speed = xboxController.getTriggerAxis(GenericHID.Hand.kLeft);
+        double speed = xboxController.getTriggerAxis(GenericHID.Hand.kRight);
         boolean inverted = false;
         robot.drivetrain.arcadeDrive(x, y, speed, inverted);
+
+        // Controls for climb
+        // 1
+        if (xboxController.getStartButtonPressed()) {
+            robot.climber.liftDeploy();
+        } else {
+            robot.climber.climbStop();
+        }
+        // 2
+        /* if (xboxController.getStickButtonPressed(GenericHID.Hand.kLeft)){
+            robot.climber.releaseSolenoid();
+        } else {
+            robot.climber.climbStop();
+        }
+        */// 3
+        if (xboxController.getBackButtonPressed()){
+            robot.climber.pullUp();
+        } else {
+            robot.climber.climbStop();
+        }
 
 
 

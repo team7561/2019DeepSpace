@@ -14,7 +14,11 @@ public class Speeds {
     public static double ARM_RAISE_SPEED = 0.3;
     public static double ARM_LOWER_SPEED = -0.3;
     public static double ARM_STOP_SPEED = 0;
-
+    //Climber
+    public static double CLIMBER_LIFT_SPEED = 0.4;
+    public static double CLIMBER_DEPLOY_SPEED = 0.2;
+    public static double CLIMBER_STOP_SPEED = 0;
+    public static double CLIMBER_VACUUM_SPEED = 0.5;
     // Vision Tracking
     public static double VISION_DRIVE_SPEED = 0.2;
 }
