@@ -21,8 +21,8 @@ public class Drivetrain implements Subsystem {
 
     //sets the speeds of all driving motors
     public void drive(double leftSpeed, double rightSpeed) {
-        leftSpeed = leftSpeed/2;
-        rightSpeed = rightSpeed/2;
+        leftSpeed = leftSpeed*0.7;
+        rightSpeed = rightSpeed*0.7;
         leftA.set(leftSpeed);
         leftB.set(leftSpeed);
         rightA.set(-rightSpeed);
@@ -31,8 +31,8 @@ public class Drivetrain implements Subsystem {
 
     //teleop driving
     public void arcadeDrive(double x, double y, double speed, boolean inverted) {
-        x = x * Math.abs(x) * speed;
-        y = y * Math.abs(y) * speed;
+        x = y * Math.abs(x) * speed;
+        y = x * Math.abs(y) * speed;
 
         double right = y + x;
         double left = - (y - x);
