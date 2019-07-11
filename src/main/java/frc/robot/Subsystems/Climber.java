@@ -1,58 +1,72 @@
 package frc.robot.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
 import frc.robot.Speeds;
 
-public class Climber {
-    TalonSRX climberA;
-    TalonSRX climberB;
-    VictorSPX climberVacuum;
-    DoubleSolenoid climberRelease;
-    DoubleSolenoid climberDeploy;
-    public void init()
+public class Climber implements Subsystem {
+    TalonSRX climberMotorA;
+    TalonSRX climberMotorB;
+    VictorSPX climberVacuumMotor;
+    DoubleSolenoid climberReleaseSolenoid;
+    DoubleSolenoid climberDeploySoleniod;
+    DigitalInput climberLimitDigitalInput;
+    public Climber()
     {
-        climberA = new TalonSRX(Ports.CLIMB_ELEVATOR_A_CANID);
-        climberB = new TalonSRX(Ports.CLIMB_ELEVATOR_B_CANID);
-        climberVacuum = new VictorSPX(Ports.CLIMB_VACUUM_CANID);
-        climberRelease = new DoubleSolenoid(Ports.CLIMBER_RELEASE_SOLENOID_CHANNEL_A, Ports.CLIMBER_RELEASE_SOLENOID_CHANNEL_B);
-        climberDeploy = new DoubleSolenoid(Ports.CLIMBER_DEPLOY_SOLENOID_CHANNEL_A, Ports.CLIMBER_DEPLOY_SOLENOID_CHANNEL_B);
+        climberMotorA = new TalonSRX(Ports.CLIMB_ELEVATOR_A_CANID);
+        climberMotorB = new TalonSRX(Ports.CLIMB_ELEVATOR_B_CANID);
+        climberMotorA.setInverted(false);
+        climberMotorB.setInverted(true);
+        climberVacuumMotor = new VictorSPX(Ports.CLIMB_VACUUM_CANID);
+        climberReleaseSolenoid = new DoubleSolenoid(Ports.CLIMBER_RELEASE_SOLENOID_CHANNEL_A, Ports.CLIMBER_RELEASE_SOLENOID_CHANNEL_B);
+        climberDeploySoleniod = new DoubleSolenoid(Ports.CLIMBER_DEPLOY_SOLENOID_CHANNEL_A, Ports.CLIMBER_DEPLOY_SOLENOID_CHANNEL_B);
+        climberLimitDigitalInput = new DigitalInput(Ports.LIMIT_CLIMB_LOWER);
 
     }
     private void setWinchSpeed(double speed)
     {
-        climberA.set(ControlMode.PercentOutput, speed);
-        climberB.set(ControlMode.PercentOutput, -speed);
+        climberMotorA.set(ControlMode.PercentOutput, speed);
+        climberMotorB.set(ControlMode.PercentOutput, -speed);
     }
     private void setVacuumSpeed(double speed)
     {
-        climberVacuum.set(ControlMode.PercentOutput, speed);
+        climberVacuumMotor.set(ControlMode.PercentOutput, speed);
     }
     public void deployLift()
     {
-        climberDeploy.set(DoubleSolenoid.Value.kReverse);
+        climberDeploySoleniod.set(DoubleSolenoid.Value.kReverse);
     }
     public void retractLift()
     {
-        climberDeploy.set(DoubleSolenoid.Value.kForward);
+        climberDeploySoleniod.set(DoubleSolenoid.Value.kForward);
     }
     public void releaseCarridge()
     {
-        climberRelease.set(DoubleSolenoid.Value.kReverse);
+        climberReleaseSolenoid.set(DoubleSolenoid.Value.kForward);
     }
     public void recoverCarrige()
     {
-        climberRelease.set(DoubleSolenoid.Value.kForward);
+        climberReleaseSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     public void pullUp()
     {
         setWinchSpeed(Speeds.CLIMBER_LIFT_SPEED);
+        /*if (climberVacuumMotor.getMotorOutputPercent() > 0) {
+            
+        }*/
     }
-    public void startVacuum()
+    public void undoWinch()
+    {
+        setWinchSpeed(-Speeds.CLIMBER_LIFT_SPEED);
+   
+    }
+    public void runVacuum()
     {
         setVacuumSpeed(Speeds.CLIMBER_VACUUM_SPEED);
     }
@@ -60,9 +74,23 @@ public class Climber {
     {
         setVacuumSpeed(0);
     }
-    public void climbStop()
+    public void stopClimbing()
     {
         setWinchSpeed(Speeds.CLIMBER_STOP_SPEED);
+    }
+    public void updateDashboard()
+    {
+        //Climber Motor
+        SmartDashboard.putNumber("Climber Motor A Speed", climberMotorA.getMotorOutputPercent());
+        SmartDashboard.putNumber("Climber Motor A Current", climberMotorA.getOutputCurrent());
+        SmartDashboard.putNumber("Climber Motor B Speed", climberMotorB.getMotorOutputPercent());
+        SmartDashboard.putNumber("Climber Motor B Current", climberMotorB.getOutputCurrent());
+        SmartDashboard.putNumber("Climber vacuum speed", climberVacuumMotor.getMotorOutputPercent());
+        SmartDashboard.putBoolean("Climber Limit Switch", climberLimitDigitalInput.get());
+        SmartDashboard.putString("Climber Release Solenoid", climberReleaseSolenoid.get().toString());
+        SmartDashboard.putString("Climber Deploy Solenoid", climberDeploySoleniod.get().toString());
+
+
     }
 
 }

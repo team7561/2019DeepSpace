@@ -1,9 +1,10 @@
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
 
-public class LEDController {
+public class LEDController implements Subsystem {
     private Spark blinkin;
     public LEDController()
     {
@@ -24,6 +25,10 @@ public class LEDController {
     }
     public void turnOff(){
         setRawMode(0.99);
+    }
+    public void updateDashboard()
+    {
+        SmartDashboard.putNumber("LED Value", blinkin.get());
     }
 
 }

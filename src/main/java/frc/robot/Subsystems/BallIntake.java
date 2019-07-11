@@ -12,10 +12,7 @@ public class BallIntake implements Subsystem {
     VictorSPX ballIntakeMotor;
     DigitalInput intakeLimitSwitch;
 
-    boolean currentlyFixing = false;
-    Timer fixTimer = new Timer();
-
-    public void init()
+    public BallIntake()
     {
         ballIntakeMotor = new VictorSPX(Ports.CARGO_INTAKE_CANID);
     }

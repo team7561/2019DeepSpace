@@ -8,17 +8,17 @@ public class JamesDrive {
     {
         robot.speedControl = (joystick.getThrottle()+1)/2;
 
-        if (joystick.getRawButton(7))
+        if (joystick.getRawButtonPressed(7))
         {
             robot.invertedDrive = false;
         }
-        if (joystick.getRawButton(8))
+        if (joystick.getRawButtonPressed(8))
         {
             robot.invertedDrive = true;
         }
         if (joystick.getRawButton(4))
         {
-            robot.drivetrain.drive(-robot.speedControl, robot.speedControl);
+            //robot.drivetrain.drive(-robot.speedControl, robot.speedControl);
         }
         else if(joystick.getRawButton(11))
         {
@@ -28,34 +28,47 @@ public class JamesDrive {
         {
             robot.drivetrain.arcadeDrive(joystick.getX(GenericHID.Hand.kLeft),joystick.getY(GenericHID.Hand.kLeft), robot.speedControl, robot.invertedDrive);
         }
-        if (joystick.getRawButton(9))
+        if (joystick.getRawButtonPressed(9))
         {
             robot.visionController.setCargo();
         }
-        else if (joystick.getRawButton(10))
+        else if (joystick.getRawButtonPressed(10))
         {
             robot.visionController.setTape();
         }
-        if (joystick.getTrigger())
+        if(joystick.getRawButton(5))
         {
-            robot.ballintake.ejectBall();
-        }
-        else if (joystick.getRawButton(2))
-        {
-            robot.ballintake.getBall();
+            if (joystick.getTriggerPressed())
+            {
+                robot.panelintake.ejectPannel();
+            }
+            else if (joystick.getRawButtonPressed(2))
+            {
+                robot.panelintake.getPannel();
+            }
+            else {
+            }
         }
         else {
-            robot.ballintake.keepBall();
+            if (joystick.getTrigger())
+            {
+                robot.ballintake.ejectBall();
+            }
+            else if (joystick.getRawButton(2))
+            {
+                robot.ballintake.getBall();
+            }
+            else {
+                robot.ballintake.keepBall();
+            }  
         }
-        if (joystick.getTrigger())
+        if (joystick.getRawButtonPressed(11))
         {
-            //robot.panelintake.getPannel();
+            robot.climber.deployLift();
         }
-        else if (joystick.getRawButton(2))
+        else if (joystick.getRawButtonPressed(12))
         {
-            //robot.panelintake.ejectPannel();
-        }
-        else {
+            robot.climber.retractLift();
         }
 
     }

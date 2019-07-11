@@ -55,25 +55,28 @@ public class BenDrive {
         // Controls for Climber
         if(xboxController.getBumper(GenericHID.Hand.kLeft))
         {
-            robot.climber.liftDeploy();
-            
+            robot.climber.deployLift();
         }
         else if(xboxController.getBumper(GenericHID.Hand.kRight))
         {
-            robot.climber.releaseSolenoid();
-            robot.climber.vacuumStart();
+            robot.climber.releaseCarridge();
+            robot.climber.runVacuum();
         }
         else if(xboxController.getStartButton())
         {
-            robot.climber.extendSolenoid();
+            robot.climber.recoverCarrige();
         }
-        else if(xboxController.getTriggerAxis(GenericHID.Hand.kRight)>0.3)
+        if(xboxController.getTriggerAxis(GenericHID.Hand.kRight)>0.3)
         {
             robot.climber.pullUp();
         }
+        else if (xboxController.getTriggerAxis(GenericHID.Hand.kLeft)>0.3)
+        {
+            robot.climber.undoWinch();
+        }
         else 
         {
-            robot.climber.climbStop();
+            robot.climber.stopClimbing();
         }
     }
 }

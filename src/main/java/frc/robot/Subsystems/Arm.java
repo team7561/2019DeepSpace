@@ -5,8 +5,6 @@ import frc.robot.Ports;
 import frc.robot.Speeds;
 import edu.wpi.first.wpilibj.DigitalInput;
 
-import static java.lang.Math.abs;
-
 public class Arm implements Subsystem{
     Spark armMotor;
     DigitalInput limitUpper;

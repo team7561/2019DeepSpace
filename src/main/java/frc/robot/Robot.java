@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.*;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.networktables.NetworkTable;
 
 /**
@@ -37,7 +38,6 @@ public class Robot extends TimedRobot {
   VisionController visionController = new VisionController();
   Lift lift = new Lift();
   LEDController ledController = new LEDController();
-  ViveMeasurements viveMeasurements = new ViveMeasurements();
   Timer matchTimer = new Timer();
   NetworkTable table;
   boolean invertedDrive;
@@ -51,13 +51,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    drivetrain.init();
-    lift.init();
-    ballintake.init();
-    climber.init();
-    panelintake.init();
-    JoshDrive.init();
-
     invertedDrive = false;
     speedControl = 1;
 
@@ -75,26 +68,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putBoolean("test", false);
   }
 
-  /**
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
-    CameraServer.getInstance().startAutomaticCapture();
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard.
-   * <p>You can add additional auto modes by adding additional comparisons to
-   * the switch structure below with additional strings. If using the
-   * SendableChooser make sure to add them to the chooser code above as well.
-   */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // autoSelected = SmartDashboard.getString("Auto Selector",
-    // defaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
     matchTimer.start();
     lift.resetEncoder();
   }
@@ -103,7 +80,12 @@ public class Robot extends TimedRobot {
 
     JamesDrive.drive(this, joystick);
     BenDrive.drive(this, xboxController);
-    //TomDrive.drive( this, xboxController);
+    if (matchTimer.get() > 130)
+    {
+      climber.deployLift();
+      climber.runVacuum();
+    }
+    //TomDrive.drive(this, xboxController);
     //LiamDrive.drive(this, joystick);
     //AlexDrive.drive(this, xboxController);
     //JoshDrive.drive(this, xboxController);
@@ -111,20 +93,14 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     drive();
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
   }
 
   @Override
   public void teleopInit() {
+    climber.recoverCarrige();
+    panelintake.getPannel();
   }
+
   @Override
   public void teleopPeriodic() {
     drive();
@@ -152,6 +128,8 @@ public class Robot extends TimedRobot {
     arm.updateDashboard();
     visionController.updateDashboard();
     ballintake.updateDashboard();
+    climber.updateDashboard();
+    panelintake.updateDashboard();
     
   }
 }

@@ -14,7 +14,6 @@ public class AlexDrive {
         } else {
             robot.lift.stop();
         }
-
         // Controls for arm
         if (xboxController.getYButton()) {
             robot.arm.raise();
@@ -43,6 +42,7 @@ public class AlexDrive {
         }
         //
         double speed = xboxController.getTriggerAxis(GenericHID.Hand.kRight);
+        //double speegrad = xboxController.getTriggerAxis(GenericHID.Hand.kRight);
         boolean inverted = false;
         robot.drivetrain.arcadeDrive(x, y, speed, inverted);
 
@@ -51,7 +51,7 @@ public class AlexDrive {
         if (xboxController.getStartButtonPressed()) {
             robot.climber.releaseCarridge();
         } else {
-            robot.climber.climbStop();
+            robot.climber.stopClimbing();
         }
         // 2
         /* if (xboxController.getStickButtonPressed(GenericHID.Hand.kLeft)){
@@ -63,7 +63,7 @@ public class AlexDrive {
         if (xboxController.getBackButtonPressed()){
             robot.climber.pullUp();
         } else {
-            robot.climber.climbStop();
+            robot.climber.stopClimbing();
         }
 
 
