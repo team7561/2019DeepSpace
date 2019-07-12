@@ -51,7 +51,7 @@ public class BenDrive {
         {
             robot.arm.stop();
         }
-
+/*
         // Controls for Climber
         if(xboxController.getBumper(GenericHID.Hand.kLeft))
         {
@@ -77,3 +77,4 @@ public class BenDrive {
         }
     }
 }
+*/
