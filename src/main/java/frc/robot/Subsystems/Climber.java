@@ -60,6 +60,7 @@ public class Climber implements Subsystem {
         /*if (climberVacuumMotor.getMotorOutputPercent() > 0) {
             
         }*/
+    
     }
     public void undoWinch()
     {
