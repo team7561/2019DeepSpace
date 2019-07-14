@@ -3,19 +3,19 @@ package frc.robot;
 public class Ports {
 
     // CAN Bus Node IDs
+    public static int DRIVE_LEFT_A_CANID = 1;
+    public static int DRIVE_LEFT_B_CANID = 2;
+    public static int DRIVE_RIGHT_A_CANID = 3;
+    public static int DRIVE_RIGHT_B_CANID = 4;
     public static int LIFT_A_CANID = 11;
     public static int LIFT_B_CANID = 12;
     public static int CARGO_INTAKE_CANID = 21;
     public static int CLIMB_ELEVATOR_A_CANID = 31;
     public static int CLIMB_ELEVATOR_B_CANID = 32;
     public static int CLIMB_VACUUM_CANID = 41;
+    public static int ARM_CANID = 51;
 
     // PWM control channels
-    public static int DRIVE_LEFT_A_CHANNEL = 0;
-    public static int DRIVE_LEFT_B_CHANNEL = 1;
-    public static int DRIVE_RIGHT_A_CHANNEL = 2;
-    public static int DRIVE_RIGHT_B_CHANNEL = 3;
-    public static int ARM_CHANNEL = 4;
     public static int LED_CONTROLLER_CHANNEL = 6;
     public static int INTAKE_CHANNEL = 7;
 
@@ -23,6 +23,7 @@ public class Ports {
     public static int LIMIT_ARM_LOWER = 0;
     public static int LIMIT_ARM_UPPER = 1;
     public static int LIMIT_LIFT_UPPER = 2;
+    public static int LIMIT_CLIMB_LOWER = 3;
 
     public static int ENCODER_LIFT_A_CHANNEL = 4;
     public static int ENCODER_LIFT_B_CHANNEL = 5;

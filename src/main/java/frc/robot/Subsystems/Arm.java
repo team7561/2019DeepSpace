@@ -4,14 +4,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
 import frc.robot.Speeds;
 import edu.wpi.first.wpilibj.DigitalInput;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Arm implements Subsystem{
-    Spark armMotor;
+    CANSparkMax armMotor;
     DigitalInput limitUpper;
     DigitalInput limitLower;
     double height;
     public Arm() {
-        armMotor = new Spark(Ports.ARM_CHANNEL);
+        armMotor = new CANSparkMax(Ports.ARM_CANID, MotorType.kBrushless);
         limitUpper = new DigitalInput(Ports.LIMIT_ARM_UPPER);
         limitLower = new DigitalInput(Ports.LIMIT_ARM_LOWER);
         height = 0;

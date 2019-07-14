@@ -19,6 +19,7 @@ public class Lift implements Subsystem{
         liftMotorA = new CANSparkMax(Ports.LIFT_A_CANID, CANSparkMaxLowLevel.MotorType.kBrushed);
         liftMotorB = new CANSparkMax(Ports.LIFT_B_CANID, CANSparkMaxLowLevel.MotorType.kBrushed);
         liftMotorA.setIdleMode(CANSparkMax.IdleMode.kBrake);
+        liftMotorB.setIdleMode(CANSparkMax.IdleMode.kBrake);
         liftMotorB.follow(liftMotorA);
         liftEncoder = new Encoder(Ports.ENCODER_LIFT_A_CHANNEL, Ports.ENCODER_LIFT_B_CHANNEL);
         limitSwitch = new DigitalInput(Ports.LIMIT_LIFT_UPPER);

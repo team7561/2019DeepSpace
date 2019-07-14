@@ -2,6 +2,8 @@ package frc.robot.Subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
 import edu.wpi.first.wpilibj.Spark;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Drivetrain implements Subsystem {
 
@@ -9,14 +11,14 @@ public class Drivetrain implements Subsystem {
     final double encoderRatio = 2;
 
     //VictorSPX leftA, leftB, rightA, rightB;
-    Spark leftA, leftB, rightA, rightB;
+    CANSparkMax leftA, leftB, rightA, rightB;
 
     public Drivetrain()
     {
-        leftA = new Spark(Ports.DRIVE_LEFT_A_CHANNEL);
-        leftB = new Spark(Ports.DRIVE_LEFT_B_CHANNEL);
-        rightA = new Spark(Ports.DRIVE_RIGHT_A_CHANNEL);
-        rightB = new Spark(Ports.DRIVE_RIGHT_B_CHANNEL);
+        leftA = new CANSparkMax(Ports.DRIVE_LEFT_A_CANID, MotorType.kBrushless);
+        leftB = new CANSparkMax(Ports.DRIVE_LEFT_B_CANID, MotorType.kBrushless);
+        rightA = new CANSparkMax(Ports.DRIVE_RIGHT_A_CANID, MotorType.kBrushless);
+        rightB = new CANSparkMax(Ports.DRIVE_RIGHT_B_CANID, MotorType.kBrushless);
     }
 
     //sets the speeds of all driving motors
@@ -31,10 +33,13 @@ public class Drivetrain implements Subsystem {
 
     //teleop driving
     public void arcadeDrive(double x, double y, double speed, boolean inverted) {
-        x = y * Math.abs(x) * speed;
-        y = x * Math.abs(y) * speed;
+        //x = x * Math.abs(x) * speed;
+        //y = y * Math.abs(y) * speed;
+        SmartDashboard.putNumber("Drivespeed", speed);
+        SmartDashboard.putNumber("X", x);
+        SmartDashboard.putNumber("Y", y);
 
-        double right = y + x;
+        double right = -y - x;
         double left = - (y - x);
         if (left > 1) {
             left = 1;
