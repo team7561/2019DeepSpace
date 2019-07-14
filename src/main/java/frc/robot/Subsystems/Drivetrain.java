@@ -23,8 +23,8 @@ public class Drivetrain implements Subsystem {
 
     //sets the speeds of all driving motors
     public void drive(double leftSpeed, double rightSpeed) {
-        leftSpeed = leftSpeed*0.7;
-        rightSpeed = rightSpeed*0.7;
+        //leftSpeed = leftSpeed;
+        //rightSpeed = rightSpeed;
         leftA.set(leftSpeed);
         leftB.set(leftSpeed);
         rightA.set(-rightSpeed);
@@ -39,8 +39,8 @@ public class Drivetrain implements Subsystem {
         SmartDashboard.putNumber("X", x);
         SmartDashboard.putNumber("Y", y);
 
-        double right = -y - x;
-        double left = - (y - x);
+        double right = (-y - x)*speed;
+        double left = (- (y - x))*speed;
         if (left > 1) {
             left = 1;
         }
