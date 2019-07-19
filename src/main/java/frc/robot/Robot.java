@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     invertedDrive = false;
     speedControl = 1;
+    climber.stopVacuum();
 
     table = NetworkTable.getTable("GRIP/myContoursReport");
     CameraServer.getInstance().startAutomaticCapture();
@@ -74,6 +75,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     matchTimer.start();
     lift.resetEncoder();
+    climber.stopVacuum();
   }
 
   public void drive() {
@@ -99,6 +101,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     climber.recoverCarrige();
     panelintake.getPannel();
+    climber.stopVacuum();
   }
 
   @Override
@@ -112,7 +115,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Distance 0", distances[0]);
 
     visionController.update();
-    updateDashboards();
+    //updateDashboards();
   }
 
   /**

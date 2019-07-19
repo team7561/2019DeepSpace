@@ -18,6 +18,9 @@ public class Ports {
     // PWM control channels
     public static int LED_CONTROLLER_CHANNEL = 6;
     public static int INTAKE_CHANNEL = 7;
+    public static int LIFT_A_PWM = 0;
+    public static int LIFT_B_PWM = 1;
+
 
     // DIO ports
     public static int LIMIT_ARM_LOWER = 0;
