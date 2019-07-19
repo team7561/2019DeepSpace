@@ -11,7 +11,7 @@ public class BenDrive {
         // Controls for lift
         if(Math.abs(xboxController.getY(GenericHID.Hand.kLeft))>0.1)
         {
-            robot.lift.setMotorSpeed(xboxController.getY(GenericHID.Hand.kLeft));
+            robot.lift.setMotorSpeed(-xboxController.getY(GenericHID.Hand.kLeft));
         }
         else if(xboxController.getBButton())
         {
@@ -27,13 +27,9 @@ public class BenDrive {
         }
 
         // Controls for Arm
-        if(xboxController.getY(GenericHID.Hand.kRight)>0.2)
+        if(Math.abs(xboxController.getY(GenericHID.Hand.kRight))>0.1)
         {
-            robot.arm.lower();
-        }
-        else if(xboxController.getY(GenericHID.Hand.kRight)<-0.2)
-        {
-            robot.arm.raise();
+            robot.arm.setSpeed(-xboxController.getY(GenericHID.Hand.kRight));
         }
         else if(xboxController.getXButton())
         {
