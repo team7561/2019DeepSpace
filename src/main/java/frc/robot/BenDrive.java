@@ -29,7 +29,7 @@ public class BenDrive {
         // Controls for Arm
         if(Math.abs(xboxController.getY(GenericHID.Hand.kRight))>0.1)
         {
-            robot.arm.setSpeed(-xboxController.getY(GenericHID.Hand.kRight));
+            robot.arm.setSpeed(0.35*(-xboxController.getY(GenericHID.Hand.kRight)));
         }
         else if(xboxController.getXButton())
         {
