@@ -78,12 +78,15 @@ public class Drivetrain implements Subsystem {
     }
 
     //put dashboard stuff here
-    public void updateDashboard()
+    public void updateDashboard(boolean debug)
     {
-        //SmartDashboard.putNumber("Gyro Angle", readGyro());
-        SmartDashboard.putNumber("Left A Power", leftA.get());
-        SmartDashboard.putNumber("Left B Power", leftB.get());
-        SmartDashboard.putNumber("Right A Power", rightA.get());
-        SmartDashboard.putNumber("Right B Power", rightB.get());
+        if (debug)
+        {
+            //SmartDashboard.putNumber("Gyro Angle", readGyro());
+            SmartDashboard.putNumber("Left A Power", leftA.get());
+            SmartDashboard.putNumber("Left B Power", leftB.get());
+            SmartDashboard.putNumber("Right A Power", rightA.get());
+            SmartDashboard.putNumber("Right B Power", rightB.get());
+        }
     }
 }

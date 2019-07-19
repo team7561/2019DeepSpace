@@ -60,7 +60,6 @@ public class Climber implements Subsystem {
         /*if (climberVacuumMotor.getMotorOutputPercent() > 0) {
             
         }*/
-    
     }
     public void undoWinch()
     {
@@ -79,17 +78,19 @@ public class Climber implements Subsystem {
     {
         setWinchSpeed(Speeds.CLIMBER_STOP_SPEED);
     }
-    public void updateDashboard()
+    public void updateDashboard(boolean debug)
     {
-        //Climber Motor
-        SmartDashboard.putNumber("Climber Motor A Speed", climberMotorA.getMotorOutputPercent());
-        SmartDashboard.putNumber("Climber Motor A Current", climberMotorA.getOutputCurrent());
-        SmartDashboard.putNumber("Climber Motor B Speed", climberMotorB.getMotorOutputPercent());
-        SmartDashboard.putNumber("Climber Motor B Current", climberMotorB.getOutputCurrent());
-        SmartDashboard.putNumber("Climber vacuum speed", climberVacuumMotor.getMotorOutputPercent());
-        SmartDashboard.putBoolean("Climber Limit Switch", climberLimitDigitalInput.get());
-        SmartDashboard.putString("Climber Release Solenoid", climberReleaseSolenoid.get().toString());
-        SmartDashboard.putString("Climber Deploy Solenoid", climberDeploySoleniod.get().toString());
+        if (debug)
+            {
+            SmartDashboard.putNumber("Climber Motor A Speed", climberMotorA.getMotorOutputPercent());
+            SmartDashboard.putNumber("Climber Motor A Current", climberMotorA.getOutputCurrent());
+            SmartDashboard.putNumber("Climber Motor B Speed", climberMotorB.getMotorOutputPercent());
+            SmartDashboard.putNumber("Climber Motor B Current", climberMotorB.getOutputCurrent());
+            SmartDashboard.putNumber("Climber Vacuum speed", climberVacuumMotor.getMotorOutputPercent());
+            SmartDashboard.putBoolean("Climber Limit Switch", climberLimitDigitalInput.get());
+            SmartDashboard.putString("Climber Release Solenoid", climberReleaseSolenoid.get().toString());
+            SmartDashboard.putString("Climber Deploy Solenoid", climberDeploySoleniod.get().toString());
+        }
 
 
     }

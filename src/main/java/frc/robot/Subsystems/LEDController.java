@@ -26,9 +26,11 @@ public class LEDController implements Subsystem {
     public void turnOff(){
         setRawMode(0.99);
     }
-    public void updateDashboard()
+    public void updateDashboard(boolean debug)
     {
-        SmartDashboard.putNumber("LED Value", blinkin.get());
+        if (debug)
+        {
+            SmartDashboard.putNumber("LED Value", blinkin.get());
+        }
     }
-
 }

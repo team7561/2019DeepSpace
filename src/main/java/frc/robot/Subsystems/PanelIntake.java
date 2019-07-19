@@ -24,7 +24,7 @@ public class PanelIntake implements Subsystem {
     }
 
     @Override
-    public void updateDashboard() {
+    public void updateDashboard(boolean debug) {
         SmartDashboard.putString("Panel Intake Status", intakeSolenoid.get().toString());
     }
 }

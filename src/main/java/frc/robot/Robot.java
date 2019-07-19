@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
   NetworkTable table;
   boolean invertedDrive;
   double speedControl;
+  boolean debug;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   /**
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    debug = false;
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     invertedDrive = false;
     speedControl = 1;
@@ -126,13 +128,13 @@ public class Robot extends TimedRobot {
   }
   public void updateDashboards()
   {
-    drivetrain.updateDashboard();
-    lift.updateDashboard();
-    arm.updateDashboard();
-    visionController.updateDashboard();
-    ballintake.updateDashboard();
-    climber.updateDashboard();
-    panelintake.updateDashboard();
+    drivetrain.updateDashboard(debug);
+    lift.updateDashboard(debug);
+    arm.updateDashboard(debug);
+    visionController.updateDashboard(debug);
+    ballintake.updateDashboard(debug);
+    climber.updateDashboard(debug);
+    panelintake.updateDashboard(debug);
     
   }
 }

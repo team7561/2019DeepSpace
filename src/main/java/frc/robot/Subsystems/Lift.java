@@ -53,11 +53,14 @@ public class Lift implements Subsystem{
         setMotorSpeed(Speeds.LIFT_STOP_SPEED);
     }
 
-    public void updateDashboard()
+    public void updateDashboard(boolean debug)
     {
-        SmartDashboard.putNumber("Lift A Speed", liftMotorA.get());
-        SmartDashboard.putNumber("Lift B Speed", liftMotorB.get());
-        SmartDashboard.putNumber("Lift Encoder", liftEncoder.get());
+        if (debug)
+        {
+            SmartDashboard.putNumber("Lift A Speed", liftMotorA.get());
+            SmartDashboard.putNumber("Lift B Speed", liftMotorB.get());
+            SmartDashboard.putNumber("Lift Encoder", liftEncoder.get());
+        }
     }
 
 }

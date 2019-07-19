@@ -19,8 +19,16 @@ public class Arm implements Subsystem{
         height = 0;
     }
 
-    private void setSpeed(double speed)
+    public void setSpeed(double speed)
     {
+        if (speed > 0 && !limitUpper.get())
+        {
+            armMotor.set(0);
+        }
+        if (speed < 0 && !limitLower.get())
+        {
+            armMotor.set(0);
+        }
         armMotor.set(speed);
     }
 
@@ -53,10 +61,11 @@ public class Arm implements Subsystem{
     {
         setSpeed(Speeds.ARM_STOP_SPEED);
     }
-    public void updateDashboard()
+    public void updateDashboard(boolean debug)
     {
         SmartDashboard.putBoolean("Arm Upper Limit Switch", limitUpper.get());
         SmartDashboard.putBoolean("Arm Lower Limit Switch", limitLower.get());
         SmartDashboard.putNumber("Arm Speed", armMotor.get());
+        SmartDashboard.putNumber("Arm Current", armMotor.getOutputCurrent());
     }
 }

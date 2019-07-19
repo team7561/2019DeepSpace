@@ -54,9 +54,12 @@ public class BallIntake implements Subsystem {
     }
 
 
-    public void updateDashboard()
+    public void updateDashboard(boolean debug)
     {
-        SmartDashboard.putNumber("Intake Power", ballIntakeMotor.getMotorOutputVoltage());
+        if (debug)
+        {
+            SmartDashboard.putNumber("Intake Power", ballIntakeMotor.getMotorOutputVoltage());
+        }
     }
 
 
