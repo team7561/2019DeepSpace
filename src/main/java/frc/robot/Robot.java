@@ -117,7 +117,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Distance 0", distances[0]);
 
     visionController.update();
-    //updateDashboards();
+    updateDashboards();
   }
 
   /**

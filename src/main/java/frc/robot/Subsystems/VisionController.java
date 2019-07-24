@@ -75,11 +75,14 @@ public class VisionController implements Subsystem {
 
     public void updateDashboard(boolean debug)
     {
-        update();
-        SmartDashboard.putNumber("Cargo Yaw", cargoAngle);
-        SmartDashboard.putNumber("Tape Yaw", tapeAngle);
-        SmartDashboard.putNumber("Target Yaw", targetYaw());
-        SmartDashboard.putString("Desired Target", desiredTarget);
+        if (debug)
+        {
+            update();
+            SmartDashboard.putNumber("Cargo Yaw", cargoAngle);
+            SmartDashboard.putNumber("Tape Yaw", tapeAngle);
+            SmartDashboard.putNumber("Target Yaw", targetYaw());
+            SmartDashboard.putString("Desired Target", desiredTarget);
+        }
     }
     public void setCargo()
     {

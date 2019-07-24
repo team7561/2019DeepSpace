@@ -21,15 +21,16 @@ public class Arm implements Subsystem{
 
     public void setSpeed(double speed)
     {
-        if (speed > 0 && !limitUpper.get())
+        SmartDashboard.putNumber("Arm Speed", speed);
+        if (speed > 0 && !limitUpper.get() || (speed < 0 && !limitLower.get()))
         {
             armMotor.set(0);
         }
-        if (speed < 0 && !limitLower.get())
+        else
         {
-            armMotor.set(0);
+            armMotor.set(speed);
         }
-        armMotor.set(speed);
+        
     }
 
     public void reset()

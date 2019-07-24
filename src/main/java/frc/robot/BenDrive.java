@@ -64,6 +64,10 @@ public class BenDrive {
         {
             robot.climber.pullUp();
         }
+        else if(xboxController.getTriggerAxis(GenericHID.Hand.kLeft)>0.3)
+        {
+            robot.climber.undoWinch();
+        }
         else 
         {
             robot.climber.stopClimbing();
