@@ -89,4 +89,12 @@ public class Drivetrain implements Subsystem {
             SmartDashboard.putNumber("Right B Power", rightB.get());
         }
     }
+    public int getLeftEncoder()
+    {
+        return (int) (leftA.getEncoder().getPosition()+leftB.getEncoder().getPosition())/2;
+    }
+    public int getRightEncoder()
+    {
+        return (int) (rightA.getEncoder().getPosition()+rightB.getEncoder().getPosition())/2;
+    }
 }

@@ -14,6 +14,11 @@ import frc.robot.Subsystems.*;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
+
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.PathfinderFRC;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.followers.EncoderFollower;
 //import edu.wpi.first.networktables.NetworkTable;
 
 /**
@@ -45,10 +50,18 @@ public class Robot extends TimedRobot {
   boolean debug;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
-   */
+
+  private EncoderFollower m_left_follower;
+  private EncoderFollower m_right_follower;
+  private Notifier m_follower_notifier;
+
+  
+  private static final int k_ticks_per_rev = 1024;
+  private static final double k_wheel_diameter = 4.0 / 12.0;
+  private static final double k_max_velocity = 10;
+
+  private static final String k_path_name = "example";
+
   @Override
   public void robotInit() {
     debug = false;
@@ -78,8 +91,43 @@ public class Robot extends TimedRobot {
     matchTimer.start();
     lift.resetEncoder();
     climber.stopVacuum();
-  }
 
+    try {
+    Trajectory left_trajectory = PathfinderFRC.getTrajectory(k_path_name + ".left");
+    Trajectory right_trajectory = PathfinderFRC.getTrajectory(k_path_name + ".right");
+    
+    m_left_follower = new EncoderFollower(left_trajectory);
+    m_right_follower = new EncoderFollower(right_trajectory);
+
+    m_left_follower.configureEncoder(drivetrain.getLeftEncoder(), k_ticks_per_rev, k_wheel_diameter);
+    // You must tune the PID values on the following line!
+    m_left_follower.configurePIDVA(1.0, 0.0, 0.0, 1 / k_max_velocity, 0);
+
+    m_right_follower.configureEncoder(drivetrain.getRightEncoder(), k_ticks_per_rev, k_wheel_diameter);
+    // You must tune the PID values on the following line!
+    m_right_follower.configurePIDVA(1.0, 0.0, 0.0, 1 / k_max_velocity, 0);
+    
+    m_follower_notifier = new Notifier(this::followPath);
+    m_follower_notifier.startPeriodic(left_trajectory.get(0).dt);
+    }
+    catch(Exception e)
+    {
+    }
+
+  }
+private void followPath() {
+    if (m_left_follower.isFinished() || m_right_follower.isFinished()) {
+      m_follower_notifier.stop();
+    } else {
+      double left_speed = m_left_follower.calculate(drivetrain.getLeftEncoder());
+      double right_speed = m_right_follower.calculate(drivetrain.getRightEncoder());
+      double heading = 0; //= .getAngle();
+      double desired_heading = Pathfinder.r2d(m_left_follower.getHeading());
+      double heading_difference = Pathfinder.boundHalfDegrees(desired_heading - heading);
+      double turn =  0.8 * (-1.0/80.0) * heading_difference;
+      drivetrain.drive(left_speed + turn, right_speed - turn);
+    }
+  }
   public void drive() {
 
     JamesDrive.drive(this, joystick);
@@ -89,10 +137,6 @@ public class Robot extends TimedRobot {
       climber.deployLift();
       climber.runVacuum();
     }
-    //TomDrive.drive(this, xboxController);
-    //LiamDrive.drive(this, joystick);
-    //AlexDrive.drive(this, xboxController);
-    //JoshDrive.drive(this, xboxController);
   }
   @Override
   public void autonomousPeriodic() {
