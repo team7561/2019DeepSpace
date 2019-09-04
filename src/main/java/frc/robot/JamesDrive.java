@@ -38,7 +38,7 @@ public class JamesDrive {
         }
         if(joystick.getRawButton(5))
         {
-            if (joystick.getTriggerPressed())
+            if(joystick.getTriggerPressed())
             {
                 robot.panelintake.ejectPannel();
             }

@@ -14,6 +14,7 @@ import frc.robot.Subsystems.*;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Notifier;
 
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.PathfinderFRC;
@@ -56,18 +57,19 @@ public class Robot extends TimedRobot {
   private Notifier m_follower_notifier;
 
   
-  private static final int k_ticks_per_rev = 1024;
-  private static final double k_wheel_diameter = 4.0 / 12.0;
-  private static final double k_max_velocity = 10;
+  //private static final int k_ticks_per_rev = 540;
+  private static final int k_ticks_per_rev = 540;
+  private static final double k_wheel_diameter = 4.0 *25.4 / 1000.0;
+  private static final double k_max_velocity = 0.2;
 
-  private static final String k_path_name = "example";
+  private static final String k_path_name = "output/TestPathStraight";
 
   @Override
   public void robotInit() {
     debug = false;
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     invertedDrive = false;
-    speedControl = 1;
+    speedControl = 0.5;
     climber.stopVacuum();
 
     table = NetworkTable.getTable("GRIP/myContoursReport");
@@ -90,6 +92,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     matchTimer.start();
     lift.resetEncoder();
+    drivetrain.resetEncoders();
     climber.stopVacuum();
 
     try {
@@ -101,31 +104,35 @@ public class Robot extends TimedRobot {
 
     m_left_follower.configureEncoder(drivetrain.getLeftEncoder(), k_ticks_per_rev, k_wheel_diameter);
     // You must tune the PID values on the following line!
-    m_left_follower.configurePIDVA(1.0, 0.0, 0.0, 1 / k_max_velocity, 0);
+    m_left_follower.configurePIDVA(0.5, 0.0, 0.0, 1 / k_max_velocity, 0);
 
     m_right_follower.configureEncoder(drivetrain.getRightEncoder(), k_ticks_per_rev, k_wheel_diameter);
     // You must tune the PID values on the following line!
-    m_right_follower.configurePIDVA(1.0, 0.0, 0.0, 1 / k_max_velocity, 0);
+    m_right_follower.configurePIDVA(0.5, 0.0, 0.0, 1 / k_max_velocity, 0);
     
     m_follower_notifier = new Notifier(this::followPath);
     m_follower_notifier.startPeriodic(left_trajectory.get(0).dt);
     }
     catch(Exception e)
     {
+      System.out.println(e.toString());
     }
 
   }
 private void followPath() {
     if (m_left_follower.isFinished() || m_right_follower.isFinished()) {
       m_follower_notifier.stop();
+      drivetrain.drive(-0.05,-0.05);
     } else {
       double left_speed = m_left_follower.calculate(drivetrain.getLeftEncoder());
       double right_speed = m_right_follower.calculate(drivetrain.getRightEncoder());
-      double heading = 0; //= .getAngle();
+      double heading = drivetrain.getAngle();
       double desired_heading = Pathfinder.r2d(m_left_follower.getHeading());
       double heading_difference = Pathfinder.boundHalfDegrees(desired_heading - heading);
-      double turn =  0.8 * (-1.0/80.0) * heading_difference;
-      drivetrain.drive(left_speed + turn, right_speed - turn);
+      //double turn =  (0.8 * (-1.0/80.0) * heading_difference)/4;
+      double turn = 0;
+      drivetrain.drive((left_speed + turn), (right_speed - turn));
+      drivetrain.updateDashboard(true);
     }
   }
   public void drive() {
@@ -140,7 +147,7 @@ private void followPath() {
   }
   @Override
   public void autonomousPeriodic() {
-    drive();
+    followPath();
   }
 
   @Override
@@ -148,6 +155,7 @@ private void followPath() {
     climber.recoverCarrige();
     panelintake.getPannel();
     climber.stopVacuum();
+    drivetrain.resetEncoders();
   }
 
   @Override
