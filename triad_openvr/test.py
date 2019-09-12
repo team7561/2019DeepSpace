@@ -2,6 +2,8 @@ import triad_openvr
 import time
 import sys
 import threading
+import os
+
 from networktables import NetworkTables
 
 cond = threading.Condition()
@@ -16,10 +18,10 @@ def connectionListener(connected, info):
 NetworkTables.initialize(server='192.168.0.35')
 NetworkTables.addConnectionListener(connectionListener, immediateNotify=True)
 
-with cond:
-    print("Waiting")
-    if not notified[0]:
-        cond.wait()
+#with cond:
+#    print("Waiting")
+#    if not notified[0]:
+#        cond.wait()
 
 print("Connected")
 
@@ -60,12 +62,13 @@ if interval:
         table.putNumber("count", count)
         table.putNumber("time", time.time()-start_time)
         table.putNumber("fps", count/(time.time()-start_time+0.000000001))
-        #print("X = ", x)
-        #print("Y = ", y)
-        #print("Z = ", z)
-        #print("X_Rot = ", x_rot)
-        #print("Y_Rot = ", y_rot)
-        #print("Z_Rot = ", z_rot)
+        print("X = ", x)
+        print("Y = ", y)
+        print("Z = ", z)
+        print("X_Rot = ", x_rot)
+        print("Y_Rot = ", y_rot)
+        print("Z_Rot = ", z_rot)
+        os.system('CLS')
 
         count += 1
         if (count > 100000):
