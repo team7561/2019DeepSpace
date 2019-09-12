@@ -1,5 +1,7 @@
 package frc.robot.Autonomous;
 
+import frc.robot.Drivers.ADIS16448_IMU;
+
 public class ViveMeasurements {
 
     public ViveMeasurements()
@@ -27,6 +29,18 @@ public class ViveMeasurements {
 
     }
     public void moveToScore()
+    {
+
+    }
+    public void angleToShip()
+    {
+
+    }
+    public void getX()
+    {
+
+    }
+    public void getY()
     {
 
     }

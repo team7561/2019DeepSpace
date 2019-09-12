@@ -18,6 +18,13 @@ public class ViveAuto {
         robot.panelintake.getPannel();
 
     }
+    public void acquire_cargo(Robot robot)
+    {
+        // Travel to  in front of loading station
+        // Move forward and grab hatch panel
+        // Actuate cargo system
+        robot.ballintake.getBall();
+    }
     public void score_cargo_ship()
     {
 

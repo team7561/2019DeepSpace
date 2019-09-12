@@ -27,13 +27,13 @@ public class Robot extends TimedRobot {
   double curr_angle, target_angle;
   Joystick joystick = new Joystick(1);
   XboxController xboxController = new XboxController(2);
-  Arm arm = new Arm();
+  public Arm arm = new Arm();
   Climber climber = new Climber();
-  BallIntake ballintake = new BallIntake();
+  public BallIntake ballintake = new BallIntake();
   public PanelIntake panelintake = new PanelIntake();
-  Drivetrain drivetrain = new Drivetrain();
-  VisionController visionController = new VisionController();
-  Lift lift = new Lift();
+  public Drivetrain drivetrain = new Drivetrain();
+  public VisionController visionController = new VisionController();
+  public Lift lift = new Lift();
   PathWeaver pathweaver;
   LEDController ledController = new LEDController();
   Timer matchTimer = new Timer();
@@ -82,14 +82,8 @@ public class Robot extends TimedRobot {
   }
 
   public void drive() {
-
     JamesDrive.drive(this, joystick);
     BenDrive.drive(this, xboxController);
-    if (matchTimer.get() > 130)
-    {
-      climber.deployLift();
-      climber.runVacuum();
-    }
   }
   @Override
   public void autonomousPeriodic() {

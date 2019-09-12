@@ -104,7 +104,32 @@ public class Drivetrain implements Subsystem {
             drive(left, right);
         }
     }
+    public double calculateError(double targetAngle)
+    {
+        double error = getAngle() - targetAngle;
 
+        while (error > 180) {
+            error = error - 360;
+        }
+
+        while (error < -180) {
+            error = error + 360;
+        }
+        return error;
+    }
+    public void turnToAngle(double targetAngle, double speed)
+    {
+        double error = calculateError(targetAngle);
+        if(error < 0)
+        {
+            drive(speed, -speed);
+        }
+        else
+        {
+            drive(-speed, speed);
+        }
+        this.lastError = error;
+    }
     //put dashboard stuff here
     public void updateDashboard(boolean debug)
     {

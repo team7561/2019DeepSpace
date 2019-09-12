@@ -31,8 +31,8 @@ public class Climber implements Subsystem {
     }
     private void setWinchSpeed(double speed)
     {
-        climberMotorA.set(ControlMode.PercentOutput, speed);
-        climberMotorB.set(ControlMode.PercentOutput, -speed);
+        //climberMotorA.set(ControlMode.PercentOutput, speed);
+        //climberMotorB.set(ControlMode.PercentOutput, -speed);
     }
     private void setVacuumSpeed(double speed)
     {
@@ -58,7 +58,6 @@ public class Climber implements Subsystem {
     {
         setWinchSpeed(Speeds.CLIMBER_LIFT_SPEED);
         /*if (climberVacuumMotor.getMotorOutputPercent() > 0) {
-            
         }*/
     }
     public void undoWinch()
