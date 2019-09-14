@@ -18,6 +18,7 @@ import frc.robot.Subsystems.*;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 
 public class Robot extends TimedRobot {
@@ -39,7 +40,7 @@ public class Robot extends TimedRobot {
   Timer matchTimer = new Timer();
   NetworkTable table;
   String autoMode;
-
+  PowerDistributionPanel pdp;
   boolean invertedDrive;
   double speedControl;
   boolean debug;
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
     speedControl = 0.5;
     climber.stopVacuum();
     pathweaver = new PathWeaver();
+    pdp = new PowerDistributionPanel();
 
     table = NetworkTable.getTable("GRIP/myContoursReport");
     CameraServer.getInstance().startAutomaticCapture();
@@ -122,6 +124,10 @@ public class Robot extends TimedRobot {
     ballintake.updateDashboard(debug);
     climber.updateDashboard(debug);
     panelintake.updateDashboard(debug);
-    
+
+    for (int i = 0; i < 10; i++)
+    {
+      SmartDashboard.putNumber("Channel "+i+" Current", pdp.getCurrent(i));
+    }
   }
 }

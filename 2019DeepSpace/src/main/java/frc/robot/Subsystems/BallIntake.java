@@ -34,6 +34,11 @@ public class BallIntake implements Subsystem {
     {
         intakeSpeed(Speeds.KEEP_BALL_SPEED);
     }
+    // Returns if high enough current to assume ball in possession
+    public boolean hasBall(double current)
+    {
+        return (ballIntakeMotor.getMotorOutputPercent() < 0 && current > 2);
+    }
 
     //Ejects the Ball fast
     public void ejectBall()
