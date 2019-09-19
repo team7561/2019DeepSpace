@@ -10,15 +10,21 @@ public class Constants {
 
     public static double DISTANCE_TOLERANCE = 0.4;
 
-    public static double ROCKET_X_COORD = 3;
-    public static double ROCKET_Z_COORD = 3;
-    public static double CARGO_SHIP_X_COORD = 3;
-    public static double CARGO_SHIP_Z_COORD = 3;
+    public static double ROCKET_X_COORD = 1.11;
+    public static double ROCKET_Z_COORD = -3.76;
+    public static double ROCKET_APPROACH_X_COORD = 0.66;
+    public static double ROCKET_APPROACH_Z_COORD = -3.31;
+    public static double CARGO_SHIP_X_COORD = 0.44;
+    public static double CARGO_SHIP_Z_COORD = -4.18;
+    public static double CARGO_SHIP_APPROACH_X_COORD = 0.86;
+    public static double CARGO_SHIP_APPROACH_Z_COORD = -4.01;
+    public static double CENTRE_X_COORD = 0.35;
+    public static double CENTRE_Z_COORD = -3.16;
 
     public static Coordinate ROCKET_COORD = new Coordinate(ROCKET_X_COORD, ROCKET_Z_COORD);
-    public static Coordinate ROCKET__APPROACH_COORD = new Coordinate(ROCKET_X_COORD, ROCKET_Z_COORD);
-    public static Coordinate CARGO_SHIP_COORD = new Coordinate(ROCKET_X_COORD, ROCKET_Z_COORD);
-    public static Coordinate CARGO_SHIP_APPROACH_COORD = new Coordinate(ROCKET_X_COORD, ROCKET_Z_COORD);
+    public static Coordinate ROCKET_APPROACH_COORD = new Coordinate(ROCKET_APPROACH_X_COORD, ROCKET_APPROACH_Z_COORD);
+    public static Coordinate CARGO_SHIP_COORD = new Coordinate(CARGO_SHIP_X_COORD, CARGO_SHIP_Z_COORD);
+    public static Coordinate CARGO_SHIP_APPROACH_COORD = new Coordinate(CARGO_SHIP_APPROACH_X_COORD, CARGO_SHIP_APPROACH_Z_COORD);
     public static Coordinate LOADING_STATION_COORD = new Coordinate(ROCKET_X_COORD, ROCKET_Z_COORD);
-    public static Coordinate LOADING_STATION_APPROACH = new Coordinate(ROCKET_X_COORD, ROCKET_Z_COORD);
+    public static Coordinate LOADING_STATION_APPROACH = new Coordinate(ROCKET_APPROACH_X_COORD, ROCKET_APPROACH_Z_COORD);
 }

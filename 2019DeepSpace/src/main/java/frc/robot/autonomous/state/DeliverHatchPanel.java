@@ -6,8 +6,14 @@ public class DeliverHatchPanel implements State {
     public boolean run(Robot robot)
     {
         robot.arm.lower();
-        if(robot.arm.)
-        robot.panelintake.ejectPannel();
+        if(robot.arm.atLowLimit())
+        {
+            robot.panelintake.ejectPannel();
+        }
+        else
+        {
+            robot.arm.lower();
+        }
         return true;
     }
 }
