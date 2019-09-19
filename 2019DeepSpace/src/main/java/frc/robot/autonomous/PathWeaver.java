@@ -1,12 +1,11 @@
-package frc.robot.Autonomous;
+package frc.robot.autonomous;
 
 import edu.wpi.first.wpilibj.Notifier;
-import frc.robot.Subsystems.Drivetrain;
+import frc.robot.subsystem.Drivetrain;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.PathfinderFRC;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
-import jaci.pathfinder.Pathfinder;
 
 public class PathWeaver {
 

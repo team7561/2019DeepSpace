@@ -1,5 +1,4 @@
-package frc.robot.Subsystems;
-import edu.wpi.first.wpilibj.Spark;
+package frc.robot.subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
 import frc.robot.Speeds;
@@ -36,9 +35,17 @@ public class Arm implements Subsystem{
     public void reset()
     {
     }
+    public boolean atLowLimit()
+    {
+        return !limitLower.get();
+    }
+    public boolean atHighLimit()
+    {
+        return !limitUpper.get();
+    }
     public void raise()
     {
-        if (!limitUpper.get())
+        if (atHighLimit())
         {
             setSpeed(Speeds.ARM_STOP_SPEED);
         }
@@ -46,10 +53,9 @@ public class Arm implements Subsystem{
             setSpeed(Speeds.ARM_RAISE_SPEED);
         }
     }
-
     public void lower()
     {
-        if (!limitLower.get())
+        if (atLowLimit())
         {
             setSpeed(Speeds.ARM_STOP_SPEED);
         }

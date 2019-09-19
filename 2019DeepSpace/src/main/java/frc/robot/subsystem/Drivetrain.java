@@ -1,10 +1,9 @@
-package frc.robot.Subsystems;
+package frc.robot.subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
-import edu.wpi.first.wpilibj.Spark;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.robot.Drivers.ADIS16448_IMU;
+//import frc.robot.driver.ADIS16448_IMU;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
 
@@ -15,7 +14,7 @@ public class Drivetrain implements Subsystem {
 
     //VictorSPX leftA, leftB, rightA, rightB;
     CANSparkMax leftA, leftB, rightA, rightB;
-    ADIS16448_IMU adis;
+    //ADIS16448_IMU adis;
     AHRS ahrs;
 
     public Drivetrain()

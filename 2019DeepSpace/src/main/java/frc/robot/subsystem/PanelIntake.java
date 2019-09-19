@@ -1,4 +1,4 @@
-package frc.robot.Subsystems;
+package frc.robot.subsystem;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -6,7 +6,7 @@ import frc.robot.Ports;
 
 public class PanelIntake implements Subsystem {
 
-    DoubleSolenoid intakeSolenoid;
+    public DoubleSolenoid intakeSolenoid;
 
     public PanelIntake()
     {
@@ -23,6 +23,14 @@ public class PanelIntake implements Subsystem {
         intakeSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
 
+    public boolean isClosed()
+    {
+        return intakeSolenoid.get() == DoubleSolenoid.Value.kForward;
+    }
+    public boolean isOpen()
+    {
+        return intakeSolenoid.get() == DoubleSolenoid.Value.kForward;
+    }
     @Override
     public void updateDashboard(boolean debug) {
         SmartDashboard.putString("Panel Intake Status", intakeSolenoid.get().toString());

@@ -1,9 +1,9 @@
-package frc.robot.Drivers;
+package frc.robot.driver;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Ports;
-import frc.robot.Subsystems.Subsystem;
+import frc.robot.subsystem.Subsystem;
 
 public class LEDController implements Subsystem {
     private Spark blinkin;

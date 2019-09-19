@@ -1,9 +1,9 @@
-package frc.robot.Subsystems;
+package frc.robot.subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 import frc.robot.Ports;
 import frc.robot.Speeds;
 
@@ -11,6 +11,7 @@ public class BallIntake implements Subsystem {
 
     VictorSPX ballIntakeMotor;
     DigitalInput intakeLimitSwitch;
+    Boolean hasBall;
 
     public BallIntake()
     {
@@ -37,7 +38,8 @@ public class BallIntake implements Subsystem {
     // Returns if high enough current to assume ball in possession
     public boolean hasBall(double current)
     {
-        return (ballIntakeMotor.getMotorOutputPercent() < 0 && current > 2);
+        hasBall = ballIntakeMotor.getMotorOutputPercent() < 0 && current > Constants.CARGO_STALL_CURRENT;
+        return hasBall;
     }
 
     //Ejects the Ball fast
@@ -64,6 +66,7 @@ public class BallIntake implements Subsystem {
         if (debug)
         {
             SmartDashboard.putNumber("Intake Power", ballIntakeMotor.getMotorOutputVoltage());
+            SmartDashboard.putBoolean("Got Cargo", hasBall);
         }
     }
 

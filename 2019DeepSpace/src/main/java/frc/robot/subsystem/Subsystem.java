@@ -1,4 +1,4 @@
-package frc.robot.Subsystems;
+package frc.robot.subsystem;
 
 public interface Subsystem {
     public void updateDashboard(boolean debug);
