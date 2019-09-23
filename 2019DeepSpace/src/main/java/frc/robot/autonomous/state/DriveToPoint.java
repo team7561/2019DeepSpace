@@ -4,7 +4,7 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.autonomous.Coordinate;
 
-public class DriveToPoint implements State {
+public class DriveToPoint implements frc.robot.autonomous.state.State {
     final Coordinate destination;
     final boolean reverse;
 
