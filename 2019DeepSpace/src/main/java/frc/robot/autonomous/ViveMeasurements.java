@@ -16,11 +16,11 @@ public class ViveMeasurements {
     }
     public boolean isValidCooardinates(Coordinate coordinate)
     {
-        if (coordinate.x < -2 || coordinate.x > 3)
+        if (coordinate.x < -10 || coordinate.x > 10)
         {
             return false;
         }
-        if (coordinate.z < -2 || coordinate.z > 3)
+        if (coordinate.z < -10 || coordinate.z > 10)
         {
             return false;
         }
@@ -37,6 +37,10 @@ public class ViveMeasurements {
     public double getZ()
     {
         return SmartDashboard.getNumber("z", -999);
+    }
+    public double get_Y_rot()
+    {
+        return SmartDashboard.getNumber("y_rot", -999)+270;
     }
     public Coordinate getLocation()
     {
