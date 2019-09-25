@@ -82,27 +82,6 @@ public class Drivetrain implements Subsystem {
             drive(left, right);
         }
     }
-    //teleop driving
-    public void arcadeDriveLiam(double x, double y, double twist, double speed, boolean inverted) {
-        x = x * Math.abs(x) * speed;
-        y = y * Math.abs(y) * speed;
-        x = twist;
-        double right = y + x;
-        double left = - (y - x);
-        if (left > 1) {
-            left = 1;
-        }
-        if (right > 1) {
-            right = 1;
-        }
-        if (inverted == true) {
-            drive(-left, -right);
-        }
-        else
-        {
-            drive(left, right);
-        }
-    }
     public double calculateError(double targetAngle)
     {
         double error = getAngle() - targetAngle;
@@ -144,9 +123,6 @@ public class Drivetrain implements Subsystem {
             SmartDashboard.putNumber("Left B Encoder", leftB.getEncoder().getPosition());
             SmartDashboard.putNumber("Right A Encoder", rightA.getEncoder().getPosition());
             SmartDashboard.putNumber("Right B Encoder", rightB.getEncoder().getPosition());
-            SmartDashboard.putNumber("Left A Encoder Conversion", leftA.getEncoder().getPositionConversionFactor());
-            SmartDashboard.putNumber("Left B Encoder Conversion", leftB.getEncoder().getPositionConversionFactor());
-
                      /* Display 6-axis Processed Angle Data                                      */
           SmartDashboard.putBoolean(  "IMU_Connected",        ahrs.isConnected());
           SmartDashboard.putBoolean(  "IMU_IsCalibrating",    ahrs.isCalibrating());

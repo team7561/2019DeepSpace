@@ -8,7 +8,9 @@ public class Constants {
     public static int CARGO_STALL_CURRENT = 2;
 
 
-    public static double DISTANCE_TOLERANCE = 0.4;
+    public static double DISTANCE_TOLERANCE = 0.2;
+    public static double SLOW_DOWN_DISTANCE = 0.4;
+    public static double ANGLE_TOLERANCE = 0.4;
 
     public static double ROCKET_X_COORD = 1.11;
     public static double ROCKET_Z_COORD = -3.76;

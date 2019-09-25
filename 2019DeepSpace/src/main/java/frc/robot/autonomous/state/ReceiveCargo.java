@@ -9,6 +9,7 @@ public class ReceiveCargo {
         robot.ballintake.getBall();
         if (robot.ballintake.hasBall(robot.pdp.getCurrent(Constants.CARGO_STALL_CURRENT)))
         {
+            robot.ballintake.stop();
             return true;
         }
         return false;

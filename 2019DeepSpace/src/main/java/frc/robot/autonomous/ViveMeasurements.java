@@ -1,5 +1,7 @@
 package frc.robot.autonomous;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class ViveMeasurements {
 
 
@@ -12,56 +14,29 @@ public class ViveMeasurements {
     {
 
     }
-    public boolean isValidCooardinates(double x, double y, double z)
+    public boolean isValidCooardinates(Coordinate coordinate)
     {
-        if (x < 0 || x > 3)
+        if (coordinate.x < -2 || coordinate.x > 3)
         {
             return false;
         }
-        if (y < 0 || y > 3)
-        {
-            return false;
-        }
-        if (z < 0 || z > 2)
+        if (coordinate.z < -2 || coordinate.z > 3)
         {
             return false;
         }
         return true;
     }
-    public void turnToCargoShip()
-    {
-
-    }
-    public void moveToScore()
-    {
-
-    }
-    public boolean nearCargoShip()
-    {
-        double x = 0;
-        double z = 0;
-        if (0.4<x && x<0.5) {
-            if (0.4 < z && z < 0.5) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public void angleToShip()
-    {
-
-    }
     public double getX()
     {
-        return 0;
+        return SmartDashboard.getNumber("x", -999);
     }
     public double getY()
     {
-        return 0;
+        return SmartDashboard.getNumber("y", -999);
     }
     public double getZ()
     {
-        return 0;
+        return SmartDashboard.getNumber("z", -999);
     }
     public Coordinate getLocation()
     {

@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    debug = false;
+    debug = true;
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     invertedDrive = false;
     speedControl = 0.5;
@@ -123,12 +123,12 @@ public class Robot extends TimedRobot {
   }
   public void updateDashboards()
   {
-    drivetrain.updateDashboard(debug);
-    lift.updateDashboard(debug);
     arm.updateDashboard(debug);
-    visionController.updateDashboard(debug);
     ballintake.updateDashboard(true);
     climber.updateDashboard(debug);
+    drivetrain.updateDashboard(debug);
+    lift.updateDashboard(debug);
+    visionController.updateDashboard(debug);
     panelintake.updateDashboard(debug);
 
     for (int i = 0; i < 10; i++)
