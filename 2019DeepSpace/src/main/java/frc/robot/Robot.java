@@ -86,6 +86,7 @@ public class Robot extends TimedRobot {
     {
 
     }
+    strategy.reset();
   }
 
   public void drive() {

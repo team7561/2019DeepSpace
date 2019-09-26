@@ -37,19 +37,17 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
             String headingMessage = "Distance: " + distance + ", destinationHeading " + destinationHeading + ", currentHeading " + currentHeading + ", headingError " + headingError;
             System.out.println(headingMessage);
             if (Math.abs(headingError) < Constants.ANGLE_TOLERANCE || reverse) {
+                if (distance < Constants.SLOW_DOWN_DISTANCE) {
+                    // change to slow speed if close to target
+                    speed = slow_speed;
+                }
                 if (reverse)
                 {
+                    // Reverse speed if going in reverse
                     speed = -speed;
-                    slow_speed = -slow_speed;
+
                 }
-                if (distance > Constants.SLOW_DOWN_DISTANCE) {
-                    // drive towards destination
-                    robot.drivetrain.drive(speed, speed);
-                }
-                else {
-                    // slow down if we are close
-                    robot.drivetrain.drive(slow_speed, slow_speed);
-                }
+                robot.drivetrain.drive(slow_speed, slow_speed);
             } else {
                 System.out.println("Turning");
                 // turn towards destination

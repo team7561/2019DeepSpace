@@ -34,4 +34,8 @@ public class ViveAuto {
         }
         return result;
     }
+    public void reset()
+    {
+        currentStep = 0;
+    }
 }
