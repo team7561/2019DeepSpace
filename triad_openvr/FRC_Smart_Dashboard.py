@@ -1,8 +1,7 @@
 import threading
 from networktables import NetworkTables
 from VR_data import TrackerData
-networktables_IP = "10.75.61.2"
-
+import Constants
 
 cond = threading.Condition()
 notified = [False]
@@ -14,7 +13,7 @@ def connection_listener(connected, info):
         cond.notify()
 
 
-NetworkTables.initialize(server=networktables_IP)
+NetworkTables.initialize(server=Constants.networktables_IP)
 try:
     NetworkTables.addconnection_listener(connection_listener, immediateNotify=True)
 except:
