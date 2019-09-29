@@ -42,6 +42,14 @@ public class ViveMeasurements {
     {
         return SmartDashboard.getNumber("y_rot1", -999)+270;
     }
+    public double get_Arm_Y()
+    {
+        return SmartDashboard.getNumber("y2", -999);
+    }
+    public double get_Arm_X_rot()
+    {
+        return SmartDashboard.getNumber("x_rot2", -999)+270;
+    }
     public Coordinate getLocation()
     {
         return new Coordinate(getX(), getZ());

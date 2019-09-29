@@ -15,11 +15,14 @@ public class Constants {
     public static double TURNING_THRESHOLD = 60;
     public static double ANGLE_TOLERANCE = 5;
 
+
+    public static double ARM_HEIGHT_TOLERENCE = 0.1;
+    public static double ARM_ANGLE_TOLERNENCE = 10;
+
     public static double ROCKET_X_COORD = 0.9293;
     public static double ROCKET_Z_COORD = -3.8449;
     public static double ROCKET_APPROACH_X_COORD = 0.4648;
-    public static double ROCKET_APPROACH_Z_COORD = -3.3493
-            ;
+    public static double ROCKET_APPROACH_Z_COORD = -3.3493;
     public static double CARGO_SHIP_X_COORD = 0.0207;
     public static double CARGO_SHIP_Z_COORD = -4.2423;
     public static double LOADING_STATION_X_COORD = -0.526;
