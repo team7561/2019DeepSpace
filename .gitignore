@@ -325,3 +325,6 @@ gradle-app.setting
 
 # End of https://www.gitignore.io/api/java,linux,macos,gradle,kotlin,windows,eclipse,intellij,notepadpp,sublimetext,visualstudiocode
 *.pyc
+*.iml
+triad_openvr/.idea/misc.xml
+2019DeepSpace/.idea/workspace.xml
