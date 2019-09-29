@@ -21,8 +21,8 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         Coordinate currentLocation = robot.viveMeasurements.getLocation();
         if(robot.viveMeasurements.isValidCooardinates(currentLocation)) {
 
-            double speed = 0.2;
-            double slow_speed= 0.15;
+            double speed = Constants.AUTO_DRIVE_SPEED;
+            double slow_speed= Constants.AUTO_DRIVE_SLOW_SPEED;
             double distance = Coordinate.getDistance(currentLocation, destination);
             if (distance < Constants.DISTANCE_TOLERANCE) {
                 robot.drivetrain.drive(0, 0);

@@ -11,7 +11,7 @@ except:
 
 
 class TrackerData:
-    def __init__(self, x = 0, y = 0, z = 0, x_rot = 0, y_rot = 0, z_rot = 0):
+    def __init__(self, x = 99, y = 99, z = 99, x_rot = 99, y_rot = 99, z_rot = 99):
         self.x = x
         self.y = y
         self.z = z
@@ -26,7 +26,7 @@ class TrackerData:
 
 
 def get_data(tracker_number):
-    tracker = TrackerData(0, 0, 0, 0, 0, 0)
+    tracker = TrackerData()
     if v.devices["tracker_"+str(tracker_number)] is not None:
         sfrhgtdtrhd = v.devices["tracker_"+str(tracker_number)].get_pose_euler()
         if sfrhgtdtrhd is not None:
