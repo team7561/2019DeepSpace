@@ -36,4 +36,4 @@ def publish_other_data(fps, count):
     table.putNumber("fps", fps)
 
 def get_step():
-    return table.getNumber("Step", -1)
+    return table.getNumber("Vive Auto", -1)
