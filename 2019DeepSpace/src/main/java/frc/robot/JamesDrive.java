@@ -18,7 +18,7 @@ public class JamesDrive {
         }
         if (joystick.getRawButton(4))
         {
-            //robot.drivetrain.drive(-robot.speedControl, robot.speedControl);
+            robot.drivetrain.drive(robot.speedControl, -robot.speedControl);
         }
         else if(joystick.getRawButton(11))
         {

@@ -17,8 +17,8 @@ while not crashed:
     cur_time = pygame.time.get_ticks()
     fps = int(clock.get_fps())
     tracker1 = VR_data.get_data(1)
-    FRC_Smart_Dashboard.publish_tracker_data(VR_data.get_data(1), 1)
-    FRC_Smart_Dashboard.publish_tracker_data(VR_data.get_data(2), 2)
+    FRC_Smart_Dashboard.publish_tracker_data(tracker1, 1)
+    #FRC_Smart_Dashboard.publish_tracker_data(VR_data.get_data(2), 2)
     FRC_Smart_Dashboard.publish_other_data(fps, count)
     GUI.draw_data(tracker1, fps, FRC_Smart_Dashboard.get_step())
     count += 1

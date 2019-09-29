@@ -52,8 +52,8 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
             }
             else {
                 double headingDivisor = 40;
-                double left = 0.5 + headingError / headingDivisor;
-                double right = 0.5 - headingError / headingDivisor;
+                double left = 0.5 - headingError / headingDivisor;
+                double right = 0.5 + headingError / headingDivisor;
                 if (left < -1)
                     left = -1;
                 else if (left > 1)

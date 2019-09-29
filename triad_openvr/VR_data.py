@@ -27,21 +27,25 @@ class TrackerData:
 
 def get_data(tracker_number):
     tracker = TrackerData(0, 0, 0, 0, 0, 0)
-    if v is not None:
-        tracker.x = round(v.devices["tracker_"+str(tracker_number)].get_pose_euler()[0], 2)
-        tracker.y = round(v.devices["tracker_"+str(tracker_number)].get_pose_euler()[1], 2)
-        tracker.z = round(v.devices["tracker_"+str(tracker_number)].get_pose_euler()[2], 2)
-        tracker.x_rot = round(v.devices["tracker_"+str(tracker_number)].get_pose_euler()[3], 2)
-        tracker.y_rot = round(v.devices["tracker_"+str(tracker_number)].get_pose_euler()[4], 2)
-        tracker.z_rot = round(v.devices["tracker_"+str(tracker_number)].get_pose_euler()[5], 2)
-        # Tracker behind robot lift
-        if tracker_number == 1:
-            tracker.x += 0.307 * sin(tracker.y_rot * pi() / 180)
-            tracker.z -= 0.307 * cos(tracker.y_rot * pi() / 180)
-        # Tracker on robot arm
-        if tracker_number == 2:
-            tracker.x += 0.307 * sin(tracker.y_rot * pi() / 180)
-            tracker.z -= 0.307 * cos(tracker.y_rot * pi() / 180)
+    if v.devices["tracker_"+str(tracker_number)] is not None:
+        sfrhgtdtrhd = v.devices["tracker_"+str(tracker_number)].get_pose_euler()
+        if sfrhgtdtrhd is not None:
+            tracker.x = round(sfrhgtdtrhd[0], 2)
+            tracker.y = round(sfrhgtdtrhd[1], 2)
+            tracker.z = round(sfrhgtdtrhd[2], 2)
+            tracker.x_rot = round(sfrhgtdtrhd[3], 2)
+            tracker.y_rot = round(sfrhgtdtrhd[4], 2)
+            tracker.z_rot = round(sfrhgtdtrhd[5], 2)
+            # Tracker behind robot lift
+            offset = 0.3
+            if tracker_number == 1:
+                tracker.x += offset * sin(tracker.y_rot * pi / 180)
+                tracker.z -= offset * cos(tracker.y_rot * pi/ 180)
+
+            # Tracker on robot arm
+            if tracker_number == 2:
+                tracker.x += offset * sin(tracker.y_rot * pi/ 180)
+                tracker.z -= offset * cos(tracker.y_rot * pi / 180)
     return tracker
 
 
