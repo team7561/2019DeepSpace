@@ -30,6 +30,8 @@ clock = pygame.time.Clock()
 crashed = False
 
 def process_data(cur_time, fps):
+    if (v.devices["tracker_1"].get_pose_euler() is None):
+        return -99, -99, -99, -999, -999, -999
     x = round(v.devices["tracker_1"].get_pose_euler()[0], 2)
     y = round(v.devices["tracker_1"].get_pose_euler()[1], 2)
     z = round(v.devices["tracker_1"].get_pose_euler()[2], 2)
