@@ -5,10 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ae41e09-b089-445f-ac51-9475b1d6b052" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/.idea/dictionaries/Joshua.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/Colours.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/Constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/Coordinate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/FRC_Smart_Dashboard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/VR_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/images/CargoShipFront.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/images/LoadingStation.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/images/Robot_TopDown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/images/Rocket.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/2019DeepSpace.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/2019DeepSpace.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/autonomous/ViveAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/autonomous/ViveAuto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/autonomous/ViveMeasurements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/autonomous/ViveMeasurements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DriveToPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DriveToPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystem/BallIntake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystem/BallIntake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/.idea/triad_openvr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/.idea/triad_openvr.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/combined.py" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/combined.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/controller_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/controller_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/images/simple_xcoord_plot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/libopenvr_api.so" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/libopenvr_api.so" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/libopenvr_api.so.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/libopenvr_api.so.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/libopenvr_api_32.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/libopenvr_api_32.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/libopenvr_api_32.dylib" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/libopenvr_api_32.dylib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/libopenvr_api_32.so" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/libopenvr_api_32.so" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/libopenvr_api_64.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/libopenvr_api_64.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/libopenvr_api_64.so" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/libopenvr_api_64.so" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/screenshot.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/tracker_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/tracker_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/udp_emitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/udp_emitter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../triad_openvr/udp_receiver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../triad_openvr/notNeeded/udp_receiver.cs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -40,75 +74,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DriveToPoint.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/subsystem/Drivetrain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+            <state relative-caret-position="867">
+              <caret line="57" column="19" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Speeds.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/JamesDrive.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="55" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/subsystem/Subsystem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="31" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DeliverHatchPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/ViveAuto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="12" column="58" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="58" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1472#1473#0" expanded="true" />
-                <element signature="e#1503#1504#0" expanded="true" />
+                <element signature="method#updateDashboard#0;class#Drivetrain#0" />
               </folding>
             </state>
           </provider>
@@ -117,8 +90,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/Coordinate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DriveToPoint.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="782">
+              <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,10 +121,59 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/interface/ViveControl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/ViveAuto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="16" column="73" selection-start-line="16" selection-start-column="73" selection-end-line="18" selection-end-column="36" />
+              <folding>
+                <element signature="e#1472#1473#0" expanded="true" />
+                <element signature="e#1503#1504#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/ReceiveHatchPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DeliverHatchPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DeliverCargo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+            <state relative-caret-position="68">
+              <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="9" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -218,10 +252,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1487" />
-    <option name="width" value="1525" />
-    <option name="height" value="1960" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
+    <option name="width" value="1294" />
+    <option name="height" value="1407" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -229,8 +263,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -318,6 +350,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -361,10 +395,10 @@
     <option name="totallyTimeSpent" value="41976000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1728" height="1127" extended-state="6" />
+    <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18622755" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37763372" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -378,7 +412,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49876848" visible="true" weight="0.050200805" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49876848" visible="true" weight="0.36499214" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50123155" side_tool="true" weight="0.36639675" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.32931727" />
@@ -648,7 +682,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/ReceiveHatchPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -661,10 +695,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/subsystem/Drivetrain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1409">
-          <caret line="124" column="12" lean-forward="true" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
+        <state relative-caret-position="867">
+          <caret line="57" column="19" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#updateDashboard#0;class#Drivetrain#0" />
           </folding>
         </state>
       </provider>
@@ -685,7 +720,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/interface/ViveControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -734,10 +769,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/ViveAuto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="58" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="58" />
+        <state relative-caret-position="221">
+          <caret line="16" column="73" selection-start-line="16" selection-start-column="73" selection-end-line="18" selection-end-column="36" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#1472#1473#0" expanded="true" />
             <element signature="e#1503#1504#0" expanded="true" />
           </folding>
@@ -746,8 +780,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/Coordinate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -763,8 +797,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DeliverCargo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+        <state relative-caret-position="68">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="9" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -787,15 +821,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="55" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="55" />
+        <state relative-caret-position="85">
+          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/autonomous/state/DriveToPoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+        <state relative-caret-position="782">
+          <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
