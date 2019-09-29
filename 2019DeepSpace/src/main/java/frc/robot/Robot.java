@@ -86,6 +86,7 @@ public class Robot extends TimedRobot {
     {
 
     }
+    strategy.reset();
   }
 
   public void drive() {
@@ -123,13 +124,13 @@ public class Robot extends TimedRobot {
   }
   public void updateDashboards()
   {
-    arm.updateDashboard(debug);
-    ballintake.updateDashboard(true);
-    climber.updateDashboard(debug);
+    //arm.updateDashboard(debug);
+    //ballintake.updateDashboard(true);
+    //climber.updateDashboard(debug);
     drivetrain.updateDashboard(debug);
-    lift.updateDashboard(debug);
-    visionController.updateDashboard(debug);
-    panelintake.updateDashboard(debug);
+    //lift.updateDashboard(debug);
+    //visionController.updateDashboard(debug);
+    //panelintake.updateDashboard(debug);
 
     for (int i = 0; i < 10; i++)
     {

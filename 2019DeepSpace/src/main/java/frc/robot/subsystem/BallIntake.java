@@ -66,7 +66,7 @@ public class BallIntake implements Subsystem {
         if (debug)
         {
             SmartDashboard.putNumber("Intake Power", ballIntakeMotor.getMotorOutputVoltage());
-            SmartDashboard.putBoolean("Got Cargo", hasBall);
+            SmartDashboard.putBoolean("Got Cargo", hasBall(0));
         }
     }
 
