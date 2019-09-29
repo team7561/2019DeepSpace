@@ -13,9 +13,9 @@ gameDisplay = pygame.display.set_mode((Constants.display_width, Constants.displa
 gameDisplay.fill(Colours.white)
 
 robot_image_source = pygame.image.load(r'images/Robot_TopDown.png')
-cargoShipFront_Image = pygame.transform.rotozoom(pygame.image.load(r'images/CargoShipFront.png'), 0, 0.2)
+cargoShipFront_Image = pygame.transform.rotozoom(pygame.image.load(r'images/CargoShipFront.png'), 90, 0.2)
 rocket_Image = pygame.transform.rotozoom(pygame.image.load(r'images/Rocket.png'), -90, 0.2)
-loadingStation_Image = pygame.transform.rotozoom(pygame.image.load(r'images/LoadingStation.png'), 90, 0.2)
+loadingStation_Image = pygame.transform.rotozoom(pygame.image.load(r'images/LoadingStation.png'), 0, 0.2)
 
 def init():
     pygame.display.set_caption('Lighthouse tracking demo')
@@ -64,11 +64,13 @@ def draw_tracker_data(tracker, tracker_no, height, width):
 
 
 def draw_objects(tracker1):
-    robot_Image = pygame.transform.rotozoom(robot_image_source, tracker1.y_rot, 0.1)
+    robot_Image = pygame.transform.rotozoom(robot_image_source, tracker1.y_rot-30, 0.1)
+    #y ranges from 2.5 to - 2.2
+    #x ranges from 2 to - 2
     gameDisplay.blit(robot_Image, (position_to_pixels(tracker1)))
     gameDisplay.blit(cargoShipFront_Image, (600,200))
     gameDisplay.blit(rocket_Image, (600,100))
-    gameDisplay.blit(loadingStation_Image, (450,450))
+    gameDisplay.blit(loadingStation_Image, (0,450))
 
 def position_to_pixels(tracker):
     x = tracker.x - 0.3966
@@ -76,8 +78,8 @@ def position_to_pixels(tracker):
     x, y = rotate((x, y), (0, 0), 110)
     print(x, y)
     #x, y = tracker.x, tracker.y
-    x_pos = (1+x)/2*Constants.display_width
-    y_pos = (1+y)/2*Constants.display_height
+    x_pos = (1.2+x)/3.2*Constants.display_width
+    y_pos = (2.2+y)/(2.5+2.2)*Constants.display_height
     return x_pos, y_pos
 def rotate(origin, point, angle):
     ox, oy = origin
