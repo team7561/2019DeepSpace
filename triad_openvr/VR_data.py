@@ -28,23 +28,24 @@ class TrackerData:
 def get_data(tracker_number):
     tracker = TrackerData()
     if v.devices["tracker_"+str(tracker_number)] is not None:
-        sfrhgtdtrhd = v.devices["tracker_"+str(tracker_number)].get_pose_euler()
-        if sfrhgtdtrhd is not None:
-            tracker.x = round(sfrhgtdtrhd[0], 2)
-            tracker.y = round(sfrhgtdtrhd[1], 2)
-            tracker.z = round(sfrhgtdtrhd[2], 2)
-            tracker.x_rot = round(sfrhgtdtrhd[3], 2)
-            tracker.y_rot = round(sfrhgtdtrhd[4], 2)
-            tracker.z_rot = round(sfrhgtdtrhd[5], 2)
+        tracker_pose_euler = v.devices["tracker_"+str(tracker_number)].get_pose_euler()
+        if tracker_pose_euler is not None:
+            tracker.x = round(tracker_pose_euler[0], 2)
+            tracker.y = round(tracker_pose_euler[1], 2)
+            tracker.z = round(tracker_pose_euler[2], 2)
+            tracker.x_rot = round(tracker_pose_euler[3], 2)
+            tracker.y_rot = round(tracker_pose_euler[4], 2)
+            tracker.z_rot = round(tracker_pose_euler[5], 2)
             # Tracker behind robot lift
-            offset = 0.3
             if tracker_number == 1:
+                offset = 0.3
                 tracker.x += offset * sin(tracker.y_rot * pi / 180)
-                tracker.z -= offset * cos(tracker.y_rot * pi/ 180)
+                tracker.z -= offset * cos(tracker.y_rot * pi / 180)
 
             # Tracker on robot arm
             if tracker_number == 2:
-                tracker.x += offset * sin(tracker.y_rot * pi/ 180)
+                offset = 0.3
+                tracker.x += offset * sin(tracker.y_rot * pi / 180)
                 tracker.z -= offset * cos(tracker.y_rot * pi / 180)
     return tracker
 
