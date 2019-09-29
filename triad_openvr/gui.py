@@ -20,13 +20,18 @@ def init():
     pygame.display.set_caption('Lighthouse tracking demo')
     gameDisplay.set_alpha(None)
 
-def draw_data(tracker1):
+def draw_data(tracker1, fps, step):
+    gameDisplay.fill(Colours.white)
+    text_fps = my_font.render('FPS: ' + str(fps), True, Colours.red)
+    text_step = my_font.render('Step: ' + str(step), True, Colours.red)
     text_x = my_font.render('X:' + str(tracker1.x), True, Colours.red)
     text_y = my_font.render('Y:' + str(tracker1.y), True, Colours.green)
     text_z = my_font.render('Z:' + str(tracker1.z), True, Colours.blue)
     text_rot_x = my_font.render('Rotate X:' + str(tracker1.x_rot), True, Colours.red)
     text_rot_y = my_font.render('Rotate Y:' + str(tracker1.y_rot), True, Colours.green)
     text_rot_z = my_font.render('Rotate Z:' + str(tracker1.z_rot), True, Colours.blue)
+    text_rect_fps = text_fps.get_rect()
+    text_rect_step = text_step.get_rect()
     text_rect_x = text_x.get_rect()
     text_rect_y = text_y.get_rect()
     text_rect_z = text_z.get_rect()
@@ -36,12 +41,16 @@ def draw_data(tracker1):
     height = 100
     width = 100
     width_gap = 50
+    text_rect_fps.center = (700, 200)
+    text_rect_step.center = (400, 400)
     text_rect_x.center = (height, width)
     text_rect_y.center = (height, width + 1 * width_gap)
     text_rect_z.center = (height, width + 2 * width_gap)
     text_rect_rot_x.center = (height, width + 3 * width_gap)
     text_rect_rot_y.center = (height, width + 4 * width_gap)
     text_rect_rot_z.center = (height, width + 5 * width_gap)
+    gameDisplay.blit(text_fps, text_rect_fps)
+    gameDisplay.blit(text_step, text_rect_step)
     gameDisplay.blit(text_x, text_rect_x)
     gameDisplay.blit(text_y, text_rect_y)
     gameDisplay.blit(text_z, text_rect_z)

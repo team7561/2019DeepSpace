@@ -48,6 +48,7 @@ public class Ports {
     public static int CLIMBER_DEPLOY_SOLENOID_CHANNEL_B = 5;
 
     // PDP Slots
+    public static int ARM_PDP_SLOT = 5;
     public static int DRIVE_LEFT_A_PDP_SLOT = 1;
     public static int DRIVE_LEFT_B_PDP_SLOT = 2;
     public static int DRIVE_RIGHT_A_PDP_SLOT = 3;
@@ -58,5 +59,4 @@ public class Ports {
     public static int CLIMB_ELEVATOR_A_PDP_SLOT = 8;
     public static int CLIMB_ELEVATOR_B_PDP_SLOT = 9;
     public static int CLIMB_VACUUM_PDP_SLOT = 10;
-    public static int ARM_PDP_SLOT = 11;
 }

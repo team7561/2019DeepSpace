@@ -28,19 +28,19 @@ public class ViveMeasurements {
     }
     public double getX()
     {
-        return SmartDashboard.getNumber("x", -999);
+        return SmartDashboard.getNumber("x1", -999);
     }
     public double getY()
     {
-        return SmartDashboard.getNumber("y", -999);
+        return SmartDashboard.getNumber("y1", -999);
     }
     public double getZ()
     {
-        return SmartDashboard.getNumber("z", -999);
+        return SmartDashboard.getNumber("z1", -999);
     }
     public double get_Y_rot()
     {
-        return SmartDashboard.getNumber("y_rot", -999)+270;
+        return SmartDashboard.getNumber("y_rot1", -999)+270;
     }
     public Coordinate getLocation()
     {
