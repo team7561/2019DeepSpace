@@ -1,3 +1,5 @@
+package frc.robot.interfaces;
+
 public interface DriveTrainInterface {
     double getBearing();
     double getLocationX();

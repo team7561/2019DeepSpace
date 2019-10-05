@@ -1,3 +1,5 @@
+package frc.robot.interfaces;
+
 import frc.robot.Robot;
 
 public class TeleopControl implements Controller {
