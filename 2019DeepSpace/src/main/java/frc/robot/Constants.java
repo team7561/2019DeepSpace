@@ -18,8 +18,8 @@ public class Constants {
 
     public static double ARM_HEIGHT_TOLERENCE = 0.05;
     public static double ARM_HEIGHT_SLOW_TOLERENCE = 0.15;
-    public static double ARM_ANGLE_TOLERNENCE = 2;
-    public static double ARM_ANGLE_SLOW_TOLERNENCE = 15;
+    public static double ARM_ANGLE_TOLERNENCE = 3;
+    public static double ARM_ANGLE_SLOW_TOLERNENCE = 10;
 
     public static double ROCKET_X_COORD = 0.9293;
     public static double ROCKET_Z_COORD = -3.8449;

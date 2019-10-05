@@ -37,11 +37,11 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         double currentHeading = robot.viveMeasurements.get_Y_rot();
         double headingError = (currentHeading - destinationHeading + 900) % 360 - 180;
         String headingMessage = "Distance: " + distance + ", destinationHeading " + destinationHeading + ", currentHeading " + currentHeading + ", headingError " + headingError;
-        System.out.println(headingMessage);
+        //System.out.println(headingMessage);
 
         reverse = false;
         if ( headingError > 90 || headingError < -90) {
-            System.out.println("Reversing");
+            //System.out.println("Reversing");
             reverse = true;
             // 180 - headingError
             headingError = (180 - headingError + 900) % 360 - 180;
@@ -54,7 +54,7 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         double right = 0.5 + headingError / headingDivisor;
         left = clamp(left);
         right = clamp(right);
-        System.out.println("Left: " + left +" Right: " + right);
+        //System.out.println("Left: " + left +" Right: " + right);
         // At >= 60 degrees, we have left = 1, right = -1
         // At <= -60 degrees, we have left = -1, right = 1
 

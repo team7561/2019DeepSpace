@@ -4,7 +4,7 @@ public class Speeds {
     //Lift
     public static double LIFT_UP_SPEED = 0.8;
     public static double LIFT_DOWN_SPEED = -0.42;
-    public static double LIFT_STOP_SPEED = 0.05;
+    public static double LIFT_STOP_SPEED = 0.06;
     //Ball Intake
     public static double GET_BALL_SPEED = -0.6;
     public static double KEEP_BALL_SPEED = -0.20;
