@@ -21,7 +21,8 @@ except:
 
 table = NetworkTables.getTable('SmartDashboard')
 
-
+def get_target_location():
+    return TrackerData(table.getNumber("Target Location X", 0), 0, table.getNumber("Target Location Z", 0), 0, table.getNumber("Target Location Heading", 0), 0)
 
 def publish_tracker_data(tracker, tracker_number):
     table.putNumber("x"+str(tracker_number), tracker.x)

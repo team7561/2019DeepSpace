@@ -30,6 +30,11 @@ public class Coordinate {
         double deltaZ = destination.z - origin.z;
         return Math.sqrt(deltaZ * deltaZ + deltaX * deltaX);
     }
+    public static Coordinate getApproachCoordinate(Coordinate destination, double bearing, double distance)
+    {
+        double radians = Math.toRadians(bearing);
+        return new Coordinate(destination.getX()+distance*Math.sin(radians), destination.getZ()-distance*Math.cos(radians));
+    }
 
     public double getX() { return x; }
     public double getZ() { return z; }

@@ -13,6 +13,7 @@ gameDisplay = pygame.display.set_mode((Constants.display_width, Constants.displa
 gameDisplay.fill(Colours.white)
 
 robot_image_source = pygame.image.load(r'images/Robot_TopDown.png')
+target_image_source = pygame.image.load(r'images/Arrow.png')
 cargoShipFront_Image = pygame.transform.rotozoom(pygame.image.load(r'images/CargoShipFront.png'), 90, 0.2)
 rocket_Image = pygame.transform.rotozoom(pygame.image.load(r'images/Rocket.png'), -90, 0.2)
 loadingStation_Image = pygame.transform.rotozoom(pygame.image.load(r'images/LoadingStation.png'), 0, 0.2)
@@ -21,7 +22,7 @@ def init():
     pygame.display.set_caption('Lighthouse tracking demo')
     gameDisplay.set_alpha(None)
 
-def draw_data(tracker1, tracker2, fps, step):
+def draw_data(tracker1, tracker2, trackerTarget, fps, step):
     gameDisplay.fill(Colours.white)
     text_fps = my_font.render('FPS: ' + str(fps), True, Colours.red)
     text_step = my_font.render('Step: ' + str(step), True, Colours.red)
@@ -31,6 +32,7 @@ def draw_data(tracker1, tracker2, fps, step):
     width = 100
     draw_tracker_data(tracker1, 1, height, width)
     draw_tracker_data(tracker2, 2, height, width+400)
+    draw_tracker_data(trackerTarget, 0, height+400, width)
     text_rect_fps.center = (700, 500)
     text_rect_step.center = (400, 400)
     gameDisplay.blit(text_fps, text_rect_fps)
@@ -63,10 +65,12 @@ def draw_tracker_data(tracker, tracker_no, height, width):
     gameDisplay.blit(text_rot_z, text_rect_rot_z)
 
 
-def draw_objects(tracker1):
-    robot_Image = pygame.transform.rotozoom(robot_image_source, tracker1.y_rot-30, 0.1)
+def draw_objects(tracker1, trackerTarget):
+    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker1.y_rot-30-180, 0.1)
+    target_Image = pygame.transform.rotozoom(target_image_source, trackerTarget.y_rot-30-180, 0.1)
     #y ranges from 2.5 to - 2.2
     #x ranges from 2 to - 2
+    gameDisplay.blit(target_Image, (position_to_pixels(trackerTarget)))
     gameDisplay.blit(robot_Image, (position_to_pixels(tracker1)))
     gameDisplay.blit(cargoShipFront_Image, (600,200))
     gameDisplay.blit(rocket_Image, (600,100))
