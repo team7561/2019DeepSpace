@@ -97,6 +97,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     //pathweaver.followPath(drivetrain);
     strategy.run(this);
+    updateDashboards();
   }
 
   @Override
