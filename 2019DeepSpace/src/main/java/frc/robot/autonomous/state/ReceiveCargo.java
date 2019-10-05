@@ -7,7 +7,7 @@ public class ReceiveCargo {
     public boolean run(Robot robot)
     {
         robot.ballintake.getBall();
-        if (robot.ballintake.hasBall(robot.pdp.getCurrent(Constants.CARGO_STALL_CURRENT)))
+        if (robot.ballintake.hasBall())
         {
             robot.ballintake.stop();
             return true;

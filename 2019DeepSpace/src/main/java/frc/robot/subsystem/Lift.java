@@ -39,10 +39,18 @@ public class Lift implements Subsystem{
     {
         setMotorSpeed(Speeds.LIFT_UP_SPEED);
     }
+    public void raise_slowly()
+    {
+        setMotorSpeed(Speeds.LIFT_UP_SPEED/2);
+    }
 
     public void lower()
     {
         setMotorSpeed(Speeds.LIFT_DOWN_SPEED);
+    }
+    public void lower_slowly()
+    {
+        setMotorSpeed(Speeds.LIFT_DOWN_SPEED/2);
     }
 
     //Stop lift at current position

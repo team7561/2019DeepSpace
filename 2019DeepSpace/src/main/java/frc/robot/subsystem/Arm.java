@@ -53,6 +53,16 @@ public class Arm implements Subsystem{
             setSpeed(Speeds.ARM_RAISE_SPEED);
         }
     }
+    public void raise_slowly()
+    {
+        if (atHighLimit())
+        {
+            setSpeed(Speeds.ARM_STOP_SPEED);
+        }
+        else {
+            setSpeed(Speeds.ARM_RAISE_SPEED / 2);
+        }
+    }
     public void lower()
     {
         if (atLowLimit())
@@ -61,6 +71,16 @@ public class Arm implements Subsystem{
         }
         else {
             setSpeed(Speeds.ARM_LOWER_SPEED);
+        }
+    }
+    public void lower_slowly()
+    {
+        if (atLowLimit())
+        {
+            setSpeed(Speeds.ARM_STOP_SPEED);
+        }
+        else {
+            setSpeed(Speeds.ARM_LOWER_SPEED / 2);
         }
     }
 

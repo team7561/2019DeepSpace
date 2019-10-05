@@ -26,6 +26,22 @@ public class ViveMeasurements {
         }
         return true;
     }
+    public boolean isValidAngle(double angle)
+    {
+        if (angle < -360 || angle > 360)
+        {
+            return false;
+        }
+        return true;
+    }
+    public boolean isValidHeight(double height)
+    {
+        if (height < -3 || height > 1)
+        {
+            return false;
+        }
+        return true;
+    }
     public double getX()
     {
         return SmartDashboard.getNumber("x1", -999);

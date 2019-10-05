@@ -36,8 +36,9 @@ public class BallIntake implements Subsystem {
         intakeSpeed(Speeds.KEEP_BALL_SPEED);
     }
     // Returns if high enough current to assume ball in possession
-    public boolean hasBall(double current)
+    public boolean hasBall()
     {
+        double current = SmartDashboard.getNumber("Channel 7 Current", 0);
         hasBall = ballIntakeMotor.getMotorOutputPercent() < 0 && current > Constants.CARGO_STALL_CURRENT;
         return hasBall;
     }
@@ -66,7 +67,7 @@ public class BallIntake implements Subsystem {
         if (debug)
         {
             SmartDashboard.putNumber("Intake Power", ballIntakeMotor.getMotorOutputVoltage());
-            SmartDashboard.putBoolean("Got Cargo", hasBall(0));
+            SmartDashboard.putBoolean("Got Cargo", hasBall());
         }
     }
 

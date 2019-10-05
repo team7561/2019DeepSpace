@@ -11,7 +11,7 @@ except:
 
 
 class TrackerData:
-    def __init__(self, x = 99, y = 99, z = 99, x_rot = 99, y_rot = 99, z_rot = 99):
+    def __init__(self, x = 99, y = 99, z = 99, x_rot = 999, y_rot = 999, z_rot = 999):
         self.x = x
         self.y = y
         self.z = z
