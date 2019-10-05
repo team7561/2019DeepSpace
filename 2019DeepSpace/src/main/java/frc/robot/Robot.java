@@ -125,11 +125,11 @@ public class Robot extends TimedRobot {
   }
   public void updateDashboards()
   {
-    //arm.updateDashboard(debug);
-    //ballintake.updateDashboard(true);
+    arm.updateDashboard(debug);
+    ballintake.updateDashboard(true);
     //climber.updateDashboard(debug);
     drivetrain.updateDashboard(debug);
-    //lift.updateDashboard(debug);
+    lift.updateDashboard(debug);
     //visionController.updateDashboard(debug);
     //panelintake.updateDashboard(debug);
 

@@ -28,7 +28,7 @@ public class ViveMeasurements {
     }
     public boolean isValidAngle(double angle)
     {
-        if (angle < -360 || angle > 360)
+        if (angle < -360 || angle > 600)
         {
             return false;
         }
@@ -56,7 +56,7 @@ public class ViveMeasurements {
     }
     public double get_Y_rot()
     {
-        return SmartDashboard.getNumber("y_rot1", -999)+270;
+        return SmartDashboard.getNumber("y_rot1", -999);
     }
     public double get_Arm_Y()
     {

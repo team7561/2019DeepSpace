@@ -19,23 +19,27 @@ public class MoveArm implements frc.robot.autonomous.state.State {
         updateDashboard();
         double arm_height_error = robot.viveMeasurements.get_Arm_Y() - height;
         double arm_angle_error = robot.viveMeasurements.get_Arm_X_rot() - angle;
-        if (robot.viveMeasurements.isValidAngle(robot.viveMeasurements.get_Arm_X_rot())) {
-            if (Math.abs(arm_angle_error) < Constants.ARM_ANGLE_TOLERNENCE) {
-                robot.arm.stop();
+        if (!robot.viveMeasurements.isValidAngle(robot.viveMeasurements.get_Arm_X_rot())) {
+            System.out.println("Invalid arm position");
+            return false;
+        }
+        if (Math.abs(arm_angle_error) < Constants.ARM_ANGLE_TOLERNENCE) {
+            robot.arm.stop();
+        } else {
+            System.out.println("Moving Arm");
+            if (arm_angle_error > Constants.ARM_ANGLE_TOLERNENCE) {
+                robot.arm.lower();
+            } else if (arm_angle_error > Constants.ARM_ANGLE_SLOW_TOLERNENCE) {
+                robot.arm.lower_slowly();
+            } else if (arm_angle_error < -Constants.ARM_ANGLE_TOLERNENCE) {
+                robot.arm.raise();
+            } else if (arm_angle_error < -Constants.ARM_ANGLE_SLOW_TOLERNENCE) {
+                robot.arm.raise_slowly();
             } else {
-                if (arm_angle_error > Constants.ARM_ANGLE_TOLERNENCE) {
-                    robot.arm.raise();
-                } else if (arm_angle_error > Constants.ARM_ANGLE_SLOW_TOLERNENCE) {
-                    robot.arm.raise_slowly();
-                } else if (arm_angle_error < Constants.ARM_ANGLE_TOLERNENCE) {
-                    robot.arm.lower();
-                } else if (arm_angle_error < Constants.ARM_ANGLE_SLOW_TOLERNENCE) {
-                    robot.arm.lower_slowly();
-                } else {
-                    robot.arm.stop();
-                }
+                robot.arm.stop();
             }
-
+        }
+/*
             if (robot.viveMeasurements.isValidAngle(robot.viveMeasurements.get_Arm_Y())) {
                 if (Math.abs(arm_height_error) < Constants.ARM_HEIGHT_TOLERENCE) {
                     robot.lift.stop();
@@ -54,16 +58,15 @@ public class MoveArm implements frc.robot.autonomous.state.State {
                         robot.arm.stop();
                     }
                 }
-            }
-            if ((Math.abs(arm_height_error) < Constants.ARM_HEIGHT_TOLERENCE) && Math.abs(arm_angle_error) < Constants.ARM_ANGLE_TOLERNENCE)
-            {
-                return true;
-            }
-            else {
-                return false;
-            }
+            }*/
+        //if ((Math.abs(arm_height_error) < Constants.ARM_HEIGHT_TOLERENCE) && Math.abs(arm_angle_error) < Constants.ARM_ANGLE_TOLERNENCE)
+        if (Math.abs(arm_angle_error) < Constants.ARM_ANGLE_TOLERNENCE)
+        {
+            return true;
         }
-        return false;
+        else {
+            return false;
+        }
     }
     public void updateDashboard()
     {
