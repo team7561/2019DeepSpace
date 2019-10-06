@@ -9,48 +9,39 @@ import static frc.robot.utility.Math.clamp;
 
 public class DriveToPoint implements frc.robot.autonomous.state.State {
     final Coordinate destination;
-    double bearing;
+    boolean reverse;
 
-    public DriveToPoint(Coordinate destination, double bearing) {
+    public DriveToPoint(Coordinate destination) {
         this.destination = destination;
-        this.bearing = bearing;
+        this.reverse = false;
+    }
+    public DriveToPoint(Coordinate destination, boolean reverse) {
+        this.destination = destination;
+        this.reverse = reverse;
     }
     public boolean run(Robot robot) {
-        final Coordinate currentLocation = robot.viveMeasurements.getLocation();
-        final double distance = Coordinate.getDistance(currentLocation, destination);
-
-        double offsetDistance = 0.1 * distance;
-        if (distance < 1)
-            offsetDistance = 0.3 * distance;
-        offsetDistance = 0;
-
-        Coordinate targetLocation = Coordinate.getApproachCoordinate(destination,  bearing,  offsetDistance);
-        SmartDashboard.putNumber("Target Location X", destination.getX());
-        SmartDashboard.putNumber("Target Location Z", destination.getZ());
-        SmartDashboard.putNumber("Target Location Heading", bearing);
-
+        Coordinate currentLocation = robot.viveMeasurements.getLocation();
         if(!robot.viveMeasurements.isValidCooardinates(currentLocation)) {
             robot.drivetrain.drive(0, 0);
             return false;
         }
         double speed = Constants.AUTO_DRIVE_SPEED;
         double slow_speed= Constants.AUTO_DRIVE_SLOW_SPEED;
+        double distance = Coordinate.getDistance(currentLocation, destination);
         if (distance < Constants.DISTANCE_TOLERANCE) {
             robot.drivetrain.drive(0, 0);
             return true;
         }
         final double destinationHeading = Coordinate.getHeading(currentLocation, destination);
 
-        final double currentHeading = robot.viveMeasurements.get_Y_rot();
+        double currentHeading = robot.viveMeasurements.get_Y_rot();
         double headingError = (currentHeading - destinationHeading + 900) % 360 - 180;
-        SmartDashboard.putNumber("DriveToPoint Distance", distance);
-        SmartDashboard.putNumber("DriveToPoint destinationHeading", destinationHeading);
-        SmartDashboard.putNumber("DriveToPoint currentHeading", currentHeading);
-        SmartDashboard.putNumber("DriveToPoint headingError", headingError);
+        String headingMessage = "Distance: " + distance + ", destinationHeading " + destinationHeading + ", currentHeading " + currentHeading + ", headingError " + headingError;
+        System.out.println(headingMessage);
 
-        boolean reverse = false;
+        reverse = false;
         if ( headingError > 90 || headingError < -90) {
-            //System.out.println("Reversing");
+            System.out.println("Reversing");
             reverse = true;
             // 180 - headingError
             headingError = (180 - headingError + 900) % 360 - 180;
