@@ -8,7 +8,7 @@ import frc.robot.autonomous.state.*;
 public class ViveAuto {
     int currentStep = 0;
     State[] strategy = new State[]{
-            new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, -58),
+            new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD),
             //new DriveToPoint(Constants.LOADING_STATION_COORD, -58),
             //new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, -58),
           /*new MoveArm(60, -0.9),
