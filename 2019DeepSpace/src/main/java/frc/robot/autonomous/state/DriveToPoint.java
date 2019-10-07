@@ -19,14 +19,14 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         final Coordinate currentLocation = robot.viveMeasurements.getLocation();
         final double distance = Coordinate.getDistance(currentLocation, destination);
 
-        double offsetDistance = 0.1 * distance;
-        if (distance < 1)
-            offsetDistance = 0.3 * distance;
-        offsetDistance = 0;
+        double offsetDistance = 0.3 * distance;
+        if (distance < 0.5)
+            offsetDistance = 0;
+        //offsetDistance = distance;
 
         Coordinate targetLocation = Coordinate.getApproachCoordinate(destination,  bearing,  offsetDistance);
-        SmartDashboard.putNumber("Target Location X", destination.getX());
-        SmartDashboard.putNumber("Target Location Z", destination.getZ());
+        SmartDashboard.putNumber("Target Location X", targetLocation.getX());
+        SmartDashboard.putNumber("Target Location Z", targetLocation.getZ());
         SmartDashboard.putNumber("Target Location Heading", bearing);
 
         if(!robot.viveMeasurements.isValidCooardinates(currentLocation)) {
@@ -39,7 +39,7 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
             robot.drivetrain.drive(0, 0);
             return true;
         }
-        final double destinationHeading = Coordinate.getHeading(currentLocation, destination);
+        final double destinationHeading = Coordinate.getHeading(currentLocation, targetLocation);
 
         final double currentHeading = robot.viveMeasurements.get_Y_rot();
         double headingError = (currentHeading - destinationHeading + 900) % 360 - 180;
@@ -49,14 +49,14 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         SmartDashboard.putNumber("DriveToPoint headingError", headingError);
 
         boolean reverse = false;
-        if ( headingError > 90 || headingError < -90) {
+       /*if ( headingError > 90 || headingError < -90) {
             //System.out.println("Reversing");
             reverse = true;
             // 180 - headingError
             headingError = (180 - headingError + 900) % 360 - 180;
 
             // or should it be 180 + headingError?
-        }
+        }*/
 
         final double headingDivisor = 40;
         double left = 0.5 - headingError / headingDivisor;

@@ -27,10 +27,10 @@ public class Constants {
     public static double ROCKET_APPROACH_Z_COORD = -3.3493;
     public static double CARGO_SHIP_X_COORD = 0.0207;
     public static double CARGO_SHIP_Z_COORD = -4.2423;
-    public static double LOADING_STATION_X_COORD = -0.526;
-    public static double LOADING_STATION_Z_COORD = -3.06;
-    public static double LOADING_STATION_APPROACH_X_COORD = 0.136;
-    public static double LOADING_STATION_APPROACH_Z_COORD = -2.827;
+    public static double LOADING_STATION_X_COORD = -0.46;
+    public static double LOADING_STATION_Z_COORD = -3.19;
+    public static double LOADING_STATION_APPROACH_X_COORD = 0.148;
+    public static double LOADING_STATION_APPROACH_Z_COORD = -3.07;
     public static double CARGO_SHIP_APPROACH_X_COORD = 0.5177;
     public static double CARGO_SHIP_APPROACH_Z_COORD = -3.9354;
     public static double CENTRE_X_COORD = 0.3966;

@@ -33,7 +33,7 @@ public class Coordinate {
     public static Coordinate getApproachCoordinate(Coordinate destination, double bearing, double distance)
     {
         double radians = Math.toRadians(bearing);
-        return new Coordinate(destination.getX()+distance*Math.sin(radians), destination.getZ()-distance*Math.cos(radians));
+        return new Coordinate(destination.getX()+distance*Math.cos(radians), destination.getZ()-distance*Math.sin(radians));
     }
 
     public double getX() { return x; }

@@ -66,7 +66,7 @@ def draw_tracker_data(tracker, tracker_no, height, width):
 
 
 def draw_objects(tracker1, trackerTarget):
-    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker1.y_rot-30-180, 0.1)
+    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker1.y_rot-30+45, 0.1)
     target_Image = pygame.transform.rotozoom(target_image_source, trackerTarget.y_rot-30-180, 0.1)
     #y ranges from 2.5 to - 2.2
     #x ranges from 2 to - 2
