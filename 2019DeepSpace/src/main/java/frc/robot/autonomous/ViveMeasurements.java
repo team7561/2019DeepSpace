@@ -60,7 +60,7 @@ public class ViveMeasurements {
     }
     public double get_Arm_Y()
     {
-        return SmartDashboard.getNumber("y2", -999);
+        return SmartDashboard.getNumber("y2", -999)+270;
     }
     public double get_Arm_X_rot()
     {
