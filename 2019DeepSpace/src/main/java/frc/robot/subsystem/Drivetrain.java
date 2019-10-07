@@ -37,10 +37,10 @@ public class Drivetrain implements Subsystem {
 
     //sets the speeds of all driving motors
     public void drive(double leftSpeed, double rightSpeed) {
-        /*leftA.set(leftSpeed);
+        leftA.set(leftSpeed);
         leftB.set(leftSpeed);
         rightA.set(-rightSpeed);
-        rightB.set(-rightSpeed);*/
+        rightB.set(-rightSpeed);
     }
     public void resetEncoders()
     {
