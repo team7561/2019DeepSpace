@@ -21,6 +21,14 @@ public class Quaternion {
     {
         return "(" + r +"+"+i+"i+"+j+"j+"+k+"k)";
     }
+    public double magnitude()
+    {
+        return Math.sqrt(r*r+i+i+j*j+k*k);
+    }
+    public Quaternion normalise() {
+        double m = magnitude();
+        return new Quaternion(r/m, i/m, j/m, k/m);
+    }
     public Double toYaw()
     {
         return Math.atan2(2 * (r * k + i * k), 1 - 2 *j*j+k*k);
@@ -49,5 +57,9 @@ public class Quaternion {
         double j = one.r * two.j - one.i * two.k + one.j * two.r - one.k * two.i;
         double k = one.r * two.k + one.i * two.j - one.j * two.i + one.k * two.r;
         return new Quaternion(r, i, j, k);
+    }
+    public Quaternion conjugate()
+    {
+        return new Quaternion(r, -i, -j, -k);
     }
 }

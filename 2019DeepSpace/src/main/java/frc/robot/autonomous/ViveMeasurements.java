@@ -2,6 +2,7 @@ package frc.robot.autonomous;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utility.EulerAngles;
+import frc.robot.utility.Quaternion;
 
 public class ViveMeasurements {
 
@@ -80,6 +81,27 @@ public class ViveMeasurements {
         double pitch = SmartDashboard.getNumber("y_rot2", -999);
         double yaw = SmartDashboard.getNumber("z_rot2", -999);
         return new EulerAngles(roll, pitch, yaw);
+    }
+    public Quaternion getTracker1Quaterions()
+    {
+        double r = SmartDashboard.getNumber("r1", -999);
+        double i = SmartDashboard.getNumber("i1", -999);
+        double j = SmartDashboard.getNumber("j1", -999);
+        double k = SmartDashboard.getNumber("k1", -999);
+        return new Quaternion(r, i, j, k);
+    }
+    public Quaternion getTracker2Quaterions()
+    {
+        double r = SmartDashboard.getNumber("r2", -999);
+        double i = SmartDashboard.getNumber("i2", -999);
+        double j = SmartDashboard.getNumber("j2", -999);
+        double k = SmartDashboard.getNumber("k2", -999);
+        return new Quaternion(r, i, j, k);
+    }
+    public double getArmAngle()
+    {
+        double result = Quaternion.multiply(getTracker1Quaterions().conjugate(), getTracker2Quaterions()).normalise().toPitch();
+        return result;
     }
     public Coordinate getLocation()
     {

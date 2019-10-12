@@ -133,6 +133,8 @@ public class Robot extends TimedRobot {
     //visionController.updateDashboard(debug);
     //panelintake.updateDashboard(debug);
 
+    double armAngle = viveMeasurements.getArmAngle();
+    SmartDashboard.putNumber("Vive Arm Angle", armAngle);
     for (int i = 0; i < 10; i++)
     {
       SmartDashboard.putNumber("Channel "+i+" Current", pdp.getCurrent(i));

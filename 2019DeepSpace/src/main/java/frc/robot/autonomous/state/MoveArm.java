@@ -14,7 +14,10 @@ public class MoveArm implements frc.robot.autonomous.state.State {
         boolean armStopped = false;
 
         updateDashboard();
-        double arm_angle_error = robot.viveMeasurements.get_Arm_X_rot() - angle;
+        double armAngle = robot.viveMeasurements.getArmAngle();
+        double arm_angle_error = armAngle - angle;
+
+        SmartDashboard.putNumber("Vive Arm Angle", armAngle);
         System.out.println("Robot arm: "+robot.viveMeasurements.get_Arm_X_rot()+" Target Angle: "+ angle + " Arm Angle Error: "+ arm_angle_error);
         if (!robot.viveMeasurements.isValidAngle(robot.viveMeasurements.get_Arm_X_rot())) {
             System.out.println("Invalid arm position");
