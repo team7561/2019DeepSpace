@@ -15,7 +15,6 @@ public class MoveArm implements frc.robot.autonomous.state.State {
     }
     public boolean run(Robot robot) {
         boolean armStopped = false;
-        boolean liftStopped = false;
 
         updateDashboard();
         double arm_angle_error = robot.viveMeasurements.get_Arm_X_rot() - angle;
@@ -44,7 +43,7 @@ public class MoveArm implements frc.robot.autonomous.state.State {
             System.out.println("Lower arm");
         }
 
-        return liftStopped;
+        return armStopped;
     }
     public void updateDashboard()
     {

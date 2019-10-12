@@ -10,18 +10,18 @@ public class ViveAuto {
     State[] strategy = new State[]{
             new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, -77),
             new DriveToPoint(Constants.LOADING_STATION_COORD, -77),
-            /*new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, -58),
+            new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, -58),
             new MoveArm(60),
             new MoveLift(-0.9),
-              new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD),
-              new DriveToPoint(Constants.CARGO_SHIP_COORD),
-              new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD, true),
-              new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD),
-              new DriveToPoint(Constants.LOADING_STATION_COORD),
-              new ReceiveHatchPanel(),
-              new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, true),
-              new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD),
-              new DriveToPoint(Constants.CARGO_SHIP_COORD),*/
+            new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD, -77),
+            new DriveToPoint(Constants.CARGO_SHIP_COORD, -77),
+            new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD, -77),
+            new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, -77),
+            new DriveToPoint(Constants.LOADING_STATION_COORD, -77),
+            new ReceiveHatchPanel(),
+            new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, -77),
+            new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD, -77),
+            new DriveToPoint(Constants.CARGO_SHIP_COORD, -77),
             new Stop()
             //new DeliverHatchPanel()
     };

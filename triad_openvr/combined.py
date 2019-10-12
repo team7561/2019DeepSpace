@@ -19,15 +19,16 @@ while not crashed:
     tracker1 = VR_data.get_data(1)
     tracker2 = VR_data.get_data(2)
     trackerTarget=FRC_Smart_Dashboard.get_target_location()
+    trackerDestination=FRC_Smart_Dashboard.get_destination_location()
     FRC_Smart_Dashboard.publish_tracker_data(tracker1, 1)
     FRC_Smart_Dashboard.publish_tracker_data(tracker2, 2)
     #FRC_Smart_Dashboard.publish_tracker_data(VR_data.get_data(2), 2)
     FRC_Smart_Dashboard.publish_other_data(fps, count)
-    GUI.draw_data(tracker1, tracker2, trackerTarget, fps, FRC_Smart_Dashboard.get_step())
+    GUI.draw_data(tracker1, tracker2, trackerTarget, trackerDestination, fps, FRC_Smart_Dashboard.get_step())
     count += 1
     if count > 100000:
         count = 0
-    GUI.draw_objects(tracker1, trackerTarget)
+    GUI.draw_objects(tracker1, trackerTarget, trackerDestination)
     #print(FRC_Smart_Dashboard.get_step())
     pygame.display.update()
     clock.tick()

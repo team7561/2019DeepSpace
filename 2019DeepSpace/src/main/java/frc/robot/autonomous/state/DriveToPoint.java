@@ -30,7 +30,7 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         }
 
         double offsetDistance = 0.3 * distance;
-        if (distance < 0.5)
+        if (distance < 0.3)
             offsetDistance = 0;
 
         Coordinate targetLocation = Coordinate.getApproachCoordinate(destination,  bearing,  offsetDistance);
@@ -56,6 +56,10 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         SmartDashboard.putNumber("Target Location X", targetLocation.getX());
         SmartDashboard.putNumber("Target Location Z", targetLocation.getZ());
         SmartDashboard.putNumber("Target Location Heading", targetHeading);
+
+        SmartDashboard.putNumber("Destination Location X", destination.getX());
+        SmartDashboard.putNumber("Destination Location Z", destination.getZ());
+        SmartDashboard.putNumber("Destination Location Heading", bearing);
 
         double speed = Constants.AUTO_DRIVE_SPEED;
         double slow_speed= Constants.AUTO_DRIVE_SLOW_SPEED;

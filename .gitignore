@@ -329,3 +329,5 @@ gradle-app.setting
 triad_openvr/.idea/misc.xml
 2019DeepSpace/.idea/workspace.xml
 2019DeepSpace/.idea/workspace.xml
+*.iml
+triad_openvr/.idea/misc.xml

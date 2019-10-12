@@ -24,6 +24,9 @@ table = NetworkTables.getTable('SmartDashboard')
 def get_target_location():
     return TrackerData(table.getNumber("Target Location X", 0), 0, table.getNumber("Target Location Z", 0), 0, table.getNumber("Target Location Heading", 0), 0)
 
+def get_destination_location():
+    return TrackerData(table.getNumber("Destination Location X", 0), 0, table.getNumber("Destination Location Z", 0), 0, table.getNumber("Destination Location Heading", 0), 0)
+
 def publish_tracker_data(tracker, tracker_number):
     table.putNumber("x"+str(tracker_number), tracker.x)
     table.putNumber("y"+str(tracker_number), tracker.y)
@@ -31,6 +34,10 @@ def publish_tracker_data(tracker, tracker_number):
     table.putNumber("x_rot"+str(tracker_number), tracker.x_rot)
     table.putNumber("y_rot"+str(tracker_number), tracker.y_rot)
     table.putNumber("z_rot"+str(tracker_number), tracker.z_rot)
+    table.putNumber("r"+str(tracker_number), tracker.r)
+    table.putNumber("i"+str(tracker_number), tracker.i)
+    table.putNumber("j"+str(tracker_number), tracker.j)
+    table.putNumber("k"+str(tracker_number), tracker.k)
 #   print_data(x, y, z, x_rot, y_rot, z_rot)
 def publish_other_data(fps, count):
     table.putNumber("count", count)
