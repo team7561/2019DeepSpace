@@ -1,11 +1,8 @@
 package frc.robot.autonomous.state;
 
-import frc.robot.autonomous.Coordinate;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.autonomous.Coordinate;
-
 
 public class MoveArm implements frc.robot.autonomous.state.State {
     final double angle;

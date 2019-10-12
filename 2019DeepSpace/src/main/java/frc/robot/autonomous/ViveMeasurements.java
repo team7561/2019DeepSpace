@@ -1,6 +1,7 @@
 package frc.robot.autonomous;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.utility.EulerAngles;
 
 public class ViveMeasurements {
 
@@ -65,6 +66,20 @@ public class ViveMeasurements {
     public double get_Arm_X_rot()
     {
         return SmartDashboard.getNumber("x_rot2", -999);
+    }
+    public EulerAngles getTracker1EulerAngles()
+    {
+        double roll = SmartDashboard.getNumber("x_rot1", -999);
+        double pitch = SmartDashboard.getNumber("y_rot1", -999);
+        double yaw = SmartDashboard.getNumber("z_rot1", -999);
+        return new EulerAngles(roll, pitch, yaw);
+    }
+    public EulerAngles getTracker2EulerAngles()
+    {
+        double roll = SmartDashboard.getNumber("x_rot2", -999);
+        double pitch = SmartDashboard.getNumber("y_rot2", -999);
+        double yaw = SmartDashboard.getNumber("z_rot2", -999);
+        return new EulerAngles(roll, pitch, yaw);
     }
     public Coordinate getLocation()
     {
