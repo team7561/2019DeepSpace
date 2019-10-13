@@ -8,7 +8,7 @@ public class Constants {
     public static int CARGO_STALL_CURRENT = 2;
 
 
-    public static double DISTANCE_TOLERANCE = 0.1;
+    public static double DISTANCE_TOLERANCE = 0.05;
     public static double SLOW_DOWN_DISTANCE = 0.4;
     public static double AUTO_DRIVE_SPEED = 0.2;
     public static double AUTO_DRIVE_SLOW_SPEED = 0.15;
@@ -27,8 +27,8 @@ public class Constants {
     public static double ROCKET_APPROACH_Z_COORD = -3.3493;
     public static double CARGO_SHIP_X_COORD = 0.0207;
     public static double CARGO_SHIP_Z_COORD = -4.2423;
-    public static double LOADING_STATION_X_COORD = -0.46;
-    public static double LOADING_STATION_Z_COORD = -3.19;
+    public static double LOADING_STATION_X_COORD = -0.54;
+    public static double LOADING_STATION_Z_COORD = -2.925;
     public static double LOADING_STATION_APPROACH_X_COORD = 0.148;
     public static double LOADING_STATION_APPROACH_Z_COORD = -3.07;
     public static double CARGO_SHIP_APPROACH_X_COORD = 0.5177;

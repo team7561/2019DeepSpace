@@ -101,6 +101,7 @@ public class ViveMeasurements {
     public double getArmAngle()
     {
         double result = Quaternion.multiply(getTracker1Quaterions().conjugate(), getTracker2Quaterions()).normalise().toPitch();
+        System.out.println(result);
         return result;
     }
     public Coordinate getLocation()

@@ -28,7 +28,7 @@ while not crashed:
     count += 1
     if count > 100000:
         count = 0
-    GUI.draw_objects(tracker1, trackerTarget, trackerDestination)
+    GUI.draw_objects(tracker1, tracker2, trackerTarget, trackerDestination)
     #print(FRC_Smart_Dashboard.get_step())
     pygame.display.update()
     clock.tick()

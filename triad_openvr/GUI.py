@@ -33,10 +33,10 @@ def draw_data(tracker1, tracker2, trackerTarget, trackerDestination, fps, step):
     width = 100
     draw_tracker_data(tracker1, 1, height, width)
     draw_tracker_data(tracker2, 2, height, width+400)
-    draw_tracker_data(trackerTarget, 0, height+400, width)
-    draw_tracker_data(trackerDestination, 0, height+400, width)
-    text_rect_fps.center = (700, 500)
-    text_rect_step.center = (400, 400)
+    #draw_tracker_data(trackerTarget, 0, height+400, width)
+    #draw_tracker_data(trackerDestination, 0, height+500, width)
+    text_rect_fps.center = (850, 780)
+    text_rect_step.center = (950, 780)
     gameDisplay.blit(text_fps, text_rect_fps)
     gameDisplay.blit(text_step, text_rect_step)
 def draw_tracker_data(tracker, tracker_no, height, width):
@@ -85,25 +85,32 @@ def draw_tracker_data(tracker, tracker_no, height, width):
     gameDisplay.blit(text_j, text_rect_j)
     gameDisplay.blit(text_k, text_rect_k)
 
+def draw_image(image, point):
+    width, height = image.get_size()
+    gameDisplay.blit(image, (point[0]-width/2, point[1]-height/2))
 
-def draw_objects(tracker1, trackerTarget, trackerDestination):
-    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker1.y_rot-30+45, 0.1)
-    target_Image = pygame.transform.rotozoom(target_image_source, trackerTarget.y_rot-30-180, 0.1)
-    destination_Image = pygame.transform.rotozoom(destination_image_source, trackerDestination.y_rot-30-180, 0.1)
+def draw_objects(tracker1, tracker2, trackerTarget, trackerDestination):
+    angle_offset = -90+64.3
+    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker1.y_rot-angle_offset, 0.3)
+    target_Image = pygame.transform.rotozoom(target_image_source, trackerTarget.y_rot-angle_offset, 0.1)
+    destination_Image = pygame.transform.rotozoom(destination_image_source, trackerDestination.y_rot-angle_offset, 0.1)
     #y ranges from 2.5 to - 2.2
     #x ranges from 2 to - 2
-    gameDisplay.blit(target_Image, (position_to_pixels(trackerTarget)))
-    gameDisplay.blit(robot_Image, (position_to_pixels(tracker1)))
-    gameDisplay.blit(destination_Image, (position_to_pixels(trackerDestination)))
+    draw_image(target_Image, (position_to_pixels(trackerTarget)))
+    draw_image(robot_Image, (position_to_pixels(tracker2)))
+    draw_image(destination_Image, (position_to_pixels(trackerDestination)))
+    #gameDisplay.blit(target_Image, (position_to_pixels(trackerTarget)))
+    #gameDisplay.blit(robot_Image, (position_to_pixels(tracker2)))
+    #gameDisplay.blit(destination_Image, (position_to_pixels(trackerDestination)))
     gameDisplay.blit(cargoShipFront_Image, (600,200))
     gameDisplay.blit(rocket_Image, (600,100))
-    gameDisplay.blit(loadingStation_Image, (0,450))
+    gameDisplay.blit(loadingStation_Image, (0,500))
 
 def position_to_pixels(tracker):
     x = tracker.x - 0.3966
     y = tracker.z + 3.3549
     x, y = rotate((x, y), (0, 0), 110)
-    print(x, y)
+    #print(x, y)
     #x, y = tracker.x, tracker.y
     x_pos = (1.2+x)/3.2*Constants.display_width
     y_pos = (2.2+y)/(2.5+2.2)*Constants.display_height

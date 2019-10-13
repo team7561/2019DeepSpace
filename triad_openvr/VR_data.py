@@ -50,9 +50,10 @@ def get_data(tracker_number):
 
                 # Tracker on robot arm
                 if tracker_number == 2:
-                    offset = 0.3
-                    tracker.x += offset * sin(tracker.y_rot * pi / 180)
-                    tracker.z -= offset * cos(tracker.y_rot * pi / 180)
+                    offset = 0
+                    tracker.x -= offset * cos(tracker.y_rot * pi / 180)
+                    tracker.z -= offset * sin(tracker.y_rot * pi / 180)
+                    print(tracker.x, tracker.z)
                 tracker.r, tracker.i, tracker.j, tracker.k = tracker_pose_quaternion[3::]
     except:
         print("Unable to get data for tracker "+str(tracker_number))
