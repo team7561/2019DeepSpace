@@ -3,12 +3,13 @@ import FRC_Smart_Dashboard
 import GUI
 import VR_data
 from VR_data import TrackerData
+import sys
 
 clock = pygame.time.Clock()
 crashed = False
 tracker1 = TrackerData(0, 0, 0, 0, 0,0)
 # x, y, z, x_rot, y_rot, z_rot = FRC_Smart_Dashboard.process_data(v, 0, 0)
-
+assert sys.version_info >= (3, 0)
 while not crashed:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

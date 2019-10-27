@@ -54,11 +54,11 @@ public class ViveMeasurements {
     }
     public double getZ()
     {
-        return SmartDashboard.getNumber("z1", -999);
+        return SmartDashboard.getNumber("z1",-999);
     }
     public double get_Y_rot()
     {
-        return SmartDashboard.getNumber("y_rot1", -999)+270;
+        return SmartDashboard.getNumber("y_rot1", -999);
     }
     public double get_Arm_Y()
     {

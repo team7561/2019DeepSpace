@@ -30,11 +30,11 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         }
 
         double offsetDistance = 0.3 * distance;
-        if (distance < 0.3)
+        //if (distance < 0.3)
             offsetDistance = 0;
 
         Coordinate targetLocation = Coordinate.getApproachCoordinate(destination,  bearing,  offsetDistance);
-        double targetHeading = Coordinate.getHeading(currentLocation, targetLocation);
+        double targetHeading = Coordinate.getHeading(currentLocation, targetLocation)-270;
         double headingError = (currentHeading - targetHeading + 900) % 360 - 180;
 
         Coordinate alternateTargetLocation = Coordinate.getApproachCoordinate(destination,  bearing,  -offsetDistance);
@@ -44,14 +44,14 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         alternateHeadingError = (180 - alternateHeadingError + 900) % 360 - 180;
 
         boolean reverse = false;
-        System.out.println("Heading errors " + headingError + ", " + alternateHeadingError);
+        /*System.out.println("Heading errors " + headingError + ", " + alternateHeadingError);
         if (Math.abs(alternateHeadingError) < Math.abs(headingError)) {
             reverse = true;
             System.out.println("Reversing ");
             targetLocation = alternateTargetLocation;
             targetHeading = alternateTargetHeading;
             headingError = alternateHeadingError;
-        }
+        }*/
 
         SmartDashboard.putNumber("Target Location X", targetLocation.getX());
         SmartDashboard.putNumber("Target Location Z", targetLocation.getZ());
@@ -69,9 +69,9 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         SmartDashboard.putNumber("DriveToPoint currentHeading", currentHeading);
         SmartDashboard.putNumber("DriveToPoint headingError", headingError);
 
-        final double headingDivisor = 40;
-        double left = 0.5 - headingError / headingDivisor;
-        double right = 0.5 + headingError / headingDivisor;
+        final double headingDivisor = 20;
+        double left = 0.3 - headingError / headingDivisor;
+        double right = 0.3 + headingError / headingDivisor;
         left = clamp(left);
         right = clamp(right);
         // At >= 60 degrees, we have left = 1, right = -1
@@ -83,7 +83,7 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         }
         if (reverse)
             speed = -speed;
-
+        speed *= 0.3;
         robot.drivetrain.drive(left * speed, right * speed);
 
         return false;

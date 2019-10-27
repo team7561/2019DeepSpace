@@ -90,14 +90,14 @@ def draw_image(image, point):
     gameDisplay.blit(image, (point[0]-width/2, point[1]-height/2))
 
 def draw_objects(tracker1, tracker2, trackerTarget, trackerDestination):
-    angle_offset = -90+64.3
-    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker1.y_rot-angle_offset, 0.3)
+    angle_offset = -110
+    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker2.y_rot-angle_offset, 0.3)
     target_Image = pygame.transform.rotozoom(target_image_source, trackerTarget.y_rot-angle_offset, 0.1)
     destination_Image = pygame.transform.rotozoom(destination_image_source, trackerDestination.y_rot-angle_offset, 0.1)
     #y ranges from 2.5 to - 2.2
     #x ranges from 2 to - 2
     draw_image(target_Image, (position_to_pixels(trackerTarget)))
-    draw_image(robot_Image, (position_to_pixels(tracker2)))
+    draw_image(robot_Image, (position_to_pixels(tracker1)))
     draw_image(destination_Image, (position_to_pixels(trackerDestination)))
     #gameDisplay.blit(target_Image, (position_to_pixels(trackerTarget)))
     #gameDisplay.blit(robot_Image, (position_to_pixels(tracker2)))
@@ -107,9 +107,9 @@ def draw_objects(tracker1, tracker2, trackerTarget, trackerDestination):
     gameDisplay.blit(loadingStation_Image, (0,500))
 
 def position_to_pixels(tracker):
-    x = tracker.x - 0.3966
-    y = tracker.z + 3.3549
-    x, y = rotate((x, y), (0, 0), 110)
+    x = tracker.x - 0
+    y = tracker.z + 0
+    x, y = rotate((x, y), (0, 0), 70)
     #print(x, y)
     #x, y = tracker.x, tracker.y
     x_pos = (1.2+x)/3.2*Constants.display_width
