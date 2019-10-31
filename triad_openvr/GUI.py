@@ -90,20 +90,20 @@ def draw_image(image, point):
     gameDisplay.blit(image, (point[0]-width/2, point[1]-height/2))
 
 def draw_objects(tracker1, tracker2, trackerTarget, trackerDestination):
-    angle_offset = -110
-    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker2.y_rot-angle_offset, 0.3)
-    target_Image = pygame.transform.rotozoom(target_image_source, trackerTarget.y_rot-angle_offset, 0.1)
-    destination_Image = pygame.transform.rotozoom(destination_image_source, trackerDestination.y_rot-angle_offset, 0.1)
+    angle_offset = -90
+    robot_Image = pygame.transform.rotozoom(robot_image_source, -tracker1.y_rot-angle_offset, 0.3)
+    target_Image = pygame.transform.rotozoom(target_image_source, trackerTarget.y_rot-angle_offset+90, 0.1)
+    destination_Image = pygame.transform.rotozoom(destination_image_source, trackerDestination.y_rot-angle_offset-180, 0.1)
     #y ranges from 2.5 to - 2.2
     #x ranges from 2 to - 2
-    draw_image(target_Image, (position_to_pixels(trackerTarget)))
     draw_image(robot_Image, (position_to_pixels(tracker1)))
+    draw_image(target_Image, (position_to_pixels(trackerTarget)))
     draw_image(destination_Image, (position_to_pixels(trackerDestination)))
     #gameDisplay.blit(target_Image, (position_to_pixels(trackerTarget)))
     #gameDisplay.blit(robot_Image, (position_to_pixels(tracker2)))
     #gameDisplay.blit(destination_Image, (position_to_pixels(trackerDestination)))
-    gameDisplay.blit(cargoShipFront_Image, (600,200))
-    gameDisplay.blit(rocket_Image, (600,100))
+    #gameDisplay.blit(cargoShipFront_Image, (600,200))
+    #gameDisplay.blit(rocket_Image, (600,100))
     gameDisplay.blit(loadingStation_Image, (0,500))
 
 def position_to_pixels(tracker):

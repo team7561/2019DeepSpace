@@ -8,7 +8,7 @@ public class Constants {
     public static int CARGO_STALL_CURRENT = 2;
 
 
-    public static double DISTANCE_TOLERANCE = 0.1;
+    public static double DISTANCE_TOLERANCE = 0.08;
     public static double SLOW_DOWN_DISTANCE = 0.4;
     public static double AUTO_DRIVE_SPEED = 0.2;
     public static double AUTO_DRIVE_SLOW_SPEED = 0.15;
@@ -21,18 +21,18 @@ public class Constants {
     public static double ARM_ANGLE_TOLERNENCE = 3;
     public static double ARM_ANGLE_SLOW_TOLERNENCE = 10;
 
-    public static double ROCKET_X_COORD = 0.9293;
-    public static double ROCKET_Z_COORD = -3.8449;
-    public static double ROCKET_APPROACH_X_COORD = 0.4648;
-    public static double ROCKET_APPROACH_Z_COORD = -3.3493;
-    public static double CARGO_SHIP_X_COORD = 0.0207;
-    public static double CARGO_SHIP_Z_COORD = -4.2423;
-    public static double LOADING_STATION_X_COORD = -0.06;
-    public static double LOADING_STATION_Z_COORD = -0.1274;
-    public static double LOADING_STATION_APPROACH_X_COORD = -0.59;
-    public static double LOADING_STATION_APPROACH_Z_COORD = 0.89;
-    public static double CARGO_SHIP_APPROACH_X_COORD = 0.5177;
-    public static double CARGO_SHIP_APPROACH_Z_COORD = -3.9354;
+    public static double ROCKET_X_COORD = 0.9615;
+    public static double ROCKET_Z_COORD = 0.4957;
+    public static double ROCKET_APPROACH_X_COORD = 0.8653;
+    public static double ROCKET_APPROACH_Z_COORD = -0.075;
+    public static double CARGO_SHIP_X_COORD = 1.145;
+    public static double CARGO_SHIP_Z_COORD = -0.3599;
+    public static double LOADING_STATION_X_COORD = -0.182;
+    public static double LOADING_STATION_Z_COORD = -0.476;
+    public static double LOADING_STATION_APPROACH_X_COORD = -0.04;
+    public static double LOADING_STATION_APPROACH_Z_COORD = 0.4516;
+    public static double CARGO_SHIP_APPROACH_X_COORD = 1.155;
+    public static double CARGO_SHIP_APPROACH_Z_COORD = 0.16;
     public static double CENTRE_X_COORD = 0.3966;
     public static double CENTRE_Z_COORD = -3.3549;
 

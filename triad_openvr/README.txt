@@ -1,5 +1,5 @@
 Room setup location:
-chaperoneinfo.vrchap
+C:\Program Files (x86)\Steam\config\chaperone_info.vrchap
 
 
 
