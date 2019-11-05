@@ -48,15 +48,17 @@ public class Ports {
     public static int CLIMBER_DEPLOY_SOLENOID_CHANNEL_B = 5;
 
     // PDP Slots
+    public static int ARM_PDP_SLOT = 5;
+    public static int CARGO_INTAKE_PDP_SLOT = 7;
+
+    // Unknown below here
     public static int DRIVE_LEFT_A_PDP_SLOT = 1;
     public static int DRIVE_LEFT_B_PDP_SLOT = 2;
     public static int DRIVE_RIGHT_A_PDP_SLOT = 3;
     public static int DRIVE_RIGHT_B_PDP_SLOT = 4;
     public static int LIFT_A_PDP_SLOT = 5;
     public static int LIFT_B_PDP_SLOT = 6;
-    public static int CARGO_INTAKE_PDP_SLOT = 7;
     public static int CLIMB_ELEVATOR_A_PDP_SLOT = 8;
     public static int CLIMB_ELEVATOR_B_PDP_SLOT = 9;
     public static int CLIMB_VACUUM_PDP_SLOT = 10;
-    public static int ARM_PDP_SLOT = 11;
 }

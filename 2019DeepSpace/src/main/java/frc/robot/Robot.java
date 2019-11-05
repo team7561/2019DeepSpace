@@ -10,11 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Autonomous.PathWeaver;
-import frc.robot.Autonomous.ViveAuto;
-import frc.robot.Autonomous.ViveMeasurements;
-import frc.robot.Drivers.LEDController;
-import frc.robot.Subsystems.*;
+import frc.robot.autonomous.PathWeaver;
+import frc.robot.autonomous.ViveAuto;
+import frc.robot.autonomous.ViveMeasurements;
+import frc.robot.driver.LEDController;
+import frc.robot.subsystem.*;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
@@ -26,21 +26,24 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   double curr_angle, target_angle;
-  Joystick joystick = new Joystick(1);
-  XboxController xboxController = new XboxController(2);
+  public Joystick joystick = new Joystick(1);
+  public XboxController xboxController = new XboxController(2);
   public Arm arm = new Arm();
-  Climber climber = new Climber();
+  public Climber climber = new Climber();
   public BallIntake ballintake = new BallIntake();
   public PanelIntake panelintake = new PanelIntake();
   public Drivetrain drivetrain = new Drivetrain();
   public VisionController visionController = new VisionController();
   public Lift lift = new Lift();
   PathWeaver pathweaver;
-  LEDController ledController = new LEDController();
+  public ViveMeasurements viveMeasurements;
+  ViveAuto strategy;
+  public LEDController ledController = new LEDController();
   Timer matchTimer = new Timer();
   NetworkTable table;
   String autoMode;
-  PowerDistributionPanel pdp;
+
+  public PowerDistributionPanel pdp;
   boolean invertedDrive;
   double speedControl;
   boolean debug;
@@ -49,13 +52,15 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    debug = false;
+    debug = true;
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     invertedDrive = false;
     speedControl = 0.5;
     climber.stopVacuum();
     pathweaver = new PathWeaver();
     pdp = new PowerDistributionPanel();
+    viveMeasurements = new ViveMeasurements();
+    strategy = new ViveAuto();
 
     table = NetworkTable.getTable("GRIP/myContoursReport");
     CameraServer.getInstance().startAutomaticCapture();
@@ -81,6 +86,7 @@ public class Robot extends TimedRobot {
     {
 
     }
+    strategy.reset();
   }
 
   public void drive() {
@@ -89,7 +95,9 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void autonomousPeriodic() {
-    pathweaver.followPath(drivetrain);
+    //pathweaver.followPath(drivetrain);
+    strategy.run(this);
+    updateDashboards();
   }
 
   @Override
@@ -117,14 +125,16 @@ public class Robot extends TimedRobot {
   }
   public void updateDashboards()
   {
+    arm.updateDashboard(debug);
+    ballintake.updateDashboard(true);
+    //climber.updateDashboard(debug);
     drivetrain.updateDashboard(debug);
     lift.updateDashboard(debug);
-    arm.updateDashboard(debug);
-    visionController.updateDashboard(debug);
-    ballintake.updateDashboard(debug);
-    climber.updateDashboard(debug);
-    panelintake.updateDashboard(debug);
+    //visionController.updateDashboard(debug);
+    //panelintake.updateDashboard(debug);
 
+    double armAngle = viveMeasurements.getArmAngle();
+    SmartDashboard.putNumber("Vive Arm Angle", armAngle);
     for (int i = 0; i < 10; i++)
     {
       SmartDashboard.putNumber("Channel "+i+" Current", pdp.getCurrent(i));
