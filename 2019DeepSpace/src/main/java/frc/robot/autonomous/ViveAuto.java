@@ -12,7 +12,16 @@ public class ViveAuto {
             //new DriveToPoint(Constants.LOADING_STATION_COORD, -7.6, true),
             //new DriveToPoint(Constants.LOADING_STATION_APPROACH_COORD, 55),
 
-            new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD, -1),
+            new MoveLift(-0.2),
+            new MoveLift(-0.4),
+            new MoveArm(150),
+            new MoveLift(-0.2),
+            //new MoveArm(150),
+            //new MoveArm(160),
+            //new MoveLift(-0.4),
+            new DeliverCargo(),
+            new DeliverCargo(),
+            /*new DriveToPoint(Constants.CARGO_SHIP_APPROACH_COORD, -1),
             new DriveToPoint(Constants.CARGO_SHIP_COORD, -1, true),
             new DeliverCargo(),
             new StopDeliverCargo(),
@@ -24,7 +33,7 @@ public class ViveAuto {
 
             new DriveToPoint(Constants.ROCKET_APPROACH_COORD, 169),
             new DriveToPoint(Constants.ROCKET_COORD, 170.5, true),
-            new DriveToPoint(Constants.ROCKET_APPROACH_COORD, -140),
+            new DriveToPoint(Constants.ROCKET_APPROACH_COORD, -140),*/
 
             //new MoveArm(60),
             //new MoveLift(-0.9),
