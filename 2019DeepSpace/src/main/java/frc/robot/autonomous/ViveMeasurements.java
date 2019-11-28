@@ -68,6 +68,10 @@ public class ViveMeasurements {
     {
         return SmartDashboard.getNumber("x_rot2", -999);
     }
+    public double get_Arm_Z_rot()
+    {
+        return SmartDashboard.getNumber("z_rot2", -999);
+    }
     public EulerAngles getTracker1EulerAngles()
     {
         double roll = SmartDashboard.getNumber("x_rot1", -999);

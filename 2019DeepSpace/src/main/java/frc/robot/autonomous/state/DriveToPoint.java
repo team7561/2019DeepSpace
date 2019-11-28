@@ -36,7 +36,7 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
             return true;
         }
 
-        double offsetDistance = 0.3 * distance;
+        double offsetDistance = 0.1 * distance;
         if (distance < 0.2)
             offsetDistance = 0;
 
@@ -76,7 +76,7 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         SmartDashboard.putNumber("DriveToPoint currentHeading", currentHeading);
         SmartDashboard.putNumber("DriveToPoint headingError", headingError);
 
-        final double headingDivisor = 40;
+        final double headingDivisor = 30;
         double left = 0.4 - headingError / headingDivisor;
         double right = 0.4 + headingError / headingDivisor;
         left = clamp(left);
@@ -90,7 +90,7 @@ public class DriveToPoint implements frc.robot.autonomous.state.State {
         }
         if (reverse)
             speed = -speed;
-        speed *= 0.9;
+        //speed *= 0.9;
         robot.drivetrain.drive(left * speed, right * speed);
 
         return false;

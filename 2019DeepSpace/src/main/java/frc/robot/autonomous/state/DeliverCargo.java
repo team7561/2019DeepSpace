@@ -8,13 +8,19 @@ public class DeliverCargo implements State {
     boolean firstRun = true;
     public boolean run(Robot robot)
     {
-        if(firstRun)
+        robot.drivetrain.drive(0, 0);
+        robot.arm.stop();
+        robot.lift.stop();
+        if(firstRun) {
+            time.reset();
             time.start();
-        firstRun = false;
-
-        robot.ballintake.ejectBall();
-        if(time.get() < 1)
+            firstRun = false;
+        }
+        if(time.get() < 1) {
+            robot.ballintake.ejectBall();
             return false;
+        }
+        robot.ballintake.stop();
         return true;
     }
 }

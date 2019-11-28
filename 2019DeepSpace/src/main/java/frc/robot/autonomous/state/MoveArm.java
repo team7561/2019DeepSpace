@@ -6,17 +6,34 @@ import frc.robot.Robot;
 
 public class MoveArm implements frc.robot.autonomous.state.State {
     final double angle;
+    final boolean x_value;
+    final boolean reverse;
 
     public MoveArm(double angle) {
         this.angle = angle;
+        x_value = true;
+        reverse = false;
+    }
+
+    public MoveArm(double angle, boolean x_value, boolean reverse) {
+        this.angle = angle;
+        this.x_value = x_value;
+        this.reverse = reverse;
     }
     public boolean run(Robot robot) {
         boolean armStopped = false;
 
         updateDashboard();
-        double armAngle = robot.viveMeasurements.getArmAngle();
-        double arm_angle_error = armAngle - angle;
-
+        double armAngle = 0;
+        double arm_angle_error = 0;
+        armAngle = robot.viveMeasurements.get_Arm_X_rot();
+        arm_angle_error = -(armAngle - angle);
+        if (reverse)
+        {
+            arm_angle_error = -arm_angle_error;
+        }
+        /*double arm_angle_error = armAngle - angle;
+        arm_angle_error = -arm_angle_error;*/
         SmartDashboard.putNumber("Vive Arm Angle", armAngle);
         System.out.println("Robot arm: "+robot.viveMeasurements.get_Arm_X_rot()+" Target Angle: "+ angle + " Arm Angle Error: "+ arm_angle_error);
         if (!robot.viveMeasurements.isValidAngle(robot.viveMeasurements.get_Arm_X_rot())) {
