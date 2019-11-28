@@ -100,12 +100,13 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     float pi4 = (float)Math.PI/4;
 
-    turningSpeed = stick.getTwist();
+   
 
     float maxSpeed = 0.2f;
 
     float stickX = (float)(stick.getThrottle() * stick.getMagnitude() * Math.sin(stick.getDirectionRadians()));
     float stickY = (float)(stick.getThrottle() * stick.getMagnitude() * Math.cos(stick.getDirectionRadians()));
+    float stickTwist = (float)stick.getTwist();
 
     float leftFrontForwardsPower = -stickY;
     float rightFrontForwardsPower = stickY;
@@ -117,28 +118,19 @@ public class Robot extends TimedRobot {
     float leftBackSidePower = +stickX;
     float rightBackSidePower = stickX;
 
-    /*
-    float leftFrontPower = leftFrontForwardsPower;
-    float rightFrontPower = rightFrontForwardsPower;
-    float leftBackPower = leftBackForwardsPower;
-    float rightBackPower = rightBackForwardsPower;
-*/
+    float leftFrontRotatePower = -stickTwist;
+    float rightFrontRotatePower = -stickTwist;
+    float leftBackRotatePower = -stickTwist;
+    float rightBackRotatePower = -stickTwist;
 
-float forwardsEnabled = 0;
-float sideEnabled = 1;
+    float forwardsEnabled = 1;
+    float sideEnabled = 1;
+    float rotateEnabled = 1;
 
-    float leftFrontPower = leftFrontForwardsPower * forwardsEnabled + leftFrontSidePower * sideEnabled;
-    float rightFrontPower = rightFrontForwardsPower * forwardsEnabled + rightFrontSidePower * sideEnabled;
-    float leftBackPower = leftBackForwardsPower * forwardsEnabled + leftBackSidePower * sideEnabled;
-    float rightBackPower = rightBackForwardsPower * forwardsEnabled + rightBackSidePower * sideEnabled;
-
-
-    /*
-    float leftFrontPower = stick.getThrottle() * stick.getMagnitude() * Math.sin(stick.getDirectionRadians() * pi4) + turningSpeed;
-    float rightFrontPower = stick.getThrottle() * stick.getMagnitude() * Math.cos(stick.getDirectionRadians() * pi4) - turningSpeed;
-    float leftBackPower = stick.getThrottle() * stick.getMagnitude() * Math.cos(stick.getDirectionRadians() + pi4) + turningSpeed;
-    float rightBackPower = stick.getThrottle() * stick.getMagnitude() * Math.sin(stick.getDirectionRadians() + pi4) - turningSpeed;
-*/
+    float leftFrontPower   =  leftFrontForwardsPower * forwardsEnabled +  leftFrontSidePower * sideEnabled +  leftFrontRotatePower * rotateEnabled;
+    float rightFrontPower  = rightFrontForwardsPower * forwardsEnabled + rightFrontSidePower * sideEnabled + rightFrontRotatePower * rotateEnabled;
+    float leftBackPower    =   leftBackForwardsPower * forwardsEnabled +   leftBackSidePower * sideEnabled +   leftBackRotatePower * rotateEnabled;
+    float rightBackPower   =  rightBackForwardsPower * forwardsEnabled +  rightBackSidePower * sideEnabled +  rightBackRotatePower * rotateEnabled;
 
     leftFrontMotor.set(leftFrontPower*maxSpeed);
     rightFrontMotor.set(rightFrontPower*maxSpeed);
