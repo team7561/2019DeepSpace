@@ -98,44 +98,65 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    float pi4 = (float)Math.PI/4;
+    double pi4 = (double)Math.PI/4;
 
    
 
-    float maxSpeed = 0.2f;
+    double maxSpeed = stick.getThrottle() * 0.5f;
 
-    float stickX = (float)(stick.getThrottle() * stick.getMagnitude() * Math.sin(stick.getDirectionRadians()));
-    float stickY = (float)(stick.getThrottle() * stick.getMagnitude() * Math.cos(stick.getDirectionRadians()));
-    float stickTwist = (float)stick.getTwist();
+    double stickX = (double)(stick.getMagnitude() * Math.sin(stick.getDirectionRadians()));
+    double stickY = (double)(stick.getMagnitude() * Math.cos(stick.getDirectionRadians()));
+    double stickTwist = (double)stick.getTwist();
 
-    float leftFrontForwardsPower = -stickY;
-    float rightFrontForwardsPower = stickY;
-    float leftBackForwardsPower = -stickY;
-    float rightBackForwardsPower = stickY;
+    double leftFrontForwardsPower = -stickY;
+    double rightFrontForwardsPower = stickY;
+    double leftBackForwardsPower = -stickY;
+    double rightBackForwardsPower = stickY;
 
-    float leftFrontSidePower = -stickX;
-    float rightFrontSidePower = -stickX;
-    float leftBackSidePower = +stickX;
-    float rightBackSidePower = stickX;
+    double leftFrontSidePower = -stickX;
+    double rightFrontSidePower = -stickX;
+    double leftBackSidePower = +stickX;
+    double rightBackSidePower = stickX;
 
-    float leftFrontRotatePower = -stickTwist;
-    float rightFrontRotatePower = -stickTwist;
-    float leftBackRotatePower = -stickTwist;
-    float rightBackRotatePower = -stickTwist;
+    double leftFrontRotatePower = -stickTwist;
+    double rightFrontRotatePower = -stickTwist;
+    double leftBackRotatePower = -stickTwist;
+    double rightBackRotatePower = -stickTwist;
 
-    float forwardsEnabled = 1;
-    float sideEnabled = 1;
-    float rotateEnabled = 1;
+    double forwardsWeight = 1;
+    double sideWeight = 1;
+    double rotateWeight = 1;
 
-    float leftFrontPower   =  leftFrontForwardsPower * forwardsEnabled +  leftFrontSidePower * sideEnabled +  leftFrontRotatePower * rotateEnabled;
-    float rightFrontPower  = rightFrontForwardsPower * forwardsEnabled + rightFrontSidePower * sideEnabled + rightFrontRotatePower * rotateEnabled;
-    float leftBackPower    =   leftBackForwardsPower * forwardsEnabled +   leftBackSidePower * sideEnabled +   leftBackRotatePower * rotateEnabled;
-    float rightBackPower   =  rightBackForwardsPower * forwardsEnabled +  rightBackSidePower * sideEnabled +  rightBackRotatePower * rotateEnabled;
+    double leftFrontPower   =  leftFrontForwardsPower * forwardsWeight +  leftFrontSidePower * sideWeight +  leftFrontRotatePower * rotateWeight;
+    double rightFrontPower  = rightFrontForwardsPower * forwardsWeight + rightFrontSidePower * sideWeight + rightFrontRotatePower * rotateWeight;
+    double leftBackPower    =   leftBackForwardsPower * forwardsWeight +   leftBackSidePower * sideWeight +   leftBackRotatePower * rotateWeight;
+    double rightBackPower   =  rightBackForwardsPower * forwardsWeight +  rightBackSidePower * sideWeight +  rightBackRotatePower * rotateWeight;
 
-    leftFrontMotor.set(leftFrontPower*maxSpeed);
-    rightFrontMotor.set(rightFrontPower*maxSpeed);
-    leftBackMotor.set(leftBackPower*maxSpeed);
-    rightBackMotor.set(rightBackPower*maxSpeed);
+    leftFrontPower *= maxSpeed;
+    rightFrontPower *= maxSpeed;
+    leftBackPower *=  maxSpeed;
+    rightBackPower *=  maxSpeed;
+
+
+    double largest = Math.max( 
+                              Math.max(  Math.abs(leftFrontPower),
+                                         Math.abs(rightFrontPower) ),
+                              Math.max(  Math.abs(leftBackPower), 
+                                         Math.abs(rightBackPower) ));
+
+    if (largest > 1) {
+      leftFrontPower /= largest;
+      rightFrontPower /= largest;
+      leftBackPower /= largest;
+      rightBackPower /= largest;
+    }
+ 
+
+    
+    leftFrontMotor.set(leftFrontPower);
+    rightFrontMotor.set(rightFrontPower);  
+    leftBackMotor.set(leftBackPower);
+    rightBackMotor.set(rightBackPower);
   }
 
   /**
