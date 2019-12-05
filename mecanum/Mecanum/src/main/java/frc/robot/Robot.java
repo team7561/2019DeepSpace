@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import java.math.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -200,19 +201,26 @@ stick.getX()/Math.abs(stick.getX())
 
     double mainGyro = gyro.getAngle();
 
-    if (controllerX == 0){
-
+    if (controllerX == 0 && controllerY > 0){
+      joyAngle = 90;
     }
 
-    joyAngle = Math.atan(controllerX/controllerY);
     
+    if (controllerX == 0 && controllerY < 0){
+      joyAngle = 270;
+    }
 
-    double newGyro = origGyro - mainGyro;
+    else{
+      joyAngle = Math.atan(controllerY/controllerX);
+    }
+
+   // double newGyro = origGyro - mainGyro;
+    double newGyro = 0;
 
     double controllerTurn = -controller.getX(Hand.kLeft)*maxRot;
 
-    double xFinal = Math.cos((newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
-    double yFinal = Math.sin((newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
+    double xFinal = Math.cos(newGyro + joyAngle) * (Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
+    double yFinal = Math.sin(newGyro + joyAngle) * (Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
 
   /*  
     double leftFrontForwardsPower = -controllerY;
@@ -226,36 +234,36 @@ stick.getX()/Math.abs(stick.getX())
     double rightBackSidePower = controllerX;
 */
   
-    double leftFrontForwardsPower = -yFinal;
-    double rightFrontForwardsPower = yFinal;
-    double leftBackForwardsPower = -yFinal;
-    double rightBackForwardsPower = yFinal;
+    double leftFrontForwardsPower  = -yFinal;
+    double rightFrontForwardsPower =  yFinal;
+    double leftBackForwardsPower   = -yFinal;
+    double rightBackForwardsPower  =  yFinal;
 
-    double leftFrontSidePower = -xFinal;
+    double leftFrontSidePower  = -xFinal;
     double rightFrontSidePower = -xFinal;
-    double leftBackSidePower = +xFinal;
-    double rightBackSidePower = xFinal;
+    double leftBackSidePower   =  xFinal;
+    double rightBackSidePower  =  xFinal;
 
 
 
-    double leftFrontRotatePower = -controllerTurn;
+    double leftFrontRotatePower  = -controllerTurn;
     double rightFrontRotatePower = -controllerTurn;
-    double leftBackRotatePower = -controllerTurn;
-    double rightBackRotatePower = -controllerTurn;
+    double leftBackRotatePower   = -controllerTurn;
+    double rightBackRotatePower  = -controllerTurn;
 
     double forwardsWeight = 1;
-    double sideWeight = 1;
-    double rotateWeight = 1 ;
+    double sideWeight     = 1;
+    double rotateWeight   = 1;
 
     double leftFrontPower   =  leftFrontForwardsPower * forwardsWeight +  leftFrontSidePower * sideWeight +  leftFrontRotatePower * rotateWeight;
     double rightFrontPower  = rightFrontForwardsPower * forwardsWeight + rightFrontSidePower * sideWeight + rightFrontRotatePower * rotateWeight;
     double leftBackPower    =   leftBackForwardsPower * forwardsWeight +   leftBackSidePower * sideWeight +   leftBackRotatePower * rotateWeight;
     double rightBackPower   =  rightBackForwardsPower * forwardsWeight +  rightBackSidePower * sideWeight +  rightBackRotatePower * rotateWeight;
 
-    leftFrontPower *= maxSpeed;
+    leftFrontPower  *= maxSpeed;
     rightFrontPower *= maxSpeed;
-    leftBackPower *=  maxSpeed;
-    rightBackPower *=  maxSpeed;
+    leftBackPower   *= maxSpeed;
+    rightBackPower  *= maxSpeed;
 
 
     double largest = Math.max( 
@@ -265,22 +273,25 @@ stick.getX()/Math.abs(stick.getX())
                                          Math.abs(rightBackPower) ));
 
     if (largest > 1) {
-      leftFrontPower /= largest;
+      leftFrontPower  /= largest;
       rightFrontPower /= largest;
-      leftBackPower /= largest;
-      rightBackPower /= largest;
+      leftBackPower   /= largest;
+      rightBackPower  /= largest;
     }
  
 
     
-    leftFrontMotor.set(leftFrontPower);
-    rightFrontMotor.set(rightFrontPower);  
-    leftBackMotor.set(leftBackPower);
-    rightBackMotor.set(rightBackPower);
+    //leftFrontMotor.set(leftFrontPower);
+    //rightFrontMotor.set(rightFrontPower);  
+    //leftBackMotor.set(leftBackPower);
+    //rightBackMotor.set(rightBackPower);
 
     SmartDashboard.putNumber("Main Gyro", mainGyro);
     SmartDashboard.putNumber("Original Gyro", origGyro);
     SmartDashboard.putNumber("New Gyro", newGyro);
+    SmartDashboard.putNumber("Joystick Angle", joyAngle);
+    SmartDashboard.putNumber("X final", xFinal);
+    SmartDashboard.putNumber("Y final", yFinal);
     SmartDashboard.putNumber("Left Front Power", leftFrontPower);
     SmartDashboard.putNumber("Right Front Power", rightFrontPower);
     SmartDashboard.putNumber("Left Back Power", leftBackPower);
