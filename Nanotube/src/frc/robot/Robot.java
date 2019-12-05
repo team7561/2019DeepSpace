@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Spark;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,19 +24,20 @@ import edu.wpi.first.wpilibj.XboxController;
 public class Robot extends TimedRobot {
   XboxController xbox;
   Joystick joystick;
-  frc.robot.MotorController motor;
-
+  Spark left, right;
+  DifferentialDrive differentialDrive;
   @Override
   public void robotInit() {
     xbox = new XboxController(1);
     joystick = new Joystick(2);
-    motor = new frc.robot.MotorController(1);
+    left = new Spark(8);
+    right = new Spark(9);
+    differentialDrive = new DifferentialDrive(left, right);
   }
 
 
   @Override
   public void robotPeriodic() {
-    motor.setRaw((int)(joystick.getThrottle()+1)*1000);
   }
 
   @Override
@@ -47,6 +50,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    myDrive.ArcadeDrive(joystick.getY(),  joystick.getX());   
   }
 
   @Override

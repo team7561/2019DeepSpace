@@ -8,9 +8,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import java.math.*;
 import edu.wpi.first.wpilibj.Joystick;
@@ -29,7 +32,9 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   CANSparkMax leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
+ // NAVX gyro;
   Joystick stick;
+  XboxController controller;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -44,7 +49,13 @@ public class Robot extends TimedRobot {
     leftBackMotor = new CANSparkMax(11, MotorType.kBrushless);
     rightFrontMotor = new CANSparkMax(12, MotorType.kBrushless);
     rightBackMotor = new CANSparkMax(13, MotorType.kBrushless);
+    leftFrontMotor.setIdleMode(IdleMode.kCoast);
+    leftBackMotor.setIdleMode(IdleMode.kCoast);
+    rightFrontMotor.setIdleMode(IdleMode.kCoast);
+    rightBackMotor.setIdleMode(IdleMode.kCoast);
+    //gyro = 
     stick = new Joystick(1);
+    controller = new XboxController(0);
   }
 
   /**
@@ -99,14 +110,35 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     double pi4 = (double)Math.PI/4;
+/*
+    double deadzoneX = 0.1;
+    double multiplierX = 1/deadzoneX;
+    double deadzoneY = 0.1;
+    double multiplierY = 1/deadzoneY;
 
+    double maxSpeed = stick.getThrottle() * 1f;
+stick.getX()/Math.abs(stick.getX())
+    double stickX;
+    if (Math.abs(stick.getX())< deadzoneX){
+      stickX = 0;
+    }
+
+    else {
+      stickX = ((stick.getMagnitude() * Math.sin(stick.getDirectionRadians())) - deadzoneX)*multiplierX;
+    }
+
+    
+    double stickY;
+    if (Math.abs(stick.getY())< deadzoneY){
+      stickY = 0;
+    }
+
+    else {
+      stickY = (stick.getMagnitude() * Math.cos(stick.getDirectionRadians()) - deadzoneY)*multiplierY;
+    }
    
 
-    double maxSpeed = stick.getThrottle() * 0.5f;
-
-    double stickX = (double)(stick.getMagnitude() * Math.sin(stick.getDirectionRadians()));
-    double stickY = (double)(stick.getMagnitude() * Math.cos(stick.getDirectionRadians()));
-    double stickTwist = (double)stick.getTwist();
+    double stickTwist = stick.getTwist();
 
     double leftFrontForwardsPower = -stickY;
     double rightFrontForwardsPower = stickY;
@@ -123,9 +155,83 @@ public class Robot extends TimedRobot {
     double leftBackRotatePower = -stickTwist;
     double rightBackRotatePower = -stickTwist;
 
+    */
+
+    /* get gyro from robot
+    set gyro tto original gyro
+    void()
+
+    get X for joystick
+    get Y for Joystick
+
+    get gyro for robot
+
+    if X = 0
+    then Joystick angle pi/2
+    else
+    then Joystick angle = arctan(Y/X)
+
+    newGyro = original gyro - gyro
+
+    xfinal = cos(newGyro+joystickangle) * absolute(sqrt(x^2+y^2))
+    yfinal = sin(newGyro+joystickangle) * absolute(sqrt(x^2+y^2))
+*/
+
+//Xbox COntroller
+
+    double maxSpeed = stick.getThrottle() * 1f;
+    double maxRot = 0.5f;
+
+    double controllerX = -controller.getX(Hand.kRight);
+    double controllerY = controller.getY(Hand.kRight);
+    double joyAngle;
+/*
+    if (controllerX == 0){
+     joyAngle = Math.PI/2;
+    }
+    else{
+      joyAngle = Math.atan(controllerX/controllerY);
+    }
+
+   */ double controllerTurn = -controller.getX(Hand.kLeft)*maxRot;/*
+
+    double xFinal = Math.cos(newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2)));
+    double yFinal = Math.sin(newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2)));
+*/
+
+    
+    double leftFrontForwardsPower = -controllerY;
+    double rightFrontForwardsPower = controllerY;
+    double leftBackForwardsPower = -controllerY;
+    double rightBackForwardsPower = controllerY;
+
+    double leftFrontSidePower = -controllerX;
+    double rightFrontSidePower = -controllerX;
+    double leftBackSidePower = controllerX;
+    double rightBackSidePower = controllerX;
+
+  /*
+    double leftFrontForwardsPower = -yFinal;
+    double rightFrontForwardsPower = yFinal;
+    double leftBackForwardsPower = -yFinal;
+    double rightBackForwardsPower = yFinal;
+
+    double leftFrontSidePower = -xFinal;
+    double rightFrontSidePower = -xFinal;
+    double leftBackSidePower = +xFinal;
+    double rightBackSidePower = xFinal;
+
+*/
+
+    double leftFrontRotatePower = -controllerTurn;
+    double rightFrontRotatePower = -controllerTurn;
+    double leftBackRotatePower = -controllerTurn;
+    double rightBackRotatePower = -controllerTurn;
+
+
     double forwardsWeight = 1;
     double sideWeight = 1;
-    double rotateWeight = 1;
+    double rotateWeight = 1 ;
 
     double leftFrontPower   =  leftFrontForwardsPower * forwardsWeight +  leftFrontSidePower * sideWeight +  leftFrontRotatePower * rotateWeight;
     double rightFrontPower  = rightFrontForwardsPower * forwardsWeight + rightFrontSidePower * sideWeight + rightFrontRotatePower * rotateWeight;
