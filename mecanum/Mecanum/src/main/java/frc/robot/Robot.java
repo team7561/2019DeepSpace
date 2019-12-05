@@ -200,6 +200,10 @@ stick.getX()/Math.abs(stick.getX())
 
     double mainGyro = gyro.getAngle();
 
+    if (controllerX == 0){
+
+    }
+
     joyAngle = Math.atan(controllerX/controllerY);
     
 
@@ -207,8 +211,8 @@ stick.getX()/Math.abs(stick.getX())
 
     double controllerTurn = -controller.getX(Hand.kLeft)*maxRot;
 
-    double xFinal = Math.cos(newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2)));
-    double yFinal = Math.sin(newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2)));
+    double xFinal = Math.cos((newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
+    double yFinal = Math.sin((newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
 
   /*  
     double leftFrontForwardsPower = -controllerY;
