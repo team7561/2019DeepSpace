@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -17,6 +18,8 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import java.math.*;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,9 +35,10 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   CANSparkMax leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
- // NAVX gyro;
+  ADXRS450_Gyro gyro;
   Joystick stick;
   XboxController controller;
+  double origGyro;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -53,9 +57,11 @@ public class Robot extends TimedRobot {
     leftBackMotor.setIdleMode(IdleMode.kCoast);
     rightFrontMotor.setIdleMode(IdleMode.kCoast);
     rightBackMotor.setIdleMode(IdleMode.kCoast);
-    //gyro = 
+    gyro = new ADXRS450_Gyro();
+    gyro.calibrate();
     stick = new Joystick(1);
     controller = new XboxController(0);
+    origGyro = 0;
   }
 
   /**
@@ -102,6 +108,12 @@ public class Robot extends TimedRobot {
         // Put default auto code here
         break;
     }
+  }
+
+  
+  @Override
+  public void teleopInit() {
+    origGyro = gyro.getAngle();
   }
 
   /**
@@ -179,27 +191,26 @@ stick.getX()/Math.abs(stick.getX())
 
 //Xbox COntroller
 
-    double maxSpeed = stick.getThrottle() * 1f;
+    double maxSpeed = stick.getThrottle() * 0.5f;
     double maxRot = 0.5f;
 
     double controllerX = -controller.getX(Hand.kRight);
     double controllerY = controller.getY(Hand.kRight);
     double joyAngle;
-/*
-    if (controllerX == 0){
-     joyAngle = Math.PI/2;
-    }
-    else{
-      joyAngle = Math.atan(controllerX/controllerY);
-    }
 
-   */ double controllerTurn = -controller.getX(Hand.kLeft)*maxRot;/*
+    double mainGyro = gyro.getAngle();
+
+    joyAngle = Math.atan(controllerX/controllerY);
+    
+
+    double newGyro = origGyro - mainGyro;
+
+    double controllerTurn = -controller.getX(Hand.kLeft)*maxRot;
 
     double xFinal = Math.cos(newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2)));
     double yFinal = Math.sin(newGyro + joyAngle) * Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2)));
-*/
 
-    
+  /*  
     double leftFrontForwardsPower = -controllerY;
     double rightFrontForwardsPower = controllerY;
     double leftBackForwardsPower = -controllerY;
@@ -209,8 +220,8 @@ stick.getX()/Math.abs(stick.getX())
     double rightFrontSidePower = -controllerX;
     double leftBackSidePower = controllerX;
     double rightBackSidePower = controllerX;
-
-  /*
+*/
+  
     double leftFrontForwardsPower = -yFinal;
     double rightFrontForwardsPower = yFinal;
     double leftBackForwardsPower = -yFinal;
@@ -221,13 +232,12 @@ stick.getX()/Math.abs(stick.getX())
     double leftBackSidePower = +xFinal;
     double rightBackSidePower = xFinal;
 
-*/
+
 
     double leftFrontRotatePower = -controllerTurn;
     double rightFrontRotatePower = -controllerTurn;
     double leftBackRotatePower = -controllerTurn;
     double rightBackRotatePower = -controllerTurn;
-
 
     double forwardsWeight = 1;
     double sideWeight = 1;
@@ -263,6 +273,14 @@ stick.getX()/Math.abs(stick.getX())
     rightFrontMotor.set(rightFrontPower);  
     leftBackMotor.set(leftBackPower);
     rightBackMotor.set(rightBackPower);
+
+    SmartDashboard.putNumber("Main Gyro", mainGyro);
+    SmartDashboard.putNumber("Original Gyro", origGyro);
+    SmartDashboard.putNumber("New Gyro", newGyro);
+    SmartDashboard.putNumber("Left Front Power", leftFrontPower);
+    SmartDashboard.putNumber("Right Front Power", rightFrontPower);
+    SmartDashboard.putNumber("Left Back Power", leftBackPower);
+    SmartDashboard.putNumber("Right Back Power", rightBackPower);
   }
 
   /**
