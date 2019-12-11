@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import java.math.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -196,7 +195,7 @@ stick.getX()/Math.abs(stick.getX())
     double maxRot = 0.5f;
 
     double controllerX = -controller.getX(Hand.kRight);
-    double controllerY = controller.getY(Hand.kRight);
+    double controllerY =  controller.getY(Hand.kRight);
     double joyAngle;
 
     double mainGyro = gyro.getAngle();
@@ -243,9 +242,7 @@ stick.getX()/Math.abs(stick.getX())
     double rightFrontSidePower = -xFinal;
     double leftBackSidePower   =  xFinal;
     double rightBackSidePower  =  xFinal;
-
-
-
+    
     double leftFrontRotatePower  = -controllerTurn;
     double rightFrontRotatePower = -controllerTurn;
     double leftBackRotatePower   = -controllerTurn;
@@ -267,10 +264,10 @@ stick.getX()/Math.abs(stick.getX())
 
 
     double largest = Math.max( 
-                              Math.max(  Math.abs(leftFrontPower),
+                              Math.max(  Math.abs( leftFrontPower),
                                          Math.abs(rightFrontPower) ),
-                              Math.max(  Math.abs(leftBackPower), 
-                                         Math.abs(rightBackPower) ));
+                              Math.max(  Math.abs(  leftBackPower), 
+                                         Math.abs( rightBackPower) ));
 
     if (largest > 1) {
       leftFrontPower  /= largest;
@@ -289,6 +286,7 @@ stick.getX()/Math.abs(stick.getX())
     SmartDashboard.putNumber("Main Gyro", mainGyro);
     SmartDashboard.putNumber("Original Gyro", origGyro);
     SmartDashboard.putNumber("New Gyro", newGyro);
+    SmartDashboard.putNumber("Largest", largest);
     SmartDashboard.putNumber("Joystick Angle", joyAngle);
     SmartDashboard.putNumber("X final", xFinal);
     SmartDashboard.putNumber("Y final", yFinal);
