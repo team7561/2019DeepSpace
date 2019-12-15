@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -6,19 +7,14 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
+import edu.wpi.first.wpilibj.XboxController;import edu.wpi.first.wpilibj.GenericHID.Hand;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import java.math.*;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,18 +26,18 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
+  private double turningSpeed = 0;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   CANSparkMax leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
-  ADXRS450_Gyro gyro;
   Joystick stick;
   XboxController controller;
-  double origGyro;
 
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
+
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
@@ -51,27 +47,20 @@ public class Robot extends TimedRobot {
     leftBackMotor = new CANSparkMax(11, MotorType.kBrushless);
     rightFrontMotor = new CANSparkMax(12, MotorType.kBrushless);
     rightBackMotor = new CANSparkMax(13, MotorType.kBrushless);
-    leftFrontMotor.setIdleMode(IdleMode.kCoast);
-    leftBackMotor.setIdleMode(IdleMode.kCoast);
-    rightFrontMotor.setIdleMode(IdleMode.kCoast);
-    rightBackMotor.setIdleMode(IdleMode.kCoast);
     stick = new Joystick(1);
     controller = new XboxController(0);
-    origGyro = 0;
   }
-
   /**
    * This function is called every robot packet, no matter the mode. Use
    * this for items like diagnostics that you want ran during disabled,
    * autonomous, teleoperated and test.
-   *
    * <p>This runs after the mode specific periodic functions, but before
    * LiveWindow and SmartDashboard integrated updating.
    */
+
   @Override
   public void robotPeriodic() {
   }
-
   /**
    * This autonomous (along with the chooser code above) shows how to select
    * between different autonomous modes using the dashboard. The sendable
@@ -83,16 +72,17 @@ public class Robot extends TimedRobot {
    * the switch structure below with additional strings. If using the
    * SendableChooser make sure to add them to the chooser code above as well.
    */
+
   @Override
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
   }
-
   /**
    * This function is called periodically during autonomous.
    */
+
   @Override
   public void autonomousPeriodic() {
     switch (m_autoSelected) {
@@ -105,47 +95,17 @@ public class Robot extends TimedRobot {
         break;
     }
   }
-
-  
-  @Override
-  public void teleopInit() {
-    //origGyro = Math.toRadians(gyro.getAngle());
-  }
-
   /**
    * This function is called periodically during operator control.
    */
+
   @Override
   public void teleopPeriodic() {
 /*
-    double deadzoneX = 0.1;
-    double multiplierX = 1/deadzoneX;
-    double deadzoneY = 0.1;
-    double multiplierY = 1/deadzoneY;
-
-    double maxSpeed = stick.getThrottle() * 1f;
-stick.getX()/Math.abs(stick.getX())
-    double stickX;
-    if (Math.abs(stick.getX())< deadzoneX){
-      stickX = 0;
-    }
-
-    else {
-      stickX = ((stick.getMagnitude() * Math.sin(stick.getDirectionRadians())) - deadzoneX)*multiplierX;
-    }
-
-    
-    double stickY;
-    if (Math.abs(stick.getY())< deadzoneY){
-      stickY = 0;
-    }
-
-    else {
-      stickY = (stick.getMagnitude() * Math.cos(stick.getDirectionRadians()) - deadzoneY)*multiplierY;
-    }
-   
-
-    double stickTwist = stick.getTwist();
+    double maxSpeed = stick.getThrottle() * 0.5f;
+    double stickX = (double)(stick.getMagnitude() * Math.sin(stick.getDirectionRadians()));
+    double stickY = (double)(stick.getMagnitude() * Math.cos(stick.getDirectionRadians()));
+    double stickTwist = (double)stick.getTwist(); 
 
     double leftFrontForwardsPower = -stickY;
     double rightFrontForwardsPower = stickY;
@@ -160,38 +120,14 @@ stick.getX()/Math.abs(stick.getX())
     double leftFrontRotatePower = -stickTwist;
     double rightFrontRotatePower = -stickTwist;
     double leftBackRotatePower = -stickTwist;
-    double rightBackRotatePower = -stickTwist;
+    double rightBackRotatePower = -stickTwist; */
 
-    */
-
-    /* get gyro from robot
-    set gyro tto original gyro
-    void()
-
-    get X for joystick
-    get Y for Joystick
-
-    get gyro for robot
-
-    if X = 0
-    then Joystick angle pi/2
-    else
-    then Joystick angle = arctan(Y/X)
-
-    newGyro = original gyro - gyro
-
-    xfinal = cos(newGyro+joystickangle) * absolute(sqrt(x^2+y^2))
-    yfinal = sin(newGyro+joystickangle) * absolute(sqrt(x^2+y^2))
-*/
-
-//Xbox COntroller
-    
-    double maxSpeed = stick.getThrottle() * 0.2f;
+    double maxSpeed = stick.getThrottle() * 0.5f;
     double maxRot = 1f;
 
-    double controllerX = -controller.getX(Hand.kRight);
-    double controllerY =  controller.getY(Hand.kRight);
-    double controllerTurn = -controller.getX(Hand.kLeft)*maxRot;
+    double controllerX = controller.getX(Hand.kRight);
+    double controllerY = controller.getY(Hand.kRight);
+    double controllerTurn = controller.getX(Hand.kLeft); 
 
     double leftFrontForwardsPower = -controllerY;
     double rightFrontForwardsPower = controllerY;
@@ -200,58 +136,46 @@ stick.getX()/Math.abs(stick.getX())
 
     double leftFrontSidePower = -controllerX;
     double rightFrontSidePower = -controllerX;
-    double leftBackSidePower = controllerX;
+    double leftBackSidePower = +controllerX;
     double rightBackSidePower = controllerX;
-    
-    double leftFrontRotatePower  = -controllerTurn;
+
+    double leftFrontRotatePower = -controllerTurn;
     double rightFrontRotatePower = -controllerTurn;
-    double leftBackRotatePower   = -controllerTurn;
-    double rightBackRotatePower  = -controllerTurn;
+    double leftBackRotatePower = -controllerTurn;
+    double rightBackRotatePower = -controllerTurn;
 
     double forwardsWeight = 1;
-    double sideWeight     = 1;
-    double rotateWeight   = 1;
+    double sideWeight = 1;
+    double rotateWeight = 1;
 
     double leftFrontPower   =  leftFrontForwardsPower * forwardsWeight +  leftFrontSidePower * sideWeight +  leftFrontRotatePower * rotateWeight;
     double rightFrontPower  = rightFrontForwardsPower * forwardsWeight + rightFrontSidePower * sideWeight + rightFrontRotatePower * rotateWeight;
     double leftBackPower    =   leftBackForwardsPower * forwardsWeight +   leftBackSidePower * sideWeight +   leftBackRotatePower * rotateWeight;
     double rightBackPower   =  rightBackForwardsPower * forwardsWeight +  rightBackSidePower * sideWeight +  rightBackRotatePower * rotateWeight;
 
-    leftFrontPower  *= maxSpeed;
+    leftFrontPower *= maxSpeed;
     rightFrontPower *= maxSpeed;
-    leftBackPower   *= maxSpeed;
-    rightBackPower  *= maxSpeed;
-
+    leftBackPower *=  maxSpeed;
+    rightBackPower *=  maxSpeed;
 
     double largest = Math.max( 
-                              Math.max(  Math.abs( leftFrontPower),
-                                         Math.abs(rightFrontPower)),
-                              Math.max(  Math.abs(  leftBackPower), 
-                                         Math.abs( rightBackPower)));
+                              Math.max(  Math.abs(leftFrontPower),
+                                         Math.abs(rightFrontPower) ),
+                              Math.max(  Math.abs(leftBackPower), 
+                                         Math.abs(rightBackPower) ));
 
     if (largest > 1) {
-      leftFrontPower  /= largest;
+      leftFrontPower /= largest;
       rightFrontPower /= largest;
-      leftBackPower   /= largest;
-      rightBackPower  /= largest;
+      leftBackPower /= largest;
+      rightBackPower /= largest;
     }
  
-  
     leftFrontMotor.set(leftFrontPower);
     rightFrontMotor.set(rightFrontPower);  
     leftBackMotor.set(leftBackPower);
     rightBackMotor.set(rightBackPower);
-
-    SmartDashboard.putNumber("Original Gyro", origGyro);
-    SmartDashboard.putNumber("Controller X", controllerX);
-    SmartDashboard.putNumber("Controller Y", controllerY);
-    SmartDashboard.putNumber("Largest", largest);
-    SmartDashboard.putNumber("Left Front Power", leftFrontPower);
-    SmartDashboard.putNumber("Right Front Power", rightFrontPower);
-    SmartDashboard.putNumber("Left Back Power", leftBackPower);
-    SmartDashboard.putNumber("Right Back Power", rightBackPower);
   }
-
   /**
    * This function is called periodically during test mode.
    */
