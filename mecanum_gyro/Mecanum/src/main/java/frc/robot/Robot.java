@@ -113,7 +113,7 @@ public class Robot extends TimedRobot {
   
   @Override
   public void teleopInit() {
-    origGyro = gyro.getAngle();
+    origGyro = Math.toRadians(gyro.getAngle());
   }
 
   /**
@@ -190,36 +190,57 @@ stick.getX()/Math.abs(stick.getX())
 */
 
 //Xbox COntroller
-
-    double maxSpeed = stick.getThrottle() * 0.5f;
-    double maxRot = 0.5f;
+    
+    double maxSpeed = stick.getThrottle() * 0.2f;
+    double maxRot = 1f;
 
     double controllerX = -controller.getX(Hand.kRight);
     double controllerY =  controller.getY(Hand.kRight);
     double joyAngle;
+    boolean gyroRestart = controller.getAButtonPressed();
 
-    double mainGyro = gyro.getAngle();
+    if (gyroRestart){
+      gyro.reset();
+      origGyro = Math.toRadians(gyro.getAngle());
+    }
 
+    double mainGyro = Math.toRadians(gyro.getAngle());
+/*
     if (controllerX == 0 && controllerY > 0){
-      joyAngle = 90;
+      joyAngle = (3*Math.PI)/2;
     }
 
     
     if (controllerX == 0 && controllerY < 0){
-      joyAngle = 270;
+      joyAngle = Math.PI/2;
     }
 
     else{
       joyAngle = Math.atan(controllerY/controllerX);
     }
 
-   // double newGyro = origGyro - mainGyro;
-    double newGyro = 0;
+    if (controllerX > 0 && controllerY < 0){
+      joyAngle = Math.abs(joyAngle + Math.toRadians(180));
+    }
+    if (controllerX > 0 && controllerY > 0){
+      joyAngle -= Math.toRadians(180);
+   }
+   / * if (controllerX < 0 && controllerY > 0){
+      joyAngle -= Math.toRadians(270);
+    }* /
+*/
+    joyAngle = Math.atan2(controllerY, controllerX);
+
+    double newGyro = origGyro - mainGyro;
+    //double newGyro = 0;
 
     double controllerTurn = -controller.getX(Hand.kLeft)*maxRot;
 
-    double xFinal = Math.cos(newGyro + joyAngle) * (Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
-    double yFinal = Math.sin(newGyro + joyAngle) * (Math.abs(Math.sqrt(Math.pow(controllerX, 2) + Math.pow(controllerY, 2))));
+    double magnitude = Math.abs(Math.sqrt(Math.pow(controllerX,2) + Math.pow(controllerY, 2)));
+
+    double xFinal = Math.cos(newGyro + joyAngle) * magnitude;
+    double yFinal = Math.sin(newGyro + joyAngle) * magnitude;
+
 
   /*  
     double leftFrontForwardsPower = -controllerY;
@@ -265,9 +286,9 @@ stick.getX()/Math.abs(stick.getX())
 
     double largest = Math.max( 
                               Math.max(  Math.abs( leftFrontPower),
-                                         Math.abs(rightFrontPower) ),
+                                         Math.abs(rightFrontPower)),
                               Math.max(  Math.abs(  leftBackPower), 
-                                         Math.abs( rightBackPower) ));
+                                         Math.abs( rightBackPower)));
 
     if (largest > 1) {
       leftFrontPower  /= largest;
@@ -276,18 +297,20 @@ stick.getX()/Math.abs(stick.getX())
       rightBackPower  /= largest;
     }
  
-
-    
-    //leftFrontMotor.set(leftFrontPower);
-    //rightFrontMotor.set(rightFrontPower);  
-    //leftBackMotor.set(leftBackPower);
-    //rightBackMotor.set(rightBackPower);
+  
+    leftFrontMotor.set(leftFrontPower);
+    rightFrontMotor.set(rightFrontPower);  
+    leftBackMotor.set(leftBackPower);
+    rightBackMotor.set(rightBackPower);
 
     SmartDashboard.putNumber("Main Gyro", mainGyro);
     SmartDashboard.putNumber("Original Gyro", origGyro);
     SmartDashboard.putNumber("New Gyro", newGyro);
+    SmartDashboard.putNumber("Controller X", controllerX);
+    SmartDashboard.putNumber("Controller Y", controllerY);
+    SmartDashboard.putNumber("Magnitude ", magnitude);
     SmartDashboard.putNumber("Largest", largest);
-    SmartDashboard.putNumber("Joystick Angle", joyAngle);
+    SmartDashboard.putNumber("Joystick Angle", Math.toDegrees(joyAngle));
     SmartDashboard.putNumber("X final", xFinal);
     SmartDashboard.putNumber("Y final", yFinal);
     SmartDashboard.putNumber("Left Front Power", leftFrontPower);
