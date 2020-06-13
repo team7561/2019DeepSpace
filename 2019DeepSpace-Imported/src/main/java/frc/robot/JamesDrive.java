@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class JamesDrive {
     public static void drive(Robot robot, Joystick joystick)
     {
-        robot.speedControl = (joystick.getThrottle()+1)/2;
+        robot.speedControl = -(joystick.getThrottle()+1)/2;
 
         if (joystick.getRawButtonPressed(7))
         {
