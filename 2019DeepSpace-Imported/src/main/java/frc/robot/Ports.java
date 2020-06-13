@@ -6,13 +6,14 @@ public class Ports {
     public static int ARM_CANID = 51;
 
     // PWM control channels
-    public static int DRIVE_LEFT_A_PWM = 1;
-    public static int DRIVE_LEFT_B_PWM = 2;
-    public static int DRIVE_RIGHT_A_PWM = 3;
-    public static int DRIVE_RIGHT_B_PWM = 4;
-    public static int CARGO_INTAKE_PWM = 5;
+    public static int DRIVE_LEFT_A_PWM = 0;
+    public static int DRIVE_LEFT_B_PWM = 1;
+    public static int DRIVE_RIGHT_A_PWM = 2;
+    public static int DRIVE_RIGHT_B_PWM = 3;
+    public static int CARGO_INTAKE_PWM = 4;
     public static int LIFT_A_PWM = 6;
     public static int LIFT_B_PWM = 7;
+    public static int LED_CONTROLLER_PWM = 8;
 
 
     // DIO ports

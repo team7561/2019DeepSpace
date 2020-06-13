@@ -1,6 +1,7 @@
 package frc.robot.subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
@@ -9,19 +10,19 @@ import frc.robot.Speeds;
 
 public class BallIntake implements Subsystem {
 
-    VictorSPX ballIntakeMotor;
+    Talon ballIntakeMotor;
     DigitalInput intakeLimitSwitch;
     Boolean hasBall;
 
     public BallIntake()
     {
-        ballIntakeMotor = new VictorSPX(Ports.CARGO_INTAKE_CANID);
+        ballIntakeMotor = new Talon(Ports.CARGO_INTAKE_PWM);
     }
 
     //set speed of both intake motors
     private void intakeSpeed (double speed)
     {
-        ballIntakeMotor.set(ControlMode.PercentOutput, speed);
+        ballIntakeMotor.set(speed);
     }
 
     //Get the Ball
@@ -39,7 +40,7 @@ public class BallIntake implements Subsystem {
     public boolean hasBall()
     {
         double current = SmartDashboard.getNumber("Channel 7 Current", 0);
-        hasBall = ballIntakeMotor.getMotorOutputPercent() < 0 && current > Constants.CARGO_STALL_CURRENT;
+        hasBall = ballIntakeMotor.get() < 0 && current > Constants.CARGO_STALL_CURRENT;
         return hasBall;
     }
 
@@ -66,7 +67,7 @@ public class BallIntake implements Subsystem {
     {
         if (debug)
         {
-            SmartDashboard.putNumber("Intake Power", ballIntakeMotor.getMotorOutputVoltage());
+            SmartDashboard.putNumber("Intake Power", ballIntakeMotor.get());
             SmartDashboard.putBoolean("Got Cargo", hasBall());
         }
     }

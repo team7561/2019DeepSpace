@@ -28,7 +28,6 @@ public class Robot extends TimedRobot {
   public Joystick joystick = new Joystick(1);
   public XboxController xboxController = new XboxController(2);
   public Arm arm = new Arm();
-  public Climber climber = new Climber();
   public BallIntake ballintake = new BallIntake();
   public PanelIntake panelintake = new PanelIntake();
   public Drivetrain drivetrain = new Drivetrain();
@@ -54,7 +53,6 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     invertedDrive = false;
     speedControl = 0.5;
-    climber.stopVacuum();
     pdp = new PowerDistributionPanel();
     viveMeasurements = new ViveMeasurements();
     strategy = new ViveAuto();
@@ -71,8 +69,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     matchTimer.start();
     lift.resetEncoder();
-    drivetrain.resetEncoders();
-    climber.stopVacuum();
     autoMode = m_chooser.getSelected();
 
     strategy.reset();
@@ -91,10 +87,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    climber.recoverCarrige();
-    panelintake.getPannel();
-    climber.stopVacuum();
-    drivetrain.resetEncoders();
   }
 
   @Override

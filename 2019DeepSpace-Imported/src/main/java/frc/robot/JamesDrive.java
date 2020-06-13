@@ -62,14 +62,6 @@ public class JamesDrive {
                 robot.ballintake.keepBall();
             }  
         }
-        if (joystick.getRawButtonPressed(11))
-        {
-            robot.climber.deployLift();
-        }
-        else if (joystick.getRawButtonPressed(12))
-        {
-            robot.climber.retractLift();
-        }
 
     }
 }

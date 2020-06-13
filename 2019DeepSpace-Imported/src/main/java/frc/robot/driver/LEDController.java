@@ -9,7 +9,7 @@ public class LEDController implements Subsystem {
     private Spark blinkin;
     public LEDController()
     {
-        blinkin = new Spark(Ports.LED_CONTROLLER_CHANNEL);
+        blinkin = new Spark(Ports.LED_CONTROLLER_PWM);
     }
 
     private void setRawMode(double mode)

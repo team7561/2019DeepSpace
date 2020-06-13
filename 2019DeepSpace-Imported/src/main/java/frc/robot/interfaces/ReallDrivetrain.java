@@ -10,7 +10,8 @@ public class ReallDrivetrain implements DriveTrainInterface {
     }
     public double getBearing()
     {
-        return robot.drivetrain.getAngle();
+        return 0;
+        //return robot.drivetrain.getAngle();
     }
     public double getLocationX()
     {

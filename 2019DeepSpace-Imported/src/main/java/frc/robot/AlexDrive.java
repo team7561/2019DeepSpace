@@ -46,26 +46,6 @@ public class AlexDrive {
         boolean inverted = false;
         robot.drivetrain.arcadeDrive(x, y, speed, inverted);
 
-        // Controls for climb
-        // 1
-        if (xboxController.getStartButtonPressed()) {
-            robot.climber.releaseCarridge();
-        } else {
-            robot.climber.stopClimbing();
-        }
-        // 2
-        /* if (xboxController.getStickButtonPressed(GenericHID.Hand.kLeft)){
-            robot.climber.releaseSolenoid();
-        } else {
-            robot.climber.climbStop();
-        }
-        */// 3
-        if (xboxController.getBackButtonPressed()){
-            robot.climber.pullUp();
-        } else {
-            robot.climber.stopClimbing();
-        }
-
 
 
     }
