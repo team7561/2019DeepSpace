@@ -1,0 +1,5 @@
+https://dev.imjac.in/maven/jaci/pathfinder/PathfinderOLD-latest.json
+http://maven.highcurrent.io/vendordeps/ADIS16448.json
+https://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json
+http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/Phoenix-latest.json
+https://www.kauailabs.com/dist/frc/2020/navx_frc.json
