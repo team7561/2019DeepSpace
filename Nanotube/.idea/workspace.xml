@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93a4d35a-1652-46ab-b239-143294fa0a4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/2019DeepSpace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/2019DeepSpace.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019DeepSpace/.idea/modules/2019DeepSpace.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../2019DeepSpace/.idea/modules/2019DeepSpace.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2019DeepSpace/src/main/java/frc/robot/autonomous/ViveAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2019DeepSpace/src/main/java/frc/robot/autonomous/ViveAuto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/.wpilib/wpilib_preferences.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/src/main/deploy/example.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/src/main/java/frc/robot/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/src/main/java/frc/robot/MotorController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nanotube/src/main/java/frc/robot/Robot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HDrive/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../HDrive/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frc/robot/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frc/robot/MotorController.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,46 +13,46 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="e#0#1065#0" expanded="true" />
-                <element signature="e#1019#1020#0" expanded="true" />
-                <element signature="e#1061#1062#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/main/deploy/example.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/frc/robot/Robot.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/MotorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="289">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
               <folding>
-                <element signature="e#0#1427#0" expanded="true" />
-                <element signature="e#1390#1391#0" expanded="true" />
-                <element signature="e#1450#1451#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/MotorController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Robot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+            <state relative-caret-position="850">
+              <caret line="60" column="7" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
               <folding>
-                <element signature="e#759#760#0" expanded="true" />
-                <element signature="e#792#793#0" expanded="true" />
-                <element signature="e#274#275#0" expanded="true" />
-                <element signature="e#316#317#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,6 +84,11 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>teleop</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -107,15 +98,25 @@
         <option value="$PROJECT_DIR$/Nanotube/src/main/java/frc/robot/MotorController.java" />
         <option value="$PROJECT_DIR$/Nanotube/src/main/java/frc/robot/Robot.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/robot/Main.java" />
+        <option value="$PROJECT_DIR$/src/frc/robot/MotorController.java" />
+        <option value="$PROJECT_DIR$/src/frc/robot/Robot.java" />
+        <option value="$PROJECT_DIR$/src/frc/robot/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/robot/MotorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" />
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-14" />
-    <option name="width" value="1532" />
-    <option name="height" value="1960" />
+    <option name="y" value="-14" />
+    <option name="width" value="3024" />
+    <option name="height" value="1974" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -123,7 +124,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -150,6 +150,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -161,8 +162,8 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="RunDashboard">
@@ -229,12 +230,15 @@
       <updated>1573034639631</updated>
       <workItem from="1573034641185" duration="974000" />
       <workItem from="1573036060786" duration="450000" />
-      <workItem from="1573036761906" duration="1046000" />
+      <workItem from="1573036761906" duration="2583000" />
+      <workItem from="1573108455759" duration="1632000" />
+      <workItem from="1581121091431" duration="85000" />
+      <workItem from="1588488875486" duration="6000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2470000" />
+    <option name="totallyTimeSpent" value="5730000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -246,10 +250,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1728" height="1127" extended-state="6" />
-    <editor active="true" />
+    <frame x="-6" y="-6" width="1513" height="983" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.498503" visible="true" weight="0.25568864" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498503" visible="true" weight="0.14845361" />
       <window_info id="Structure" order="1" sideWeight="0.50149703" side_tool="true" weight="0.2497006" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -263,22 +266,26 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4994012" weight="0.32931727" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4994012" weight="0.32931727" />
-      <window_info anchor="bottom" id="FRC" order="9" sideWeight="0.4994012" weight="0.32931727" />
+      <window_info anchor="bottom" id="FRC" order="9" sideWeight="0.4994012" weight="0.3282532" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4994012" visible="true" weight="0.32931727" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4994012" weight="0.3282532" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5005988" side_tool="true" weight="0.32931727" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24948454" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.3298969" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3298969" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Nanotube/src/main/java/frc/robot/Robot.java" />
@@ -287,6 +294,22 @@
     <entry file="file://$PROJECT_DIR$/Nanotube/gradlew" />
     <entry file="file://$PROJECT_DIR$/Nanotube/build.gradle" />
     <entry file="file://$PROJECT_DIR$/Nanotube/src/main/java/frc/robot/MotorController.java" />
+    <entry file="file://$PROJECT_DIR$/src/frc/robot/MotorController.java" />
+    <entry file="file://$PROJECT_DIR$/src/frc/robot/Robot.java" />
+    <entry file="file://$PROJECT_DIR$/src/frc/robot/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/deploy/example.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Robot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="60" column="7" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gradlew.bat">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -303,39 +326,12 @@
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#0#1065#0" expanded="true" />
-            <element signature="e#1019#1020#0" expanded="true" />
-            <element signature="e#1061#1062#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/robot/MotorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        <state relative-caret-position="289">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
           <folding>
-            <element signature="e#759#760#0" expanded="true" />
-            <element signature="e#792#793#0" expanded="true" />
-            <element signature="e#274#275#0" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/frc/robot/Robot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#1427#0" expanded="true" />
-            <element signature="e#1390#1391#0" expanded="true" />
-            <element signature="e#1450#1451#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

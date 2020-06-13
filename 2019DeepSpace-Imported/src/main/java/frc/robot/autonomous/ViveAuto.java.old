@@ -1,0 +1,104 @@
+package frc.robot.autonomous;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Ports;
+import frc.robot.Robot;
+
+public class ViveAuto {
+    public enum MODE {
+        ACQUIRE_HATCH_PANEL,
+        ACQUIRE_CARGO,
+        MOVE_TO_CARGO_SHIP,
+        MOVE_TO_ROCKET,
+        SCORE_HATCH_PANEL,
+        SEARCH_CARGO
+    }
+    public enum SCORE_ZONE {
+        CARRGO_SHIP,
+        ROCKET_LEVEL_ONE_HP,
+        ROCKET_LEVEL_ONE_C,
+        ROCKET_LEVEL_TWO_HP,
+        ROCKET_LEVEL_TWO_C,
+        ROCKET_LEVEL_THREE_HP,
+        ROCKET_LEVEL_THREE_C
+    }
+    MODE mode;
+    ViveMeasurements.LOCATION location;
+    ViveMeasurements viveMeasurements;
+
+    public ViveAuto()
+    {
+        mode = MODE.ACQUIRE_CARGO;
+        location = viveMeasurements.getLocation();
+    }
+    public void acquire_hatch_panel(Robot robot)
+    {
+        // Travel to  in front of loading station
+        // Move forward and grab hatch panel
+        // Actuate hatch system
+        robot.panelintake.getPannel();
+
+    }
+    public void acquire_cargo(Robot robot)
+    {
+        // Travel to  in front of loading station
+        // Move forward and grab hatch panel
+        // Actuate cargo system
+        robot.ballintake.getBall();
+    }
+    public void score_cargo_ship(Robot robot)
+    {
+        robot.panelintake.ejectPannel();
+    }
+    public void mainLoop(Robot robot)
+    {
+        location = viveMeasurements.getLocation();
+        if(mode == MODE.ACQUIRE_CARGO)
+        {
+            if (robot.ballintake.hasBall(robot.pdp.getCurrent(Ports.CARGO_INTAKE_PDP_SLOT)))
+            {
+                mode = MODE.MOVE_TO_CARGO_SHIP;
+            }
+            else
+            {
+                acquire_cargo(robot);
+            }
+        }
+        if(mode == MODE.ACQUIRE_HATCH_PANEL)
+        {
+            if (robot.panelintake.isClosed())
+            {
+                mode = MODE.MOVE_TO_CARGO_SHIP;
+            }
+            else
+            {
+                acquire_cargo(robot);
+            }
+        }
+        if(mode == MODE.MOVE_TO_CARGO_SHIP)
+        {
+            if (robot.panelintake.isClosed())
+            {
+                mode = MODE.MOVE_TO_CARGO_SHIP;
+            }
+            else
+            {
+                acquire_cargo(robot);
+            }
+        }
+
+    }
+    public void travel(SCORE_ZONE score_zone)
+    {
+        if (score_zone == SCORE_ZONE.CARRGO_SHIP)
+            if (viveMeasurements.nearCargoShip())
+            {
+            }
+    }
+
+    public void updateDashboard()
+    {
+        SmartDashboard.putString("Auto Mode", mode.toString());
+    }
+
+}

@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    arcadeDrive(m_leftStick.getX(), m_leftStick.getY(), 1, false);
+    arcadeDrive(m_leftStick.getX(), m_leftStick.getY(), 0.2, false);
   }
   public void drive(double leftSpeed, double rightSpeed) {
     left.set(leftSpeed);
